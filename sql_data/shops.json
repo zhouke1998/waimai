@@ -1,0 +1,1265 @@
+ [
+   {
+        "act_tag": 0,
+        "activities": [
+          {
+            "attribute": "{\"52\": {\"1\": 12.0, \"0\": 0}, \"28\": {\"1\": 5.0, \"0\": 0}, \"108\": {\"1\": 38.0, \"0\": 0}}",
+            "description": "满28减5，满52减12，满108减38",
+            "icon_color": "f07373",
+            "icon_name": "减",
+            "id": 21504208098,
+            "is_exclusive_with_food_activity": true,
+            "name": "自营销复杂满减活动",
+            "tips": "满28减5，满52减12，满108减38",
+            "type": 102
+          },
+          {
+            "description": "特价商品1.99元起",
+            "icon_color": "f1884f",
+            "icon_name": "特",
+            "id": 21621196522,
+            "name": "单品定价",
+            "tips": "单品定价"
+          },
+          {
+            "attribute": "17.0",
+            "description": "新用户下单立减17元",
+            "icon_color": "70bc46",
+            "icon_name": "首",
+            "id": 21737014810,
+            "is_exclusive_with_food_activity": true,
+            "name": "新用户立减(不与其他活动共享)",
+            "tips": "新用户下单立减17元",
+            "type": 103
+          }
+        ],
+        "authentic_id": 8335064594195163,
+        "business_info": "{\"recent_order_num_display\": \"月售1058\", \"lemon_support_tags\": [{\"color\": \"cce23028\", \"text\": \"28减5\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"52减12\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"108减38\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"0元配送\", \"border\": \"4ce23028\", \"background\": null, \"type\": 12, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"1.99元特价\", \"border\": \"4ce23028\", \"background\": null, \"type\": 7, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"首单减17\", \"border\": \"4ce23028\", \"background\": null, \"type\": 5, \"icon\": null}], \"ad_info\": null}",
+        "delivery_fee_discount": 3,
+        "description": "亲爱的客人！麻烦下单的时候看一下你的地址和电话是否正确，所有东西都是现做先卖的，有问题请联系，差评请慎重！本店是南联银株店，同时下雨天配送员也辛苦也有安全的问题稍等一下是正常的谢谢！",
+        "distance": 986,
+        "favored": false,
+        "flavors": [
+          {
+            "id": 212,
+            "name": "汉堡薯条"
+          },
+          {
+            "id": 234,
+            "name": "炸鸡炸串"
+          }
+        ],
+        "float_delivery_fee": 0,
+        "float_minimum_order_amount": 0,
+        "folding_restaurant_brand": "华莱士",
+        "folding_restaurants": [
+          {
+            "distance": 1837,
+            "id": "E17177513910792922787",
+            "name": "华莱士炸鸡汉堡(南联怡丰店)",
+            "order_lead_time": 37,
+            "scheme": "https://h5.ele.me/shop/#id=E17177513910792922787",
+            "type": 0
+          },
+          {
+            "distance": 2127,
+            "id": "E6496127757934378338",
+            "name": "华莱士炸鸡汉堡(吉祥地铁站店)",
+            "order_lead_time": 38,
+            "scheme": "https://h5.ele.me/shop/#id=E6496127757934378338",
+            "type": 0
+          },
+          {
+            "distance": 2579,
+            "id": "E9258613163007724234",
+            "name": "华莱士炸鸡汉堡（龙岗新屯店）",
+            "order_lead_time": 33,
+            "scheme": "https://h5.ele.me/shop/#id=E9258613163007724234",
+            "type": 0
+          },
+          {
+            "distance": 2800,
+            "id": "E518621835768097782",
+            "name": "华莱士炸鸡汉堡(南联地铁站店)",
+            "order_lead_time": 37,
+            "scheme": "https://h5.ele.me/shop/#id=E518621835768097782",
+            "type": 0
+          },
+          {
+            "distance": 4813,
+            "id": "E16358983469711597023",
+            "name": "华莱士炸鸡汉堡（龙东店）",
+            "order_lead_time": 37,
+            "scheme": "https://h5.ele.me/shop/#id=E16358983469711597023",
+            "type": 0
+          }
+        ],
+        "has_story": false,
+        "id": "E8969413778307509341",
+        "image_path": "ae7d5f7446dff93aad34db6279683851png",
+        "is_new": false,
+        "is_premium": true,
+        "is_star": false,
+        "is_stock_empty": 0,
+        "is_valid": 1,
+        "latitude": 22.709539,
+        "longitude": 114.259852,
+        "max_applied_quantity_per_order": -1,
+        "name": "华莱士(南联银株店)",
+        "next_business_time": "明天 00:00",
+        "only_use_poi": false,
+        "opening_hours": [
+          "00:00/24:00"
+        ],
+        "order_lead_time": 40,
+        "out_of_range": false,
+        "piecewise_agent_fee": {
+          "description": "免配送费",
+          "extra_fee": -3,
+          "is_extra": true,
+          "no_subsidy_fee": "¥3",
+          "rules": [
+            {
+              "fee": 0,
+              "price": 0
+            }
+          ],
+          "tips": "免配送费"
+        },
+        "platform": 0,
+        "posters": [],
+        "promotion_info": "亲爱的用户，你们好！蜜汁手扒鸡和脆皮全鸡配孜然粉和胡椒粉各一包。薯条配两包番茄酱！其它的请购买，如需添加配料请备注。谢谢理解。",
+        "rating": 4.6,
+        "rating_count": 228,
+        "recent_order_num": 1058,
+        "recommend": {
+          "image_hash": "731111f3f9379e772eedf4855beae8a1jpeg",
+          "is_ad": false,
+          "track": "{\"rankType\":\"3\"}"
+        },
+        "recommend_reasons": [],
+        "regular_customer_count": 0,
+        "scheme": "https://h5.ele.me/shop/#id=E8969413778307509341",
+        "status": 1,
+        "support_tags": [
+          {
+            "border": "dddddd",
+            "color": "666666",
+            "icon": "4e20966ca2a516de3f02fb9c7fd1bc6dpng",
+            "text": "汉堡薯条",
+            "type": 1
+          },
+          {
+            "border": "4c000000",
+            "color": "99000000",
+            "text": "支持自取",
+            "type": 20
+          }
+        ],
+        "supports": [
+          {
+            "border": "90dddddd",
+            "description": "商家原因导致订单取消，赔付代金券",
+            "icon_color": "999999",
+            "icon_name": "赔",
+            "id": 10,
+            "name": "拒单赔",
+            "text_color": "666666",
+            "two_characters_icon_name": ""
+          }
+        ],
+        "tags": [],
+        "target_tag_path": "d53fc0cb4dc67973038cbc591938a1b6png",
+        "theme": {
+          "default_color": "2395ff",
+          "header_style": 0,
+          "hongbao_style": 0,
+          "price_color": "ff5339",
+          "third_tab_name": "商家",
+          "vanish_fields": []
+        },
+        "type": 0
+      }
+    ,
+    {
+        "act_tag": 0,
+        "activities": [
+          {
+            "attribute": "{\"35\": {\"1\": 10.0, \"0\": 0}, \"55\": {\"1\": 20.0, \"0\": 0}}",
+            "description": "满35减10，满55减20",
+            "icon_color": "f07373",
+            "icon_name": "减",
+            "id": 21746833282,
+            "is_exclusive_with_food_activity": true,
+            "name": "永和6月周内正",
+            "tips": "满35减10，满55减20",
+            "type": 102
+          },
+          {
+            "description": "折扣商品5折起",
+            "icon_color": "f07373",
+            "icon_name": "折",
+            "id": 21761934850,
+            "name": "卤肉FUN拼宫保鸡丁蒸蛋",
+            "tips": "卤肉FUN拼宫保鸡丁蒸蛋"
+          },
+          {
+            "attribute": "25.0",
+            "description": "新用户下单立减25元",
+            "icon_color": "70bc46",
+            "icon_name": "首",
+            "id": 21749794642,
+            "is_exclusive_with_food_activity": true,
+            "name": "新用户立减(不与其他活动共享)",
+            "tips": "新用户下单立减25元",
+            "type": 103
+          },
+          {
+            "description": "特价商品4元起",
+            "icon_color": "f1884f",
+            "icon_name": "换",
+            "id": 21744866346,
+            "name": "超值换购",
+            "tips": "超值换购"
+          }
+        ],
+        "authentic_id": 5395064602556828,
+        "business_info": "{\"recent_order_num_display\": \"月售1104\", \"lemon_support_tags\": [{\"color\": \"cce23028\", \"text\": \"35减10\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"55减20\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"a25c03\", \"text\": \"6元会员红包\", \"border\": \"4ca25c03\", \"background\": null, \"type\": 2, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"品质联盟\", \"border\": \"4ce23028\", \"background\": null, \"type\": 4, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"5折\", \"border\": \"4ce23028\", \"background\": null, \"type\": 7, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"4元特价\", \"border\": \"4ce23028\", \"background\": null, \"type\": 7, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"返红包\", \"border\": \"4ce23028\", \"background\": null, \"type\": 9, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"首单减25\", \"border\": \"4ce23028\", \"background\": null, \"type\": 5, \"icon\": null}], \"ad_info\": null}",
+        "delivery_fee_discount": 0,
+        "description": "永和大王，是源自台湾的知名中华美食快餐品牌。每天任何時段，永和大王都认真地为您提供物有所值的美味和服务，让您在繁忙中享受轻松一刻。 永和大王始终坚信：提供源自台湾的美味，创造超值、快捷、信赖，随时随地让顾客放心的享受美食，是我们品牌的使命。",
+        "distance": 2465,
+        "favored": false,
+        "flavors": [
+          {
+            "id": 786,
+            "name": "豆浆油条"
+          },
+          {
+            "id": 882,
+            "name": "其他快餐"
+          }
+        ],
+        "float_delivery_fee": 4.5,
+        "float_minimum_order_amount": 20,
+        "folding_restaurant_brand": "永和大王",
+        "folding_restaurants": [
+          {
+            "distance": 3104,
+            "id": "E15071343489554295878",
+            "name": "永和大王(摩尔城店SZ034）",
+            "order_lead_time": 36,
+            "scheme": "https://h5.ele.me/shop/#id=E15071343489554295878",
+            "type": 0
+          }
+        ],
+        "has_story": false,
+        "id": "E17737462874257007413",
+        "image_path": "edac4e5abab06dea4b64d041495a9381png",
+        "is_new": false,
+        "is_premium": true,
+        "is_star": true,
+        "is_stock_empty": 0,
+        "is_valid": 1,
+        "latitude": 22.71785,
+        "longitude": 114.24657,
+        "max_applied_quantity_per_order": -1,
+        "name": "永和大王(龙翔大道店SZ058）",
+        "next_business_time": "明天 06:45",
+        "only_use_poi": false,
+        "opening_hours": [
+          "06:45/21:45"
+        ],
+        "order_lead_time": 40,
+        "out_of_range": false,
+        "piecewise_agent_fee": {
+          "description": "配送费¥4.5",
+          "extra_fee": 0.5,
+          "is_extra": true,
+          "no_subsidy_fee": "",
+          "rules": [
+            {
+              "fee": 4.5,
+              "price": 20
+            }
+          ],
+          "tips": "配送费¥4.5"
+        },
+        "platform": 0,
+        "posters": [],
+        "promotion_info": "永和大王！台式好味道！如您遇到不满意的就餐体验，希望不要着急给到差评，可以拨打客服热线：4000979797，我们的服务一定会让您满意！",
+        "rating": 4.5,
+        "rating_count": 266,
+        "recent_order_num": 1104,
+        "recommend": {
+          "color": "#e8470b",
+          "image_hash": "",
+          "is_ad": false,
+          "reason": "",
+          "track": "{\"rankType\":\"3\"}"
+        },
+        "recommend_reasons": [],
+        "regular_customer_count": 0,
+        "scheme": "https://h5.ele.me/shop/#id=E17737462874257007413",
+        "status": 1,
+        "support_tags": [
+          {
+            "border": "dddddd",
+            "color": "666666",
+            "icon": "4e20966ca2a516de3f02fb9c7fd1bc6dpng",
+            "text": "豆浆油条",
+            "type": 1
+          },
+          {
+            "border": "dddddd",
+            "color": "666666",
+            "text": "口碑人气好店"
+          },
+          {
+            "border": "dddddd",
+            "color": "333333",
+            "text": "品质联盟"
+          }
+        ],
+        "supports": [
+          {
+            "border": "90dddddd",
+            "description": "该商家支持开发票，请在下单时填写好发票抬头",
+            "icon_color": "999999",
+            "icon_name": "票",
+            "id": 4,
+            "name": "开发票",
+            "text_color": "666666",
+            "two_characters_icon_name": "发票"
+          }
+        ],
+        "tags": [],
+        "target_tag_path": "d6a7283753e66cad4c4dc9a459d96a7fpng",
+        "theme": {
+          "default_color": "2395ff",
+          "header_style": 0,
+          "hongbao_style": 0,
+          "price_color": "ff5339",
+          "third_tab_name": "商家",
+          "vanish_fields": []
+        },
+        "type": 0
+      }
+    ,
+    {
+        "act_tag": 0,
+        "activities": [
+          {
+            "attribute": "{\"25\": {\"1\": 20.0, \"0\": 0}, \"105\": {\"1\": 60.0, \"0\": 0}, \"65\": {\"1\": 40.0, \"0\": 0}}",
+            "description": "满25减20，满65减40，满105减60",
+            "icon_color": "f07373",
+            "icon_name": "减",
+            "id": 21590739242,
+            "is_exclusive_with_food_activity": true,
+            "name": "自营销复杂满减活动",
+            "tips": "满25减20，满65减40，满105减60",
+            "type": 102
+          },
+          {
+            "attribute": "{\"5.0\": {\"quantity\": 1, \"must_pay_online\": 1, \"name\": \"\\u4e0b\\u5355\\u5c31\\u9001\\u7cbd\\u5b50\"}}",
+            "description": "满5元赠送下单就送粽子1份",
+            "icon_color": "3cc791",
+            "icon_name": "赠",
+            "id": 21765629402,
+            "is_exclusive_with_food_activity": true,
+            "name": "赠品活动",
+            "tips": "满5元赠送下单就送粽子1份",
+            "type": 106
+          },
+          {
+            "description": "特价商品2.88元起",
+            "icon_color": "f1884f",
+            "icon_name": "特",
+            "id": 21563200074,
+            "name": "单品定价",
+            "tips": "单品定价"
+          },
+          {
+            "description": "折扣商品9.5折起",
+            "icon_color": "f07373",
+            "icon_name": "折",
+            "id": 21563207442,
+            "name": "单品折扣",
+            "tips": "单品折扣"
+          }
+        ],
+        "authentic_id": 8395084614869076,
+        "business_info": "{\"recent_order_num_display\": \"月售484\", \"lemon_support_tags\": [{\"color\": \"cce23028\", \"text\": \"25减20\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"65减40\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"105减60\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"品质联盟\", \"border\": \"4ce23028\", \"background\": null, \"type\": 4, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"9.5折\", \"border\": \"4ce23028\", \"background\": null, \"type\": 7, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"2.88元特价\", \"border\": \"4ce23028\", \"background\": null, \"type\": 7, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"领3元红包\", \"border\": \"4ce23028\", \"background\": null, \"type\": 8, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"赠\", \"border\": \"4ce23028\", \"background\": null, \"type\": 10, \"icon\": null}], \"ad_info\": null}",
+        "delivery_fee_discount": 4,
+        "delivery_mode": {
+          "border": "",
+          "color": "2395FF",
+          "gradient": {
+            "rgb_from": "00AAFF",
+            "rgb_to": "0085FF"
+          },
+          "icon_hash": "b9b45d2f6ff0dbeef3a78ef0e4e90abapng",
+          "id": 1,
+          "is_solid": true,
+          "text": "蜂鸟专送",
+          "text_color": "FFFFFF"
+        },
+        "description": "",
+        "distance": 3670,
+        "favored": false,
+        "flavors": [
+          {
+            "id": 267,
+            "name": "黄焖鸡米饭"
+          }
+        ],
+        "float_delivery_fee": 2.5,
+        "float_minimum_order_amount": 20,
+        "has_story": false,
+        "id": "E15682857219473169440",
+        "image_path": "12dd055286ccd906f1f3a62b8de83010jpeg",
+        "is_new": false,
+        "is_premium": false,
+        "is_star": false,
+        "is_stock_empty": 0,
+        "is_valid": 1,
+        "latitude": 22.729736,
+        "longitude": 114.258393,
+        "max_applied_quantity_per_order": -1,
+        "name": "谢汝兵黄焖鸡米饭",
+        "next_business_time": "明天 10:00",
+        "only_use_poi": false,
+        "opening_hours": [
+          "10:00/22:00"
+        ],
+        "order_lead_time": 40,
+        "out_of_range": false,
+        "piecewise_agent_fee": {
+          "description": "远距离配送费¥2.5",
+          "extra_fee": -1.5,
+          "is_extra": true,
+          "no_subsidy_fee": "¥6.5",
+          "rules": [
+            {
+              "fee": 2.5,
+              "price": 20
+            }
+          ],
+          "tips": "远距离配送费¥2.5"
+        },
+        "platform": 0,
+        "posters": [],
+        "promotion_info": "送饮料老牌子清凉茶盒装！）（需要冰冻请备注谢谢！）（还望多多支持与鼓励！）",
+        "rating": 4.4,
+        "rating_count": 63,
+        "recent_order_num": 484,
+        "recommend": {
+          "is_ad": false,
+          "reason": ""
+        },
+        "recommend_reasons": [],
+        "regular_customer_count": 0,
+        "scheme": "https://h5.ele.me/shop/#id=E15682857219473169440",
+        "status": 1,
+        "support_tags": [
+          {
+            "border": "dddddd",
+            "color": "666666",
+            "icon": "4e20966ca2a516de3f02fb9c7fd1bc6dpng",
+            "text": "黄焖鸡米饭",
+            "type": 1
+          },
+          {
+            "border": "4c000000",
+            "color": "99000000",
+            "text": "支持自取",
+            "type": 20
+          },
+          {
+            "border": "dddddd",
+            "color": "333333",
+            "text": "品质联盟"
+          }
+        ],
+        "supports": [
+          {
+            "border": "90dddddd",
+            "description": "该商户食品安全已由国泰产险承担，食品安全有保障",
+            "icon_color": "999999",
+            "icon_name": "保",
+            "id": 7,
+            "name": "食安保",
+            "text_color": "666666",
+            "two_characters_icon_name": "保险"
+          }
+        ],
+        "theme": {
+          "default_color": "2395ff",
+          "header_style": 0,
+          "hongbao_style": 0,
+          "price_color": "ff5339",
+          "third_tab_name": "商家",
+          "vanish_fields": []
+        },
+        "type": 0
+      }
+    ,
+    {
+        "act_tag": 0,
+        "activities": [
+          {
+            "attribute": "{\"100\": {\"1\": 58.0, \"0\": 0}, \"20\": {\"1\": 19.0, \"0\": 0}, \"70\": {\"1\": 40.0, \"0\": 0}}",
+            "description": "满20减19，满70减40，满100减58",
+            "icon_color": "f07373",
+            "icon_name": "减",
+            "id": 21591513770,
+            "is_exclusive_with_food_activity": true,
+            "name": "自营销复杂满减活动",
+            "tips": "满20减19，满70减40，满100减58",
+            "type": 102
+          },
+          {
+            "description": "折扣商品5折起",
+            "icon_color": "f07373",
+            "icon_name": "折",
+            "id": 21714637186,
+            "name": "周三半价日",
+            "tips": "周三半价日"
+          },
+          {
+            "attribute": "25.0",
+            "description": "新用户下单立减25元",
+            "icon_color": "70bc46",
+            "icon_name": "首",
+            "id": 21749360090,
+            "is_exclusive_with_food_activity": true,
+            "name": "新用户立减(不与其他活动共享)",
+            "tips": "新用户下单立减25元",
+            "type": 103
+          },
+          {
+            "description": "特价商品0.96元起",
+            "icon_color": "f1884f",
+            "icon_name": "特",
+            "id": 1462571905,
+            "name": "单品定价",
+            "tips": "单品定价"
+          }
+        ],
+        "authentic_id": 5335034593824491,
+        "bidding": "{\"core\":{\"index\":3,\"extraInfo\":\"{\\\"adUnitMgrAb\\\":\\\"-1\\\",\\\"bidding\\\":\\\"{\\\\\\\"773626\\\\\\\":10}\\\",\\\"rankId\\\":\\\"8f79e9451c784729a37592913174b11b\\\",\\\"rankType\\\":\\\"8\\\",\\\"adLogo\\\":\\\"{\\\\\\\"url\\\\\\\":\\\\\\\"https://cube.elemecdn.com/0/1d/49b90a483860967ed3c67dd27714epng.png\\\\\\\",\\\\\\\"position\\\\\\\":\\\\\\\"left-bottom\\\\\\\"}\\\",\\\"latitude\\\":\\\"22.704461\\\",\\\"rankTime\\\":\\\"1560738378\\\",\\\"cityId\\\":\\\"11\\\",\\\"userId\\\":\\\"980216330\\\",\\\"longitude\\\":\\\"114.255743\\\"}\",\"target\":{\"restaurantId\":163913291,\"weight\":90,\"probability\":0.40525999665260315},\"come_from\":0,\"next\":{\"restaurantId\":167576135,\"weight\":80,\"probability\":0.37900999188423157}}}",
+        "business_info": "{\"recent_order_num_display\": \"月售1642\", \"lemon_support_tags\": [{\"color\": \"cce23028\", \"text\": \"20减19\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"70减40\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"100减58\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"a25c03\", \"text\": \"6元会员红包\", \"border\": \"4ca25c03\", \"background\": null, \"type\": 2, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"品质联盟\", \"border\": \"4ce23028\", \"background\": null, \"type\": 4, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"5折\", \"border\": \"4ce23028\", \"background\": null, \"type\": 7, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"0.96元特价\", \"border\": \"4ce23028\", \"background\": null, \"type\": 7, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"首单减25\", \"border\": \"4ce23028\", \"background\": null, \"type\": 5, \"icon\": null}], \"ad_info\": null}",
+        "delivery_fee_discount": 4,
+        "description": "用心做“黄焖鸡”招牌哥是认真的",
+        "distance": 3764,
+        "favored": false,
+        "flavors": [
+          {
+            "id": 882,
+            "name": "其他快餐"
+          }
+        ],
+        "float_delivery_fee": 2.5,
+        "float_minimum_order_amount": 20,
+        "has_story": false,
+        "id": "E644524642586357113",
+        "image_path": "8db4232b6c28664d3e0e27c78e246709jpeg",
+        "is_new": false,
+        "is_premium": false,
+        "is_star": false,
+        "is_stock_empty": 0,
+        "is_valid": 1,
+        "latitude": 22.695841,
+        "longitude": 114.229105,
+        "max_applied_quantity_per_order": -1,
+        "name": "招牌黄焖鸡米饭",
+        "next_business_time": "明天 09:30",
+        "only_use_poi": false,
+        "opening_hours": [
+          "09:30/21:00"
+        ],
+        "order_lead_time": 46,
+        "out_of_range": false,
+        "piecewise_agent_fee": {
+          "description": "远距离配送费¥2.5",
+          "extra_fee": -1.5,
+          "is_extra": true,
+          "no_subsidy_fee": "¥6.5",
+          "rules": [
+            {
+              "fee": 2.5,
+              "price": 20
+            }
+          ],
+          "tips": "远距离配送费¥2.5"
+        },
+        "platform": 0,
+        "posters": [],
+        "promotion_info": "欢迎来到招牌黄焖鸡米饭，在此感谢小主们对本店一直以来的支持和信任，为了回馈小主们，我们坚持追求用心，责任，高品质，高效率，让小主们看到我们的努力，打心底觉得吃的安全，放心！温馨提醒:1.高峰期提前下单，保障用餐时间。2.下雨天稍有延误请谅解。3.疑问和建议请与本店联系，谢谢",
+        "rating": 4.5,
+        "rating_count": 250,
+        "recent_order_num": 1642,
+        "recommend": {
+          "image_hash": "731111f3f9379e772eedf4855beae8a1jpeg",
+          "is_ad": true,
+          "reason": "广告",
+          "track": "{\"rankType\":\"8\"}"
+        },
+        "recommend_reasons": [],
+        "regular_customer_count": 0,
+        "scheme": "https://h5.ele.me/shop/#id=E644524642586357113",
+        "status": 1,
+        "support_tags": [
+          {
+            "border": "dddddd",
+            "color": "666666",
+            "icon": "4e20966ca2a516de3f02fb9c7fd1bc6dpng",
+            "text": "其他快餐",
+            "type": 1
+          },
+          {
+            "border": "4c000000",
+            "color": "99000000",
+            "text": "支持自取",
+            "type": 20
+          },
+          {
+            "border": "dddddd",
+            "color": "333333",
+            "text": "品质联盟"
+          }
+        ],
+        "supports": [
+          {
+            "border": "90dddddd",
+            "description": "该商户食品安全已由国泰产险承担，食品安全有保障",
+            "icon_color": "999999",
+            "icon_name": "保",
+            "id": 7,
+            "name": "食安保",
+            "text_color": "666666",
+            "two_characters_icon_name": "保险"
+          }
+        ],
+        "theme": {
+          "default_color": "2395ff",
+          "header_style": 0,
+          "hongbao_style": 0,
+          "price_color": "ff5339",
+          "third_tab_name": "商家",
+          "vanish_fields": []
+        },
+        "type": 0
+      }
+    ,
+    {
+        "act_tag": 0,
+        "activities": [
+          {
+            "attribute": "{\"24\": {\"1\": 23.0, \"0\": 0}, \"65\": {\"1\": 48.0, \"0\": 0}, \"100\": {\"1\": 69.0, \"0\": 0}, \"200\": {\"1\": 120.0, \"0\": 0}, \"150\": {\"1\": 90.0, \"0\": 0}}",
+            "description": "满24减23，满65减48，满100减69，满150减90，满200减120",
+            "icon_color": "f07373",
+            "icon_name": "减",
+            "id": 21747716690,
+            "is_exclusive_with_food_activity": true,
+            "name": "满减",
+            "tips": "满24减23，满65减48，满100减69，满150减90，满200减120",
+            "type": 102
+          },
+          {
+            "description": "折扣商品5折起",
+            "icon_color": "f07373",
+            "icon_name": "折",
+            "id": 21714543522,
+            "name": "周三半价日",
+            "tips": "周三半价日"
+          },
+          {
+            "description": "特价商品0.8元起",
+            "icon_color": "f1884f",
+            "icon_name": "特",
+            "id": 1614925321,
+            "name": "单品定价",
+            "tips": "单品定价"
+          }
+        ],
+        "authentic_id": 1315074611780035,
+        "bidding": "{\"core\":{\"index\":4,\"extraInfo\":\"{\\\"adUnitMgrAb\\\":\\\"-1\\\",\\\"bidding\\\":\\\"{\\\\\\\"773626\\\\\\\":10}\\\",\\\"rankId\\\":\\\"8f79e9451c784729a37592913174b11b\\\",\\\"rankType\\\":\\\"8\\\",\\\"adLogo\\\":\\\"{\\\\\\\"url\\\\\\\":\\\\\\\"https://cube.elemecdn.com/0/1d/49b90a483860967ed3c67dd27714epng.png\\\\\\\",\\\\\\\"position\\\\\\\":\\\\\\\"left-bottom\\\\\\\"}\\\",\\\"latitude\\\":\\\"22.704461\\\",\\\"rankTime\\\":\\\"1560738378\\\",\\\"cityId\\\":\\\"11\\\",\\\"userId\\\":\\\"980216330\\\",\\\"longitude\\\":\\\"114.255743\\\"}\",\"target\":{\"restaurantId\":167576135,\"weight\":80,\"probability\":0.37900999188423157},\"come_from\":0,\"next\":{\"restaurantId\":170454800,\"weight\":210,\"probability\":0.08156000077724457}}}",
+        "business_info": "{\"recent_order_num_display\": \"月售2017\", \"lemon_support_tags\": [{\"color\": \"cce23028\", \"text\": \"24减23\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"65减48\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"100减69\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"150减90\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"200减120\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"a25c03\", \"text\": \"6元会员红包\", \"border\": \"4ca25c03\", \"background\": null, \"type\": 2, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"品质联盟\", \"border\": \"4ce23028\", \"background\": null, \"type\": 4, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"5折\", \"border\": \"4ce23028\", \"background\": null, \"type\": 7, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"0.8元特价\", \"border\": \"4ce23028\", \"background\": null, \"type\": 7, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"领16元红包\", \"border\": \"4ce23028\", \"background\": null, \"type\": 8, \"icon\": null}], \"ad_info\": null}",
+        "delivery_fee_discount": 2,
+        "description": "",
+        "distance": 3442,
+        "favored": false,
+        "flavors": [
+          {
+            "id": 882,
+            "name": "其他快餐"
+          },
+          {
+            "id": 221,
+            "name": "川湘菜"
+          }
+        ],
+        "float_delivery_fee": 1,
+        "float_minimum_order_amount": 20,
+        "has_story": false,
+        "id": "E3849267045460762078",
+        "image_path": "22e22568ebf105a4e85d326b298f5924jpeg",
+        "is_new": false,
+        "is_premium": false,
+        "is_star": false,
+        "is_stock_empty": 0,
+        "is_valid": 1,
+        "latitude": 22.728263,
+        "longitude": 114.254887,
+        "max_applied_quantity_per_order": -1,
+        "name": "至尊黄焖鸡米饭",
+        "next_business_time": "明天 09:30",
+        "only_use_poi": false,
+        "opening_hours": [
+          "09:30/22:30"
+        ],
+        "order_lead_time": 43,
+        "out_of_range": false,
+        "piecewise_agent_fee": {
+          "description": "远距离配送费¥1",
+          "extra_fee": -1,
+          "is_extra": true,
+          "no_subsidy_fee": "¥3",
+          "rules": [
+            {
+              "fee": 1,
+              "price": 20
+            }
+          ],
+          "tips": "远距离配送费¥1"
+        },
+        "platform": 0,
+        "posters": [],
+        "promotion_info": "认认真真做好每一份餐，真诚对待每一位顾客。感谢新老顾客的支持，风里雨里 至尊黄焖鸡等你。",
+        "rating": 4.5,
+        "rating_count": 201,
+        "recent_order_num": 2017,
+        "recommend": {
+          "image_hash": "731111f3f9379e772eedf4855beae8a1jpeg",
+          "is_ad": true,
+          "reason": "广告",
+          "track": "{\"rankType\":\"8\"}"
+        },
+        "recommend_reasons": [
+          {
+            "name": "味道超赞"
+          }
+        ],
+        "regular_customer_count": 0,
+        "scheme": "https://h5.ele.me/shop/#id=E3849267045460762078",
+        "status": 1,
+        "support_tags": [
+          {
+            "border": "dddddd",
+            "color": "666666",
+            "icon": "4e20966ca2a516de3f02fb9c7fd1bc6dpng",
+            "text": "其他快餐",
+            "type": 1
+          },
+          {
+            "border": "4c000000",
+            "color": "99000000",
+            "text": "支持自取",
+            "type": 20
+          },
+          {
+            "border": "dddddd",
+            "color": "333333",
+            "text": "品质联盟"
+          }
+        ],
+        "supports": [
+          {
+            "border": "90dddddd",
+            "description": "该商户食品安全已由国泰产险承担，食品安全有保障",
+            "icon_color": "999999",
+            "icon_name": "保",
+            "id": 7,
+            "name": "食安保",
+            "text_color": "666666",
+            "two_characters_icon_name": "保险"
+          }
+        ],
+        "theme": {
+          "default_color": "2395ff",
+          "header_style": 0,
+          "hongbao_style": 0,
+          "price_color": "ff5339",
+          "third_tab_name": "商家",
+          "vanish_fields": []
+        },
+        "type": 0
+      }
+    ,
+    {
+        "act_tag": 0,
+        "activities": [
+          {
+            "attribute": "{\"8\": {\"1\": 7.0, \"0\": 0}, \"40\": {\"1\": 20.0, \"0\": 0}, \"50\": {\"1\": 25.0, \"0\": 0}, \"35\": {\"1\": 15.0, \"0\": 0}, \"20\": {\"1\": 10.0, \"0\": 0}}",
+            "description": "满8减7，满20减10，满35减15，满40减20，满50减25",
+            "icon_color": "f07373",
+            "icon_name": "减",
+            "id": 1726075169,
+            "is_exclusive_with_food_activity": true,
+            "name": "自营销复杂满减活动",
+            "tips": "满8减7，满20减10，满35减15，满40减20，满50减25",
+            "type": 102
+          },
+          {
+            "description": "特价商品1.99元起",
+            "icon_color": "f1884f",
+            "icon_name": "换",
+            "id": 21576102226,
+            "name": "超值换购",
+            "tips": "超值换购"
+          },
+          {
+            "attribute": "20.0",
+            "description": "新用户下单立减20元",
+            "icon_color": "70bc46",
+            "icon_name": "首",
+            "id": 21749367578,
+            "is_exclusive_with_food_activity": true,
+            "name": "新用户立减(不与其他活动共享)",
+            "tips": "新用户下单立减20元",
+            "type": 103
+          }
+        ],
+        "authentic_id": 3375084605429764,
+        "business_info": "{\"recent_order_num_display\": \"月售2395\", \"lemon_support_tags\": [{\"color\": \"cce23028\", \"text\": \"8减7\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"20减10\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"35减15\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"40减20\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"50减25\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"a25c03\", \"text\": \"6元会员红包\", \"border\": \"4ca25c03\", \"background\": null, \"type\": 2, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"品质联盟\", \"border\": \"4ce23028\", \"background\": null, \"type\": 4, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"1.99元特价\", \"border\": \"4ce23028\", \"background\": null, \"type\": 7, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"领1元红包\", \"border\": \"4ce23028\", \"background\": null, \"type\": 8, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"返红包\", \"border\": \"4ce23028\", \"background\": null, \"type\": 9, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"首单减20\", \"border\": \"4ce23028\", \"background\": null, \"type\": 5, \"icon\": null}], \"ad_info\": null}",
+        "delivery_fee_discount": 2,
+        "description": "",
+        "distance": 2525,
+        "favored": false,
+        "flavors": [
+          {
+            "id": 882,
+            "name": "其他快餐"
+          }
+        ],
+        "float_delivery_fee": 3,
+        "float_minimum_order_amount": 15,
+        "has_story": false,
+        "id": "E17431339882687214539",
+        "image_path": "26f8e7f0c69a94c816d300eb56bbad56png",
+        "is_new": false,
+        "is_premium": false,
+        "is_star": false,
+        "is_stock_empty": 0,
+        "is_valid": 1,
+        "latitude": 22.709232,
+        "longitude": 114.238931,
+        "max_applied_quantity_per_order": -1,
+        "name": "BUY家小碗菜",
+        "next_business_time": "明天 10:00",
+        "only_use_poi": false,
+        "opening_hours": [
+          "10:00/22:00"
+        ],
+        "order_lead_time": 40,
+        "out_of_range": false,
+        "piecewise_agent_fee": {
+          "description": "配送费¥3",
+          "extra_fee": -1,
+          "is_extra": true,
+          "no_subsidy_fee": "¥5",
+          "rules": [
+            {
+              "fee": 3,
+              "price": 15
+            }
+          ],
+          "tips": "配送费¥3"
+        },
+        "platform": 0,
+        "posters": [],
+        "promotion_info": "欢迎光临，很高兴为你服务",
+        "rating": 4.6,
+        "rating_count": 788,
+        "recent_order_num": 2395,
+        "recommend": {
+          "is_ad": false,
+          "reason": ""
+        },
+        "recommend_reasons": [
+          {
+            "name": "味道超赞"
+          }
+        ],
+        "regular_customer_count": 0,
+        "scheme": "https://h5.ele.me/shop/#id=E17431339882687214539",
+        "status": 1,
+        "support_tags": [
+          {
+            "border": "dddddd",
+            "color": "666666",
+            "icon": "4e20966ca2a516de3f02fb9c7fd1bc6dpng",
+            "text": "其他快餐",
+            "type": 1
+          },
+          {
+            "border": "4c000000",
+            "color": "99000000",
+            "text": "支持自取",
+            "type": 20
+          },
+          {
+            "border": "dddddd",
+            "color": "333333",
+            "text": "品质联盟"
+          }
+        ],
+        "supports": [
+          {
+            "border": "90dddddd",
+            "description": "该商户食品安全已由国泰产险承担，食品安全有保障",
+            "icon_color": "999999",
+            "icon_name": "保",
+            "id": 7,
+            "name": "食安保",
+            "text_color": "666666",
+            "two_characters_icon_name": "保险"
+          }
+        ],
+        "tags": [],
+        "theme": {
+          "default_color": "2395ff",
+          "header_style": 0,
+          "hongbao_style": 0,
+          "price_color": "ff5339",
+          "third_tab_name": "商家",
+          "vanish_fields": []
+        },
+        "type": 0
+      }
+    ,
+    {
+        "act_tag": 0,
+        "activities": [
+          {
+            "attribute": "{\"88\": {\"1\": 65.0, \"0\": 0}, \"25\": {\"1\": 25.0, \"0\": 0}, \"52\": {\"1\": 50.0, \"0\": 0}, \"100\": {\"1\": 76.0, \"0\": 0}}",
+            "description": "满25减25，满52减50，满88减65，满100减76",
+            "icon_color": "f07373",
+            "icon_name": "减",
+            "id": 21777562002,
+            "is_exclusive_with_food_activity": true,
+            "name": "满减",
+            "tips": "满25减25，满52减50，满88减65，满100减76",
+            "type": 102
+          },
+          {
+            "description": "折扣商品3.8折起",
+            "icon_color": "f07373",
+            "icon_name": "折",
+            "id": 21788543434,
+            "name": "单品折扣",
+            "tips": "单品折扣"
+          },
+          {
+            "attribute": "17.0",
+            "description": "新用户下单立减17元",
+            "icon_color": "70bc46",
+            "icon_name": "首",
+            "id": 21740326322,
+            "is_exclusive_with_food_activity": true,
+            "name": "新用户立减(不与其他活动共享)",
+            "tips": "新用户下单立减17元",
+            "type": 103
+          },
+          {
+            "attribute": "{\"55.0\": {\"quantity\": 1, \"must_pay_online\": 1, \"name\": \"\\u5929\\u5730\\u4e00\\u53f7\\u82f9\\u679c\\u918b\\u8d60\\u996e\\u54c1\"}}",
+            "description": "满55元赠送天地一号苹果醋赠饮品1份",
+            "icon_color": "3cc791",
+            "icon_name": "赠",
+            "id": 21776204610,
+            "is_exclusive_with_food_activity": true,
+            "name": "赠品活动",
+            "tips": "满55元赠送天地一号苹果醋赠饮品1份",
+            "type": 106
+          }
+        ],
+        "authentic_id": 2375014595743122,
+        "business_info": "{\"recent_order_num_display\": \"月售2055\", \"lemon_support_tags\": [{\"color\": \"cce23028\", \"text\": \"25减25\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"52减50\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"88减65\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"100减76\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"a25c03\", \"text\": \"6元会员红包\", \"border\": \"4ca25c03\", \"background\": null, \"type\": 2, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"品质联盟\", \"border\": \"4ce23028\", \"background\": null, \"type\": 4, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"3.8折\", \"border\": \"4ce23028\", \"background\": null, \"type\": 7, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"赠\", \"border\": \"4ce23028\", \"background\": null, \"type\": 10, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"首单减17\", \"border\": \"4ce23028\", \"background\": null, \"type\": 5, \"icon\": null}], \"ad_info\": null}",
+        "delivery_fee_discount": 3,
+        "delivery_mode": {
+          "border": "",
+          "color": "2395FF",
+          "gradient": {
+            "rgb_from": "00AAFF",
+            "rgb_to": "0085FF"
+          },
+          "icon_hash": "b9b45d2f6ff0dbeef3a78ef0e4e90abapng",
+          "id": 1,
+          "is_solid": true,
+          "text": "蜂鸟专送",
+          "text_color": "FFFFFF"
+        },
+        "description": "",
+        "distance": 1743,
+        "favored": false,
+        "flavors": [
+          {
+            "id": 269,
+            "name": "煲仔饭"
+          },
+          {
+            "id": 240,
+            "name": "奶茶果汁"
+          }
+        ],
+        "float_delivery_fee": 1,
+        "float_minimum_order_amount": 20,
+        "has_story": false,
+        "id": "E5444473222568441786",
+        "image_path": "f6e8d2a5d1e0c15a9fdc51ce492280c2jpeg",
+        "is_new": false,
+        "is_premium": false,
+        "is_star": false,
+        "is_stock_empty": 0,
+        "is_valid": 1,
+        "latitude": 22.715386,
+        "longitude": 114.258404,
+        "max_applied_quantity_per_order": -1,
+        "name": "山泉水煲仔饭(龙城广场店)",
+        "next_business_time": "明天 10:00",
+        "only_use_poi": false,
+        "opening_hours": [
+          "10:00/21:00"
+        ],
+        "order_lead_time": 40,
+        "out_of_range": false,
+        "piecewise_agent_fee": {
+          "description": "配送费¥1",
+          "extra_fee": -3,
+          "is_extra": true,
+          "no_subsidy_fee": "¥4",
+          "rules": [
+            {
+              "fee": 1,
+              "price": 20
+            }
+          ],
+          "tips": "配送费¥1"
+        },
+        "platform": 0,
+        "posters": [],
+        "promotion_info": "拒绝速冻包，良心商家，鲜骨，鲜肉！",
+        "rating": 4.5,
+        "rating_count": 237,
+        "recent_order_num": 2055,
+        "recommend": {
+          "is_ad": false,
+          "reason": ""
+        },
+        "recommend_reasons": [
+          {
+            "name": "味道超赞"
+          }
+        ],
+        "regular_customer_count": 0,
+        "scheme": "https://h5.ele.me/shop/#id=E5444473222568441786",
+        "status": 1,
+        "support_tags": [
+          {
+            "border": "dddddd",
+            "color": "666666",
+            "icon": "4e20966ca2a516de3f02fb9c7fd1bc6dpng",
+            "text": "煲仔饭",
+            "type": 1
+          },
+          {
+            "border": "4c000000",
+            "color": "99000000",
+            "text": "支持自取",
+            "type": 20
+          },
+          {
+            "border": "dddddd",
+            "color": "333333",
+            "text": "品质联盟"
+          }
+        ],
+        "supports": [
+          {
+            "border": "90dddddd",
+            "description": "该商户食品安全已由国泰产险承担，食品安全有保障",
+            "icon_color": "999999",
+            "icon_name": "保",
+            "id": 7,
+            "name": "食安保",
+            "text_color": "666666",
+            "two_characters_icon_name": "保险"
+          }
+        ],
+        "tags": [],
+        "theme": {
+          "default_color": "2395ff",
+          "header_style": 0,
+          "hongbao_style": 0,
+          "price_color": "ff5339",
+          "third_tab_name": "商家",
+          "vanish_fields": []
+        },
+        "type": 0
+      }
+    ,
+    {
+        "act_tag": 0,
+        "activities": [
+          {
+            "attribute": "{\"33\": {\"1\": 24.0, \"0\": 0}, \"65\": {\"1\": 42.0, \"0\": 0}, \"47\": {\"1\": 27.0, \"0\": 0}}",
+            "description": "满33减24，满47减27，满65减42",
+            "icon_color": "f07373",
+            "icon_name": "减",
+            "id": 21787403810,
+            "is_exclusive_with_food_activity": true,
+            "name": "满减",
+            "tips": "满33减24，满47减27，满65减42",
+            "type": 102
+          },
+          {
+            "description": "特价商品1.68元起",
+            "icon_color": "f1884f",
+            "icon_name": "换",
+            "id": 21606418834,
+            "name": "超值换购",
+            "tips": "超值换购"
+          },
+          {
+            "attribute": "17.0",
+            "description": "新用户下单立减17元",
+            "icon_color": "70bc46",
+            "icon_name": "首",
+            "id": 21740365170,
+            "is_exclusive_with_food_activity": true,
+            "name": "新用户立减(不与其他活动共享)",
+            "tips": "新用户下单立减17元",
+            "type": 103
+          },
+          {
+            "description": "折扣商品4.5折起",
+            "icon_color": "f07373",
+            "icon_name": "折",
+            "id": 2028449538,
+            "name": "单品折扣",
+            "tips": "单品折扣"
+          }
+        ],
+        "authentic_id": 7325024602273563,
+        "business_info": "{\"recent_order_num_display\": \"月售1821\", \"lemon_support_tags\": [{\"color\": \"cce23028\", \"text\": \"33减24\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"47减27\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"65减42\", \"border\": \"4ce23028\", \"background\": null, \"type\": 1, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"4.5折\", \"border\": \"4ce23028\", \"background\": null, \"type\": 7, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"1.68元特价\", \"border\": \"4ce23028\", \"background\": null, \"type\": 7, \"icon\": null}, {\"color\": \"cce23028\", \"text\": \"首单减17\", \"border\": \"4ce23028\", \"background\": null, \"type\": 5, \"icon\": null}], \"ad_info\": null}",
+        "delivery_fee_discount": 2,
+        "description": "本店所有菜品均现配现炒，拒绝油炸，拒绝过期食品",
+        "distance": 2639,
+        "favored": false,
+        "flavors": [
+          {
+            "id": 209,
+            "name": "盖浇饭"
+          },
+          {
+            "id": 221,
+            "name": "川湘菜"
+          }
+        ],
+        "float_delivery_fee": 0.5,
+        "float_minimum_order_amount": 20,
+        "has_story": false,
+        "id": "E17040273167548473755",
+        "image_path": "1a91d725c15ec3725ee95d4be34d8b60jpeg",
+        "is_new": false,
+        "is_premium": false,
+        "is_star": false,
+        "is_stock_empty": 0,
+        "is_valid": 1,
+        "latitude": 22.718745,
+        "longitude": 114.265648,
+        "max_applied_quantity_per_order": -1,
+        "name": "川湘现炒快餐(南联店)",
+        "next_business_time": "明天 10:00",
+        "only_use_poi": false,
+        "opening_hours": [
+          "10:00/23:50"
+        ],
+        "order_lead_time": 40,
+        "out_of_range": false,
+        "piecewise_agent_fee": {
+          "description": "配送费¥0.5",
+          "extra_fee": -1.5,
+          "is_extra": true,
+          "no_subsidy_fee": "¥2.5",
+          "rules": [
+            {
+              "fee": 0.5,
+              "price": 20
+            }
+          ],
+          "tips": "配送费¥0.5"
+        },
+        "platform": 0,
+        "posters": [],
+        "promotion_info": "本店均为川湘菜系，以麻辣鲜香为主，不吃辣椒的朋友请留言备注，谢谢",
+        "rating": 4.4,
+        "rating_count": 323,
+        "recent_order_num": 1821,
+        "recommend": {
+          "is_ad": false,
+          "reason": ""
+        },
+        "recommend_reasons": [],
+        "regular_customer_count": 0,
+        "scheme": "https://h5.ele.me/shop/#id=E17040273167548473755",
+        "status": 1,
+        "support_tags": [
+          {
+            "border": "dddddd",
+            "color": "666666",
+            "icon": "4e20966ca2a516de3f02fb9c7fd1bc6dpng",
+            "text": "盖浇饭",
+            "type": 1
+          },
+          {
+            "border": "4c000000",
+            "color": "99000000",
+            "text": "支持自取",
+            "type": 20
+          }
+        ],
+        "supports": [
+          {
+            "border": "90dddddd",
+            "description": "商家原因导致订单取消，赔付代金券",
+            "icon_color": "999999",
+            "icon_name": "赔",
+            "id": 10,
+            "name": "拒单赔",
+            "text_color": "666666",
+            "two_characters_icon_name": ""
+          },
+          {
+            "border": "90dddddd",
+            "description": "该商户食品安全已由国泰产险承担，食品安全有保障",
+            "icon_color": "999999",
+            "icon_name": "保",
+            "id": 7,
+            "name": "食安保",
+            "text_color": "666666",
+            "two_characters_icon_name": "保险"
+          }
+        ],
+        "tags": [],
+        "theme": {
+          "default_color": "2395ff",
+          "header_style": 0,
+          "hongbao_style": 0,
+          "price_color": "ff5339",
+          "third_tab_name": "商家",
+          "vanish_fields": []
+        },
+        "type": 0
+      }
+  ]

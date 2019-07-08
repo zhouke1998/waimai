@@ -1,0 +1,160 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+import Home from '../pages/Home/Home'
+import Order from '../pages/Order/Order'
+import Search from '../pages/Search/Search'
+import Mine from '../pages/Mine/Mine'
+import Login from '../pages/Login/Login'
+import LoginPwd from '../pages/Login/LoginPwd'
+import Restaurant from "../pages/Restaurant/Restaurant"
+import RestaurantApp from "../pages/Restaurant/RestaurantApp"
+import Story from "../pages/Story/Story"
+import Certification from '../pages/Certification/Certification'
+import PayMoney from '../pages/PayMoney/PayMoney' //订单提交页面
+import PayOnline from '../pages/PayOnline/PayOnLine' //在线支付
+import PersonInfoApp from '../pages/PersonInfo/PersonInfoApp'
+import PersonInfo from '../pages/PersonInfo/PersonInfo'
+import modifyUsername from '../pages/PersonInfo/Username/Username' //修改用户名
+import modifyPhone from '../pages/PersonInfo/Phone/Phone' //修改手机
+import modifyPassword from '../pages/PersonInfo/Password/Password'
+
+
+Vue.use(Router)
+export default new Router({
+  mode:'history',
+  routes: [
+    {
+      path: '/home',
+      component:Home,
+      meta:{
+        FootGuide: true,
+        slide_index:1,
+      },
+      redirect:'/'
+    },
+    {
+      path: '/order',
+      component:Order,
+      meta:{
+        FootGuide: true,
+        slide_index:3,
+      }
+    },
+    {
+      path: '/search',
+      component:Search,
+      meta:{
+        FootGuide: true,
+        slide_index:2,
+      }
+    },
+    {
+      path: '/mine',
+      component:Mine,
+      meta:{
+        FootGuide: true,
+        slide_index:4,
+      }
+    },
+    {
+      path: '/',
+      component:Home,
+      meta:{
+        FootGuide: true,
+        slide_index:1,
+      }
+      //forward:'/home',
+      //redirect:'/home'
+    },
+    {
+      component:Login,
+      path:'/login',
+      meta:{
+        slide_index:5,
+      }
+    },
+    {
+      component:LoginPwd,
+      path:'/loginPwd',
+      meta:{
+        slide_index:6,
+      }
+    },
+    {
+      component: RestaurantApp,
+      path: '/restaurant',
+      mode:'hash',
+      children:[
+        {
+          path:'',
+          component: Restaurant,
+          meta:{
+            slide_index:3,
+          },
+        },
+        {
+          component:Story,
+          path:'story',
+          meta:{
+            slide_index:4,
+          }
+        },
+        {
+          component:Certification,
+          path:'certification',
+          meta:{
+            slide_index:4,
+          }
+        },
+        {
+          component:PayMoney,
+          name:'payMoney',
+          path:'checkOrder',
+          meta:{
+            slide_index:4,
+          }
+        }
+      ]
+    },
+    {
+      component: PayOnline,
+      name:'payOnline',
+      path: '/PayOnline',
+    },
+    {
+      component:PersonInfoApp,
+      path:'/personInfo',
+      children:[
+        {
+          path:'',
+          component:PersonInfo,
+          meta:{
+            slide_index:5,
+          }
+        },
+        {
+          path:'username',
+          component:modifyUsername,
+          name:'modifyUsername',
+          meta:{
+            slide_index:6,
+          }
+        },
+        {
+          path:'phone',
+          component:modifyPhone,
+          meta:{
+            slide_index:6,
+          }
+        },
+        {
+          path:'password',
+          component:modifyPassword,
+          meta:{
+            slide_index:6
+          }
+        }
+      ]
+    },
+  ]
+})
