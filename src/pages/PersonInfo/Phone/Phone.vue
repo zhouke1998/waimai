@@ -8,6 +8,7 @@
 <script>
   import Old from '../../../components/ChangePhone/Old'
   import New from '../../../components/ChangePhone/New'
+  import {MessageBox} from 'mint-ui';
     export default {
       name: "phone",
       data(){
@@ -24,14 +25,7 @@
       },
       methods:{
         alertInfo(text){ //弹出框
-          this.$alert("提示",{
-            title:'提示',
-            confirmButtonText: '确定',
-            type: 'warning',
-            center: true,
-            message:text,
-            showClose:false,
-          })
+          MessageBox.alert(text)
         },
       },
       components:{

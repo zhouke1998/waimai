@@ -47,6 +47,7 @@
 
 <script>
   import HeaderTop from '../../components/Headertop/HeaderTop'
+  import {MessageBox} from 'mint-ui';
     export default {
       name: "PayOnLine",
       data(){
@@ -68,16 +69,12 @@
       },
       methods:{
         payment(){
-          this.$confirm('暂时不支持此支付方式','提示',{
-            confirmButtonText: '确定',
-            cancelButtonText:'取消',
-            type: 'warning',
-            center: true,
-            showClose:false,
-          }).then(()=>{
-            this.$router.replace('/')
-          }).catch(() => {
-          });
+          MessageBox.confirm('暂时不支持此支付方式')
+            .then(() => {
+              this.$router.replace('/')
+            })
+            .catch(action => {
+            });
         },
         countdown() {
           let future = 60 * 15+1
@@ -92,17 +89,10 @@
           }, 1000)
         },
         alertInfo(text='店铺不存在！！！'){ //弹出框
-          this.$alert("提示",{
-            title:'提示',
-            confirmButtonText: '确定',
-            type: 'warning',
-            center: true,
-            message:text,
-            showClose:false,
-            callback: action => {
+          MessageBox.alert(text)
+            .then(action => {
               this.$router.replace('/')
-            }
-          })
+            })
         }
       }
     }

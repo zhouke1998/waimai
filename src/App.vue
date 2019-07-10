@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <transition :name="transitionName">
-      <router-view CLASS="Router"></router-view>
+      <keep-alive include="Home,Search">
+        <router-view CLASS="Router"></router-view>
+      </keep-alive>
     </transition>
     <FootGuide v-if="$route.meta.FootGuide" />
   </div>
@@ -56,7 +58,12 @@
           });
         }else{
           alert('获取地址失败!');
-          this.getAddressByIp(returnCitySN["cip"])
+          let timer = setInterval(() => {
+            if (returnCitySN) {
+              this.getAddressByIp(returnCitySN["cip"])
+              clearInterval(timer)
+            }
+          }, 1000)
         }
       },
       showPosition(position){
@@ -80,7 +87,12 @@
             console.log("未知错误。")
             break;
         }
-        this.getAddressByIp(returnCitySN["cip"])
+        let timer = setInterval(() => {
+          if (returnCitySN) {
+            this.getAddressByIp(returnCitySN["cip"])
+            clearInterval(timer)
+          }
+        }, 1000)
       },
       getAddressByIp(ip) {
         this.getAddress2(ip)
@@ -116,11 +128,13 @@
     position: relative;
     top:-1px;
   }
-  /*弹出框居中*/
+
+  /*弹出框居中
   .el-message-box{
     width: 200px;
     height: 150px;
   }
+  */
   /*0.5px细线*/
   .miniLine{
     position: relative;

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
- export default function ajax(url="",data={},type='get') {
+export default function ajax(url = "", data = {}, type = 'get', image = false) {
      return new Promise(
          (resolve,reject)=>{
              let promise
@@ -16,7 +16,11 @@ import axios from 'axios'
                  }
                  promise = axios.get(url)
              }else{
+               if (image) {
+                 promise = axios.post(url, data, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
+               } else {
                  promise = axios.post(url,data)
+               }
              }
 
              promise.then(response => {

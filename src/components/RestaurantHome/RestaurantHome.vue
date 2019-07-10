@@ -10,7 +10,8 @@
           </ul>
         </aside>
         <div class="food_content">
-          <div @touchstart="touchStart()" @touchmove="touchMove()" @scroll="foodListScroll" class="food_type_list" ref="food_type_list">
+          <div @touchstart="touchStart()" @touchmove="touchMove()" @scroll="foodListScroll" id="food_type_list"
+               class="food_type_list" ref="food_type_list">
             <ul>
               <li v-for="(oneList,index1) in foodShopInfo.menu" :index1="index1" class="one_list">
               <div class="list_header">
@@ -22,7 +23,8 @@
                   <li v-for="(one,index2) in oneList.foods" :key2="index2" @click="showOneFoodInfo(index1,index2)">
                     <div v-if="one.image_path" class="info_left">
                       <span>
-                      <img :src="getImagePath({image_hash:one.image_path,suffix:'x-oss-process=image/resize,m_lfit,w_141,h_141/watermark,g_se,x_4,y_4,image_YS8xYS82OGRlYzVjYTE0YjU1ZjJlZmFhYmIxMjM4Y2ZkZXBuZy5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yOA%3D%3D/quality,q_90/format,webp'})" />
+                      <img
+                        v-lazy.food_type_list="getImagePath({image_hash:one.image_path,suffix:'x-oss-process=image/resize,m_lfit,w_141,h_141/watermark,g_se,x_4,y_4,image_YS8xYS82OGRlYzVjYTE0YjU1ZjJlZmFhYmIxMjM4Y2ZkZXBuZy5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yOA%3D%3D/quality,q_90/format,webp'})"/>
                     </span>
                     </div>
                     <div class="info_right">
@@ -114,7 +116,11 @@
               <span v-show="getTotalCount" class="number">{{getTotalCount}}</span>
             </span>
             <div class="main_left">
-              <h3 v-if="getTotalCount" >{{formateMoney(getTotalPrice)}}<del v-show="Number(getTotalPrice)<getOriginalTotalPrice.total">{{getOriginalTotalPrice.total}}</del></h3>
+              <h3 v-if="getTotalCount">{{formateMoney(getTotalPrice)}}
+                <del v-show="Number(getTotalPrice)<getOriginalTotalPrice.total">
+                  {{formateMoney(getOriginalTotalPrice.total)}}
+                </del>
+              </h3>
               <p v-if="getTotalCount===0" class="nothing">未选购商品</p>
               <p v-if="foodShopInfo.rst">另需配送费{{foodShopInfo.rst.float_delivery_fee || '1'}}元</p>
             </div>

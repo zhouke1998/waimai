@@ -5,26 +5,29 @@
     </LoginHeader>
     <div class="content">
       <div class="form-group">
-        <el-button  style="z-index:3" type="info" class="code" :class="{active:rightPhoneComputed&&!isGettingCode}" :disabled="!rightPhoneComputed||isGettingCode" @click="getLoginCode">{{buttonContent}}</el-button>
-        <el-input
-          :style="{'z-index':zIndex[0]}" @focus="getIndex(0)"
-          placeholder="手机号"
-          v-model="phone"
-          maxlength=11
-          minlength=11
-          clearable>
-        </el-input>
-        <el-input class="top1px"
-          :style="{'z-index':zIndex[1]}" @focus="getIndex(1)"
-          placeholder="验证码"
-          v-model="code"
-          clearable>
-        </el-input>
+        <span :class="{code:true,active:rightPhoneComputed&&!isGettingCode}"
+              @click="getLoginCode">{{buttonContent}}</span>
+        <div :style="{'z-index':zIndex[0]}">
+          <input
+            @focus="getIndex(0)"
+            placeholder="手机号"
+            v-model="phone"
+            maxlength=11
+            minlength=11
+          />
+        </div>
+        <div class="top1px" :style="{'z-index':zIndex[1]}">
+          <input @focus="getIndex(1)"
+                 placeholder="验证码"
+                 v-model="code"
+                 maxlength="6"
+          />
+        </div>
         <p>温馨提示：未注册外卖账号的手机号，登录时自动注册，且代表您已同意
           <a>《用户服务协议》</a>
           <a>《隐私协议》</a>
         </p>
-        <div class="loginbtn"><el-button @click="loginPhone" type="success">登录</el-button></div>
+        <div class="loginbtn"><p @click="loginPhone" type="success">登录</p></div>
       </div>
     </div>
   </section>
@@ -32,11 +35,16 @@
 
 <script>
   import LoginHeader from '../../components/LoginHeader/LoginHeader'
-  import 'element-ui/lib/theme-chalk/index.css'
   import {getLoginCode,loginPhone} from '../../api/index'
+  import {MessageBox, Toast} from 'mint-ui';
   export default {
     components:{
       LoginHeader
+    },
+    mounted() {
+      if (this.$store.state.user.phone) {
+        this.$router.replace('/personInfo')
+      }
     },
     data(){
       return{
@@ -52,17 +60,10 @@
     name: "Login",
     methods:{
       alertInfo(text){ //弹出框
-        this.$alert("提示",{
-          title:'提示',
-          confirmButtonText: '确定',
-          type: 'warning',
-          center: true,
-          message:text,
-          showClose:false,
-        })
+        MessageBox.alert(text)
       },
       async getLoginCode(){
-        if(this.isGettingCode){
+        if (this.isGettingCode || !this.rightPhoneComputed) {
           return
         }
         this.hasGetCode = this.isGettingCode= true
@@ -70,11 +71,10 @@
         let res = await getLoginCode(phone)
         const h = this.$createElement;
         if(res.status==0) { //发送成功
-          this.$message({
-            message: h('p', {}, [
-              h('span', { style: 'color: #000' }, '发送验证码成功！')
-            ]),
-            center: true
+          Toast({
+            message: '发送验证码成功！',
+            position: 'top',
+            duration: 1000
           });
           let timeOut = 30
           let interval1 = setInterval(() => {
@@ -86,11 +86,10 @@
             }
           }, 1000)
         }else{//发送失败
-          this.$message({
-            message: h('p', {}, [
-              h('span', { style: 'color: #000' }, res.message)
-            ]),
-            center: true
+          Toast({
+            message: res.message,
+            position: 'top',
+            duration: 1000
           });
           this.hasGetCode = false//立即设置 不能获取验证码状态
           setTimeout(()=>{
@@ -110,16 +109,15 @@
           loginPhone(this.code)
             .then(data=>{
               if(data.status==0){
-                console.log("登录成功")
+                //console.log("登录成功")
                 this.$store.dispatch('storeUserInfo',data.user)
                 this.$router.replace('/mine')
               }else{
                 const h = this.$createElement;
-                this.$message({
-                  message: h('p', {}, [
-                    h('span', { style: 'color: #000' }, data.message)
-                  ]),
-                  center: true
+                Toast({
+                  message: data.message,
+                  position: 'top',
+                  duration: 1000
                 });
               }
             })
@@ -139,7 +137,7 @@
       rightPhoneComputed(){
         return /^[1]\d{10}$/.test(this.phone)
       },
-      /*获取验证码*/
+      /*验证码*/
       rightCode(){
         return /^[a-zA-Z0-9]{4,6}$/.test(this.code)
       }
@@ -156,19 +154,25 @@
     position: relative;
   }
   .code{
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    height: 34px;
+    padding: 0 5px;
     font-size: 0.8rem;
     position: absolute;
-    right: 5px;
+    right: 10px;
     top: 3px;
-    z-index: 2;
-    height: 34px;
-    border-radius: 1px;
+    z-index: 3;
+    background-color: #ddd;
+    border-radius: 2px;
+    color: #fff;
   }
-  .active{
-    background-color: green;
+
+  .form-group .active {
+    background-image: linear-gradient(90deg, #02a774, #2ca75e);
   }
-  .form-group p{
+
+  .form-group > p {
     padding: 0 10px;
     font-size: 0.7rem;
     color: #888888;
@@ -177,36 +181,50 @@
   .form-group p a{
     color: #4da6f0;
   }
-  .loginbtn{
-    text-align: center;
-    margin-top: 20px;
+
+  .form-group > div {
+    position: relative;
   }
-  .loginbtn button{
-    width: 90%;
-  }
-  .loginbtn button:active{
-    background-color: #4dc060;
-  }
-  .al-right>a{
-    color: #fff;
-    text-decoration: none;
-  }
-</style>
-<style>
-  /*.el-message-box{
-    width: 200px;
-    height: 150px;
-  }*/
-  .el-input>input{
+
+  .form-group input {
     border: none;
-    border-radius: 0;
+    outline: none;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
     border-top: 1px solid #dddddd;
     border-bottom: 1px solid #dddddd;
+    padding: 0 15px;
+    box-sizing: border-box;
+    border-radius: 0;
     font-size: .9rem;
     letter-spacing: 1px;
+    color: #606266;
   }
-  /*.el-input>input:focus{
-    border-color: #dddddd;
-  }*/
+
+  .form-group input:hover {
+    border-color: #C0C4CC;
+  }
+
+  .form-group input:focus {
+    border-color: #409EFF;
+  }
+  .loginbtn{
+    margin-top: 20px;
+  }
+
+  .loginbtn p {
+    background-color: #67C23A;
+    border: 1px solid #67C23A;
+    width: 90%;
+    margin: 0 auto;
+    color: #fff;
+    border-radius: 4px;
+    height: 40px;
+    line-height: 40px;
+    font-size: .9rem;
+    font-weight: 500;
+    text-align: center;
+  }
 </style>
 

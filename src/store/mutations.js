@@ -16,6 +16,7 @@ import {
   CHANGEPHONE,
   CHANGEUSERNAME,
   CHANGEPASSWORD,
+  CHANGEHEADPHOTO,
 } from "./mutation-types";
 
 export default {
@@ -85,5 +86,9 @@ export default {
   //修改密码
   [CHANGEPASSWORD] (state){
     state.user.password = "true"
+  },
+  //修改头像
+  [CHANGEHEADPHOTO](state, path) {
+    state.user.photoPath = path
   }
 }

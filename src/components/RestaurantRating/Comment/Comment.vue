@@ -1,5 +1,5 @@
 <template>
-    <section @touchmove="moveScreen" class="rating_comment">
+  <section class="rating_comment"><!--@touchmove="moveScreen"-->
       <div class="comment_type">
         <p v-for="(tag,index) in tags" @click="changeCommentType(index)" :class="{active_click:active_click===index,chaping:tag.unsatisfied,chaping_active:(active_click===index && tag.unsatisfied)}">
           <span>{{tag.name}}&nbsp;{{tag.count===-1?'':tag.count}}</span>
@@ -7,13 +7,18 @@
       </div>
       <div class="comment_content">
         <div class="only_text">
-          <p>
-            <!--<icon></icon>-->
+          <p @click="only_text=!only_text,changeCommentType(0)" :class="{active:only_text}">
+            <!--<svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-goucopy"></use>
+            </svg>-->
+            <span class="iconfont icon-goucopy icon"></span>
             <span>只看有内容的评价</span>
           </p>
         </div>
         <div class="comment_list">
-          <ul>
+          <ul v-infinite-scroll="loadMore"
+              infinite-scroll-disabled="daodile"
+              infinite-scroll-distance="30">
             <li v-for="(comment,index1) in comments" :comIndex="index1">
               <div class="content">
                 <div class="head_photo">
@@ -40,7 +45,11 @@
                   <img v-for="(image,index2) in comment.order_images" :large="getImage(image.image_hash,'imageMogr/format/webp/thumbnail/1080/')" :preview="index1":preview-text="image.food_names.join(',')" :src="getImage(image.image_hash,'imageMogr/format/webp/thumbnail/300x/')" />
                 </div>
                 <div class="row_last">
-                  <i v-if="showDianzao(comment.food_ratings)">点赞</i>
+                  <i v-if="showDianzao(comment.food_ratings)">
+                    <svg class="icon" aria-hidden="true">
+                      <use xlink:href="#icon-dianzan"></use>
+                    </svg>
+                  </i>
                   <span v-for="rate_name in comment.food_ratings" v-if="rate_name.rating>4" >{{rate_name.rate_name}} </span>
                 </div>
               </div>
@@ -48,11 +57,9 @@
           </ul>
           <p  style="text-align: center" v-show="daodile">已经到底了...</p>
         </div>
-        <div style="height: 10px"
-             v-loading="isGettingComment"
-             element-loading-text="正在加载"
-             element-loading-spinner="el-icon-loading"
-        ></div>
+        <div v-if="isGettingComment" style="display: flex; justify-content: center">
+          <mt-spinner color="#02a774" type="fading-circle"></mt-spinner>
+        </div>
       </div>
     </section>
 </template>
@@ -72,6 +79,7 @@
           active_click:0,
           isGettingComment:false, //正在获取评论
           daodile:false,
+          only_text: true,//只显示文字
         }
       },
       mounted(){
@@ -128,7 +136,12 @@
           }
           return false
         },
-        moveScreen(){
+        loadMore() {
+          if (!this.isGettingComment && !this.daodile) {
+            this.getComments(false, this.offset)
+          }
+        },
+        /*moveScreen(){
           if(this.getScrollTop() && !this.isGettingComment && !this.daodile){
             this.getComments(false,this.offset)
           }
@@ -144,7 +157,7 @@
             scrollHeight = document.body.scrollHeight
           }
           return scrollHeight===0?false:scrollTop+screen.height+200>scrollHeight;
-        }
+        }*/
       },
       components: {Start}
     }
@@ -187,7 +200,18 @@
   .only_text p{
     padding: .7rem 0;
     color: #666;
-    padding-left: 2rem;
+    padding-left: 1rem;
+    font-size: .85rem;
+  }
+
+  .only_text .icon {
+    font-size: .6rem;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+
+  .only_text .active .icon {
+    color: #1cc089;
   }
   .comment_list li{
     overflow: hidden;
@@ -268,6 +292,14 @@
   }
   .row_last{
     padding: .7rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .row_last i {
+    margin-right: 5px;
+    font-size: 1rem;
   }
   .row_last span{
     font-size: .65rem;

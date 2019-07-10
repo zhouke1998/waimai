@@ -4,7 +4,7 @@
         <span>头像</span>
         <p>
           <input @change="imgChange()" type="file" accept="image/jpeg,image/jpg,image/png" class="photo_load">
-          <img src="https://fuss10.elemecdn.com/b/7f/432619fb21a40b05cd25d11eca02djpeg.jpeg?imageMogr/format/webp/thumbnail/!172.8x172.8r/gravity/Center/crop/172.8x172.8/" />
+          <img :src="$store.getters.getHeadPhoto || 'waimai_api/images/headPhoto/zkwaimai.gif'"/>
           <span class="iconfont icon-jiantou"></span>
         </p>
       </div>
@@ -19,7 +19,7 @@
         <p>账号绑定</p>
         <div class="bgf" @click="modifyphone()">
           <p>
-            <!--<span></span>-->
+            <span class="iconfont icon-tel"></span>
             <span>手机</span>
           </p>
           <p>
@@ -41,12 +41,13 @@
         </div>
       </div>
       <div @click="logout" class="logout bgf"><p>退出登录</p></div>
-      <img :src="src" />
     </section>
 </template>
 
 <script>
   import {cutImage} from "../../utils/getExifImage";
+  import {uploadImage} from "../../api";
+  import {MessageBox, Toast} from 'mint-ui';
   export default {
     name: "PersonInfo",
     data(){
@@ -71,27 +72,18 @@
         this.$router.push('/personInfo/phone')
       },
       alertInfo(text){ //弹出框
-        this.$alert("提示",{
-          title:'提示',
-          confirmButtonText: '确定',
-          type: 'warning',
-          center: true,
-          message:text,
-          showClose:false,
-        })
+        MessageBox.alert(text)
       },
       logout(){
-        this.$confirm('确定退出登录吗', '确认', {
-          distinguishCancelAndClose: false,//区分取消按钮和关闭按钮
-          confirmButtonText: '确认',
-          cancelButtonText: '取消'
-        })
+        MessageBox.confirm('确定退出?')
           .then(() => {
             this.$store.dispatch('logout')
-            this.$message({
-              type: 'info',
-              message: '退出成功'
+            Toast({
+              message: '退出成功',
+              position: 'top',
+              duration: 1000
             });
+            this.$router.replace('/mine')
           })
           .catch(action => {
           });
@@ -110,18 +102,30 @@
             status:1,
           }
           cutImage(options)
+          let totalTime = 0
           let timer = setInterval(()=>{
-            console.log(options);
-            if(options.status===0 || options.status===-1){
-              this.src = options.base64
+            totalTime++
+            if (options.status === 0) {
+              const formData = new FormData()
+              const image = options.img
+              formData.append('headPhoto', image)
+              this.uploadImage(formData)
+              clearInterval(timer)
+            } else if (options.status === -1 || totalTime >= 10) {
+              this.alertInfo('修改失败')
               clearInterval(timer)
             }
           },1000)
         }
       },
-      cutImage(){
-
-        cutImage()
+      async uploadImage(image) {
+        const result = await uploadImage(image)
+        //console.log(result);
+        if (result.status === 0) {
+          this.$store.dispatch('changeHeadPhoto', result.path)
+        } else {
+          this.alertInfo(result.message)
+        }
       }
     },
     computed:{
@@ -168,6 +172,7 @@
   }
   .headPhoto img{
     width: 3.5rem;
+    border-radius: 50%;
   }
   .icon-jiantou{
     font-size: .75rem !important;
@@ -214,5 +219,9 @@
     font-weight: bold;
     line-height: 2rem;
     text-shadow: 1px 1px #ddd;
+  }
+
+  .icon-tel {
+    color: #02a774;
   }
 </style>

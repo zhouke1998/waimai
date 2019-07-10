@@ -3,10 +3,10 @@
       <HeaderTop title="搜索"></HeaderTop>
       <div class="content">
         <div class="search">
-          <input class="key" type="text"/>
-          <a class="sub">提交</a>
+          <input maxlength="10" class="key" v-model="keyWord" type="text"/>
+          <a class="sub" @click="searchClick">搜索</a>
         </div>
-        <div class="result">
+        <!--<div class="result">
           <ul>
             <li>
               <a>
@@ -94,6 +94,24 @@
               </a>
             </li>
           </ul>
+        </div>-->
+        <div class="search_content">
+          <ul class="item_list"
+              v-infinite-scroll="loadMore"
+              infinite-scroll-disabled="isGettingShop"
+              infinite-scroll-distance="30">
+            <li v-for="(restaurant,index_0) in restaurants" :shop_index="index_0"
+                @click="$router.push(`/restaurant?id=${restaurant.id}`)">
+              <div>
+                <ShopCover :restaurant="{restaurant,index_0}"></ShopCover>
+              </div>
+            </li>
+            <div style="display: flex; justify-content: center; margin-top: 20px">
+              <mt-spinner v-show="isGettingShop && isStartSearch" color="#02a774" :size="40"
+                          type="fading-circle"></mt-spinner>
+              <p style="text-align: center" v-show="daodile">没有更多了...</p>
+            </div>
+          </ul>
         </div>
       </div>
     </section>
@@ -101,8 +119,77 @@
 
 <script>
   import HeaderTop from "../../components/Headertop/HeaderTop";
+  import ShopCover from '../../components/ShopList/ShopCover/ShopCover'
+  import {Toast} from 'mint-ui'
+  import {searchRestaurants} from "../../api";
+
   export default {
-    components: {HeaderTop}
+    data() {
+      return {
+        restaurants: [],//存储餐馆信息
+        page: 0, //页数
+        limit: 8, //每页的个数
+        show_num: [], //存储点击展开
+        isStartSearch: false,
+        isGettingShop: true,//
+        daodile: false,
+        keyWord: '',//关键字
+        searchingKeyWord: '',//当前正在搜索的关键词
+      }
+    },
+    methods: {
+      //获取restaurant
+      getRestaurants(page) {
+        this.isGettingShop = true
+        let offset = (page - 1) * this.limit
+        searchRestaurants(offset, this.limit, this.searchingKeyWord)
+          .then(data => {
+            if (data.status === 0) {
+              if (data.restaurants.length < 1) {
+                this.daodile = true
+              } else {
+                for (let restaurant of data.restaurants) {
+                  this.restaurants.push(restaurant)
+                }
+              }
+              this.isGettingShop = false
+            }
+          }).catch(() => {
+          this.isGettingShop = false
+        })
+      },
+      loadMore() {
+        if (!this.isGettingShop && !this.daodile) {
+          this.getRestaurants(++this.page)
+        }
+      },
+      searchClick() {
+        if (this.$store.state.address.status !== 0) { //判断是否获取过地址
+          Toast({
+            message: '请先获取地址再重试！',
+            position: 'middle',
+            duration: 1500
+          });
+        } else if (!/^(\w|[\u4e00-\u9fa5]){1,10}$/.test(this.keyWord)) {
+          Toast({
+            message: '请重新输入！',
+            position: 'middle',
+            duration: 1500
+          });
+          this.keyWord = ''
+        } else {
+          this.page = 1
+          this.searchingKeyWord = this.keyWord
+          this.getRestaurants(1)
+          this.isStartSearch = true
+          this.restaurants = []
+        }
+      }
+    },
+    mounted() {
+    },
+    name: 'Search',
+    components: {ShopCover, HeaderTop}
   }
 </script>
 
@@ -154,6 +241,21 @@
   }
   .content{
     height: 100%;
+  }
+
+  .search_content {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .item_list {
+    padding-bottom: 185px;
+  }
+
+  .item_list li {
+    padding: 10px;
+    border-bottom: 1px solid #dddddd;
+    position: relative;
   }
   .result{
     width: 100%;

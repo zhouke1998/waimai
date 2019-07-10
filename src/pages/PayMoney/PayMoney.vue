@@ -69,6 +69,10 @@
                   <span>红包</span>
                   <p>
                     <span>
+                      <!--<svg class="icon" aria-hidden="true">
+                      <use xlink:href="#icon-hongbao"></use>
+                    </svg>-->
+                    <span class="iconfont icon-hongbao"></span>
                       0个可用
                     </span>
                     <span class="iconfont icon-jiantou"></span>
@@ -162,6 +166,7 @@
 </template>
 
 <script>
+  import {MessageBox} from 'mint-ui';
   import {getImagePath,formateMoney} from "../../utils/getImagePath";
   import Backtop from '../../components/Headertop/Backtop'
   import OrderNote from '../../components/OrderNote/OrderNote'
@@ -226,16 +231,9 @@
       },
       methods:{
         alertInfo(text='店铺不存在！！！'){ //弹出框
-            this.$alert("提示",{
-              title:'提示',
-              confirmButtonText: '确定',
-              type: 'warning',
-              center: true,
-              message:text,
-              showClose:false,
-              callback: action => {
+          MessageBox.alert(text)
+            .then(action => {
                 this.$router.replace('/')
-              }
             })
           },
         cover_num_click(index){
@@ -448,7 +446,8 @@
   .redpack>span{
     font-size: .92rem;
   }
-  .redpack p span:first-child{
+
+  .redpack p > span:first-child {
     background-image: linear-gradient(106deg,#ff7417,#ff3c15);
     padding:2px 4px;
     color: white;
@@ -458,6 +457,11 @@
     color: #bbb;
     font-size: .7rem;
     font-weight: bold;
+  }
+
+  .redpack .icon-hongbao {
+    color: #fff;
+    font-size: .75rem;
   }
   .discount{
     display: flex;

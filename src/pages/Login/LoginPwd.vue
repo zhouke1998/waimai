@@ -4,28 +4,28 @@
       </LoginHeader>
       <div class="content">
         <div class="form-group">
-          <el-input
-            :style="{'z-index':zIndex[0]}"
-            @focus="getIndex(0)"
-            placeholder="手机/邮箱/用户名"
-            v-model="phone"
-            maxlength=16
-            clearable>
-          </el-input>
-          <el-input :style="{'z-index':zIndex[1]}" @focus="getIndex(1)" class="top1px" placeholder="请输入密码" v-model="password" show-password clearable></el-input>
+          <div :style="{'z-index':zIndex[0]}">
+            <input
+              @focus="getIndex(0)"
+              placeholder="手机/邮箱/用户名"
+              v-model="phone"
+              maxlength=16/>
+          </div>
+          <div :style="{'z-index':zIndex[1]}">
+            <input type="password" @focus="getIndex(1)" class="top1px" placeholder="请输入密码" v-model="password"/>
+          </div>
           <div class="codeImageWrap">
-            <el-input
+            <input
               class="codeCheak"
               placeholder="请输入验证码"
               v-model="code"
-              maxlength=6 >
-            </el-input>
+              maxlength=6/>
             <img :src="baseURL" @click="changeCaptcha" />
           </div>
-          <div class="loginbtn"><el-button @click="loginPwd" type="success">登录</el-button></div>
+          <div class="loginbtn"><p @click="loginPwd" type="success">登录</p></div>
           <div class="forget">
             <div>
-              <el-link :underline="false" type="primary">忘记密码?</el-link>
+              <a @click="alertInfo('请用手机验证码登录后修改密码')">忘记密码?</a>
             </div>
           </div>
         </div>
@@ -36,7 +36,9 @@
 <script>
   import LoginHeader from '../../components/LoginHeader/LoginHeader'
   import {loginPwd} from '../../api/index'
-    export default {
+  import {MessageBox} from 'mint-ui';
+
+  export default {
     data(){
       return{
         password:'',
@@ -48,18 +50,16 @@
     },
     name: "LoginPwd",
     components:{
-        LoginHeader
+      LoginHeader
+    },
+    mounted() {
+      if (this.$store.state.user.phone) {
+        this.$router.replace('/personInfo')
+      }
     },
     methods:{
       alertInfo(text){ //弹出框
-        this.$alert("提示",{
-          title:'提示',
-          confirmButtonText: '确定',
-          type: 'warning',
-          center: true,
-          message:text,
-          showClose:false,
-        })
+        MessageBox.alert(text)
       },
       loginPwd(){
         if(!/^\w{3,16}$/.test(this.phone)){
@@ -69,10 +69,10 @@
         }else if(!/^\d{1,3}$/.test(this.code)){
           this.alertInfo("验证码填写错误")
         }else{
-          let res = loginPwd(this.phone,this.password,this.code)
+          loginPwd(this.phone, this.password, this.code)
             .then(data=>{
               if(data.status==0){
-                console.log("登陆成功");
+                //console.log("登陆成功");
                 this.$store.dispatch('storeUserInfo',data.user)
                 this.$router.replace('/mine')
               }else{
@@ -81,7 +81,7 @@
               }
             })
           //后台验证
-          console.log("后台验证");
+          //console.log("后台验证");
         }
       },
       getIndex(index){//设置输入框的z-index
@@ -118,17 +118,6 @@
   .form-group{
     position: relative;
   }
-
-  .loginbtn{
-    text-align: center;
-    margin-top: 20px;
-  }
-  .loginbtn button{
-    width: 90%;
-  }
-  .loginbtn button:active{
-    background-color: #4dc060;
-  }
   .forget{
     text-align: center;
     padding-top: 20px;
@@ -139,23 +128,53 @@
     margin: 0 auto;
   }
   .forget a{
-    font-size: 0.7rem;
+    font-size: 0.75rem;
+    color: #5f95ff;
   }
-</style>
-<!--提示格式错误弹出框-->
-<style>
-  .codeCheak input{
-    height: -50px;
+
+  .form-group > div {
+    position: relative;
   }
-  .el-input>input{
+
+  .form-group input {
     border: none;
-    border-radius: 0;
+    outline: none;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
     border-top: 1px solid #dddddd;
     border-bottom: 1px solid #dddddd;
+    padding: 0 15px;
+    box-sizing: border-box;
+    border-radius: 0;
     font-size: .9rem;
     letter-spacing: 1px;
+    color: #606266;
   }
-  /*.el-input>input:focus{
-    border-color: #dddddd;
-  }*/
+
+  .form-group input:hover {
+    border-color: #C0C4CC;
+  }
+
+  .form-group input:focus {
+    border-color: #409EFF;
+  }
+
+  .loginbtn {
+    margin-top: 20px;
+  }
+
+  .loginbtn p {
+    background-color: #67C23A;
+    border: 1px solid #67C23A;
+    width: 90%;
+    margin: 0 auto;
+    color: #fff;
+    border-radius: 4px;
+    height: 40px;
+    line-height: 40px;
+    font-size: .9rem;
+    font-weight: 500;
+    text-align: center;
+  }
 </style>

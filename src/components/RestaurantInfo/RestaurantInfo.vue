@@ -129,6 +129,14 @@
     color: #333;
     margin-bottom: 1rem;
   }
+
+  .service > div {
+    margin-bottom: .5rem;
+  }
+
+  .service > div:last-child {
+    margin-bottom: 0;
+  }
   .service .tip{
     display: inline-block;
     padding: 0 4px;

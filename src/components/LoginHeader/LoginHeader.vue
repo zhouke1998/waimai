@@ -1,25 +1,15 @@
 <template>
-    <div>
-      <el-row>
-        <el-col :span="4">
-          <div class="grid-content bg-header">
-            <i class="return" @click="$router.go(-1)"><span class="iconfont icon-jiantou-copy-copy"></span></i>
-          </div>
-        </el-col>
-        <el-col :span="10">
-          <div class="grid-content al-left">
-            <!--<slot name="left_title"></slot>-->
-            <span>{{left_title}}</span>
-          </div>
-        </el-col>
-        <el-col :span="10">
-          <div class="grid-content al-right">
-            <!--<router-link to="/loginPwd" >
-            </router-link>-->
-            <slot name="right_link"></slot>
-          </div>
-        </el-col>
-      </el-row>
+  <div class="loginHeader">
+    <div class="grid-content">
+      <i class="return" @click="$router.go(-1)"><span class="iconfont icon-jiantou-copy-copy"></span></i>
+    </div>
+    <div class="grid-content title">
+      <!--<slot name="left_title"></slot>-->
+      <span>{{left_title}}</span>
+    </div>
+    <div class="grid-content al-right">
+      <slot name="right_link"></slot>
+    </div>
     </div>
 </template>
 
@@ -38,19 +28,20 @@
 </script>
 
 <style scoped>
-  .el-row {
+  .loginHeader {
     height: 50px;
-    background: #02a774;
+    background-color: #02a774;
     padding: 0 10px;
     font-size: 0.9rem;
     line-height: 50px;
     margin-bottom: 10px;
-  }
-  .el-col {
     color: #fff;
+    display: flex;
   }
-  .bg-header {
 
+  .loginHeader > div:first-child {
+    width: 20%;
+    text-align: left;
   }
   .grid-content {
     min-height: 36px;
@@ -60,7 +51,7 @@
     line-height: 50px;
     font-size: 1.25rem;
     display: inline-block;
-    width: 80%;
+    width: 50%;
     height: 100%;
     text-align: center;
     box-sizing: border-box;
@@ -70,11 +61,19 @@
     background-color: #fff;
     opacity: 0.2;
   }
-  .al-left{
-    text-align: left;
+
+  .title {
+    width: 60%;
+    text-align: center;
   }
   .al-right{
+    width: 20%;
     color: #fff;
     text-align: right;
+  }
+
+  .grid-content a {
+    text-decoration: none;
+    color: #fff;
   }
 </style>

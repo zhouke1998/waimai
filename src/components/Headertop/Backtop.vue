@@ -22,7 +22,7 @@
       methods: {
         backClick() {
           if (this.router_back!=="false") {
-            console.log(this.router_back);
+            //console.log(this.router_back);
             this.$router.back()
           }else{
             this.$parent.backClick()

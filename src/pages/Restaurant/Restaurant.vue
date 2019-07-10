@@ -19,6 +19,7 @@
   import RestaurantRating from '../../components/RestaurantRating/RestaurantRating'
   import {mapActions} from 'vuex'
   import {getUrlParams} from "../../utils/getImagePath";
+  import {MessageBox} from 'mint-ui';
 
   export default {
       name: "Restaurant",
@@ -58,17 +59,10 @@
         }
       },
       alertInfo(text='店铺不存在！！！'){ //弹出框
-        this.$alert("提示",{
-          title:'提示',
-          confirmButtonText: '确定',
-          type: 'warning',
-          center: true,
-          message:text,
-          showClose:false,
-          callback: action => {
+        MessageBox.alert(text)
+          .then(action => {
             this.$router.replace('/home')
-          }
-        })
+          })
       },
       ratingClick(){
         this.activePage = 2

@@ -57,6 +57,7 @@
 
 <script>
   import Backtop from '../../components/Headertop/Backtop'
+  import {MessageBox} from 'mint-ui';
   import {getCertification} from "../../api";
   import {getImagePath,getUrlParams} from "../../utils/getImagePath";
     export default {
@@ -82,16 +83,9 @@
       },
       methods: {
         alertInfo(text = '店铺不存在！！！') { //弹出框
-          this.$alert("提示", {
-            title: '提示',
-            confirmButtonText: '确定',
-            type: 'warning',
-            center: true,
-            message: text,
-            showClose: false,
-            callback: action => {
+          MessageBox.alert(text)
+            .then(() => {
               this.$router.replace('/home')
-            }
           })
         },
         getImagePath(info){

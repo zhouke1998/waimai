@@ -37,4 +37,12 @@ export const checkNewPhone = (code,newPhone)=>ajax(`${api}/users/checkNewPhone`,
 
 export const changePassword = (newPassword,oldPassword='')=>ajax(`${api}/users/changePassword`,{newPassword,oldPassword},'post') //验证新手机
 
+export const uploadImage = (image) => ajax(`${api}/users/upload`, image, 'post', true) //上传头像
+
+export const searchRestaurants = (offset, limit = 2, keyWord) => ajax(`${api}/shops/restaurants/${keyWord}`, {
+  offset,
+  limit
+}) //搜索店铺
+
+
 

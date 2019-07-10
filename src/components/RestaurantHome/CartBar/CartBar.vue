@@ -1,17 +1,18 @@
 <template>
   <p>
     <svg @click.stop="clickSub({isAdd:false,food})" v-if="getCartNumber.cartNumber"  :class="{icon:true,noSub:getCartNumber.kinds>1}" aria-hidden="true">
-      <use xlink:href="#icon-tuanduicankaoxian-"></use>
+      <use xlink:href="#icon-jian2"></use>
     </svg>
     <span v-if="getCartNumber.cartNumber">{{getCartNumber.cartNumber}}</span>
     <svg @click.stop="addCartFood2({isAdd:true,food})" class="icon" aria-hidden="true">
-      <use xlink:href="#icon-tuanduicankaoxian_huaban"></use>
+      <use xlink:href="#icon-jia"></use>
     </svg>
     <span class="tips" v-if="kinds">多规格以及带属性的商品<br/>只能去购物车删减哦</span>
   </p>
 </template>
 
 <script>
+  import {Toast} from 'mint-ui';
   import {mapActions,mapState} from 'vuex'
     export default {
       name: "CartBar",
@@ -56,10 +57,15 @@
         },
         clickSub({isAdd,food}){
           if(this.getCartNumber.kinds>1 && food.spec===undefined){ //!food.cartNumber从商品页面传来的商品信息无此属性
-            this.kinds = true
+            /*this.kinds = true
             setTimeout(()=>{
               this.kinds = false
-            },2000)
+            },2000)*/
+            Toast({
+              message: '多规格以及带属性的商品只能去购物车删减哦',
+              position: 'middle',
+              duration: 2000
+            });
           }else{
             this.addCartFood({isAdd,food})
           }

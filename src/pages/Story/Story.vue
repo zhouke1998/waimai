@@ -25,6 +25,7 @@
   import Backtop from '../../components/Headertop/Backtop'
   import {getStory} from "../../api";
   import {getImagePath,getUrlParams} from "../../utils/getImagePath";
+  import {MessageBox} from 'mint-ui';
     export default {
       name: "Story",
       data(){
@@ -53,17 +54,10 @@
       },
       methods:{
         alertInfo(text='店铺不存在！！！'){ //弹出框
-          this.$alert("提示",{
-            title:'提示',
-            confirmButtonText: '确定',
-            type: 'warning',
-            center: true,
-            message:text,
-            showClose:false,
-            callback: action => {
+          MessageBox.alert(text)
+            .then(action => {
               this.$router.replace('/home')
-            }
-          })
+            })
         },
         async _getStory(restaurant_id){
           let id = restaurant_id || this.$store.state.foodsShop.restaurant_id

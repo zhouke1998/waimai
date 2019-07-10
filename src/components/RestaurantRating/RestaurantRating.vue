@@ -8,7 +8,6 @@
 <script>
   import RatingTop from './RatingTop/RatingTop'
   import Comment from './Comment/Comment'
-  import 'vue-photo-preview/dist/skin.css'
     export default {
     data(){
       return{

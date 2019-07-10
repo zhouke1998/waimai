@@ -6,7 +6,7 @@
           <router-link :to="!getUser.username?'/login':'/personInfo'">
             <div class="left">
               <span class="ph">
-                <img src="waimai_api/images/headPhoto/zkwaimai.gif" />
+                <img :src="$store.getters.getHeadPhoto || 'waimai_api/images/headPhoto/zkwaimai.gif'"/>
               </span>
               <p class="login_tip">
                 <i>
@@ -17,7 +17,7 @@
                 </span>
                 <span v-else>
                   <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-tuanduicankaoxian-15"></use>
+                    <use xlink:href="#icon-tel"></use>
                   </svg>
                   {{getPhone}}
                 </span>
@@ -34,7 +34,7 @@
             <ul>
               <li>
                 <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-qianbao1"></use>
+              <use xlink:href="#icon-qianbao"></use>
             </svg>
               </li>
               <li>
@@ -46,7 +46,7 @@
             <ul>
               <li>
                 <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-hongbao1"></use>
+              <use xlink:href="#icon-hongbao"></use>
             </svg>
               </li>
               <li>
@@ -58,7 +58,7 @@
             <ul>
               <li>
                 <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-jinbi2"></use>
+              <use xlink:href="#icon-jinbi"></use>
             </svg>
               </li>
               <li>
@@ -71,14 +71,14 @@
           <ul>
             <li class="one_type">
               <p>
-                <span class="iconfont icon-tuanduicankaoxian-11"></span>
+                <span class="iconfont icon-tuanduicankaoxian-4"></span>
                 <span>我的收藏</span>
               </p>
               <span class="iconfont icon-jiantou"></span>
             </li>
             <li class="one_type">
               <p>
-                <span class="iconfont icon-jinbi1"></span>
+                <span class="iconfont icon-jinbi"></span>
                 <span>金币商城</span>
               </p>
               <span class="iconfont icon-jiantou"></span>
@@ -99,13 +99,16 @@
             </li>
           </ul>
         </div>
-        <div v-if="getUser.phone && false" class="logoutBtn"><el-button @click="logout" type="success">退出登录</el-button></div>
+        <div v-if="getUser.phone && false" class="logoutBtn">
+          <button @click="logout" type="success">退出登录</button>
+        </div>
       </div>
     </section>
 </template>
 
 <script>
   import HeaderTop from "../../components/Headertop/HeaderTop";
+  import {MessageBox} from 'mint-ui';
   export default {
     components:{
       HeaderTop
@@ -129,21 +132,18 @@
     },
     methods:{
       logout(){
-        this.$confirm('确定退出登录吗', '确认', {
-          distinguishCancelAndClose: false,//区分取消按钮和关闭按钮
-          confirmButtonText: '确认',
-          cancelButtonText: '取消'
-        })
+        MessageBox.confirm('确定退出?')
           .then(() => {
             this.$store.dispatch('logout')
             this.$message({
               type: 'info',
               message: '退出成功'
             });
+            this.$router.replace('/mine')
           })
           .catch(action => {
           });
-      }
+      },
     }
   }
 </script>
@@ -256,10 +256,12 @@
     font-size: 0.7rem;
     color: #aaa;
   }
-  .list .icon-tuanduicankaoxian-11{
+
+  .list .icon-tuanduicankaoxian-4 {
     color: orange;
   }
-  .list .icon-jinbi1{
+
+  .list .icon-jinbi {
     color: yellow;
   }
   .list .icon-kefu,.list .icon-shangcheng{

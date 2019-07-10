@@ -10,7 +10,7 @@
 
 <script>
   import {changeUserName} from "../../../api";
-
+  import {MessageBox} from 'mint-ui';
   export default {
       name: "Username",
       data(){
@@ -33,14 +33,7 @@
       },
       methods: {
         alertInfo(text){ //弹出框
-          this.$alert("提示",{
-            title:'提示',
-            confirmButtonText: '确定',
-            type: 'warning',
-            center: true,
-            message:text,
-            showClose:false,
-          })
+          MessageBox.alert(text)
         },
         doRename() {
           if(!this.isFit){

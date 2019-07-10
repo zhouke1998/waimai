@@ -16,6 +16,7 @@ import {
   CHANGEUSERNAME,//修改用户名
   CHANGEPHONE, //修改手机号
   CHANGEPASSWORD, //密码
+  CHANGEHEADPHOTO,//头像
 } from "./mutation-types";
 
 import {
@@ -106,5 +107,9 @@ export default {
   //修改密码
   changePassword({commit}){
     commit(CHANGEPASSWORD)
+  },
+  //
+  changeHeadPhoto({commit}, path) {
+    commit(CHANGEHEADPHOTO, path)
   }
 }

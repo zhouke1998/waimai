@@ -32,6 +32,8 @@ export const CHANGEPHONE = 'changePhone'
 
 export const CHANGEPASSWORD = 'changePassword'
 
+export const CHANGEHEADPHOTO = 'changeHeadPhoto' //修改头像
+
 // export const RECEIVE_LATITUDE = 'receive_latitude'
 //
 // export const RECEIVE_LONGITUDE = 'receive_longitude'

@@ -3,17 +3,17 @@
       <HeaderTop :title="Address">
         <div class="searchWrap left" slot="left">
           <router-link to="/search" class="">
-            <span class="iconfont icon-tuanduicankaoxian-6" ></span>
+            <span class="iconfont icon-search"></span>
           </router-link>
         </div>
         <div class="right" slot="right">
-          <router-link :to="getPhone==null?'/login':'/userInfo'" >
+          <router-link :to="getPhone==null?'/login':'/personInfo'">
             <span v-if="getPhone==null">
               <a>登录</a>|
               <a>注册</a>
             </span>
             <span v-else>
-              <span class="iconfont icon-wodejuhuasuan"></span>
+              <span class="iconfont icon-wode"></span>
             </span>
             </router-link>
         </div>
@@ -21,19 +21,19 @@
       <!--swiper分页-->
       <!--<div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">Slide 1</div>
-          <div class="swiper-slide">Slide 2</div>
-          <div class="swiper-slide">Slide 3</div>
-        </div>
-        &lt;!&ndash; 如果需要分页器 &ndash;&gt;
-        <div class="swiper-pagination"></div>
+      <div class="swiper-slide">Slide 1</div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+    </div>
+      &lt;!&ndash; 如果需要分页器 &ndash;&gt;
+      <div class="swiper-pagination"></div>
 
-        &lt;!&ndash; 如果需要导航按钮 &ndash;&gt;
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+      &lt;!&ndash; 如果需要导航按钮 &ndash;&gt;
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
 
-        &lt;!&ndash; 如果需要滚动条 &ndash;&gt;
-        <div class="swiper-scrollbar"></div>
+      &lt;!&ndash; 如果需要滚动条 &ndash;&gt;
+      <div class="swiper-scrollbar"></div>
       </div>-->
       <div class="kinds swiper-container">
         <div class="swiper-wrapper">
@@ -51,7 +51,14 @@
         <!--分页器-->
         <div class="swiper-pagination"></div>
       </div>
-      <ShopList></ShopList>
+      <ShopList>
+        <h2 slot="header">
+          <a>
+            <span class="iconfont icon-tuanduicankaoxian-2 fujin"></span>
+            附近商家
+          </a>
+        </h2>
+      </ShopList>
       <!--<keep-alive include="ShopList">
       </keep-alive>-->
     </section>
@@ -61,8 +68,9 @@
   import HeaderTop from "../../components/Headertop/HeaderTop";
   import ShopList from "../../components/ShopList/ShopList"
   import Swiper from "swiper"
-  import "swiper/dist/css/swiper.min.css"
+  import "swiper/dist/css/swiper.min.css"  //swiper滑块css
   export default {
+    name: 'Home',
     data(){
       return{
         type_list_baseUrl:"waimai_api/images/type_list/",
@@ -140,7 +148,8 @@
     text-align: right;
     padding-right: 10px;
   }
-  .header .right .icon-wodejuhuasuan{
+
+  .header .right .icon-wode {
     font-size: 1.5rem;
     padding-right: 10px;
   }

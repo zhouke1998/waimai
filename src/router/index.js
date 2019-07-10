@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../pages/Home/Home'
-import Order from '../pages/Order/Order'
-import Search from '../pages/Search/Search'
-import Mine from '../pages/Mine/Mine'
-import Login from '../pages/Login/Login'
-import LoginPwd from '../pages/Login/LoginPwd'
-import Restaurant from "../pages/Restaurant/Restaurant"
+
+const Home = () => import ('../pages/Home/Home') //组件懒加载
+const Order = () => import ('../pages/Order/Order')
+const Search = () => import ('../pages/Search/Search')
+const Mine = () => import ('../pages/Mine/Mine')
+const Login = () => import ('../pages/Login/Login')
+const LoginPwd = () => import ('../pages/Login/LoginPwd')
+const Restaurant = () => import ("../pages/Restaurant/Restaurant")
+
 import RestaurantApp from "../pages/Restaurant/RestaurantApp"
 import Story from "../pages/Story/Story"
 import Certification from '../pages/Certification/Certification'

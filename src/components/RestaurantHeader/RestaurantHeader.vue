@@ -34,7 +34,9 @@
               <span>{{foodShopInfo_rst.redpack[0].value}}</span>
             </span>
             <span class="c2">
-              <i></i>
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-huangguan1"></use>
+              </svg>
               <span>{{foodShopInfo_rst.redpack[0].title}}</span>
             </span>
             <span class="c3">
@@ -71,12 +73,12 @@
             </p>
           </div>
         </div>
-        <div class="active">
+        <div @click="wrap_click(3)" class="active">
           <p class="ellipsis">
             <span class="ac1">满减</span>
             <span class="ac2">{{foodShopInfo_rst.activities[0].description}}</span>
           </p>
-          <div @click="wrap_click(3)" class="spread">
+          <div class="spread">
             <span>{{foodShopInfo_rst.activities.length}}个优惠</span>
             <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSIjOTk5IiBkPSJNNC41NzcgNS40MjNjLjc5Ljc3IDIuMDczLjc2NyAyLjg1NyAwbDQuMTItNC4wMjZDMTIuMzQ1LjYyNSAxMi4wOSAwIDEwLjk4NSAwSDEuMDI3Qy0uMDc3IDAtLjMzLjYzLjQ1NyAxLjM5N2w0LjEyIDQuMDI2eiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+" />
           </div>
@@ -294,7 +296,7 @@
     position: relative;
   }
   .envelope .c1{
-    margin-right: 5px;
+    margin-right: 3px;
     color: #594519;
     letter-spacing: -1px;
   }
@@ -309,7 +311,11 @@
   }
   .envelope .c2{
     font-size: .65rem;
-    margin-right: 20px;
+    margin-right: 15px;
+  }
+
+  .c2 .icon {
+    font-size: .9rem;
   }
   .envelope p:before,.envelope p:after{
     content: '';
@@ -341,6 +347,8 @@
     justify-content: space-between;
     font-size: .65rem;
     line-height: 1rem;
+    text-align: left;
+    align-items: center;
   }
   .active .ac1{
     background-color: rgb(240, 115, 115);
@@ -352,12 +360,9 @@
     font-size: .7rem;
     margin-left: 5px;
   }
-  .active{
-    align-items: center;
-    text-align: right;
-  }
   .spread{
     min-width: 25%;
+    text-align: right;
   }
   .spread span{
     color: #999;

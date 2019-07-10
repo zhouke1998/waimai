@@ -4,12 +4,18 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import ElementUI from 'element-ui' //饿了么组件
+
+import {InfiniteScroll, Spinner, Lazyload} from 'mint-ui'
 import preview from 'vue-photo-preview' //浏览图片组件
+import 'vue-photo-preview/dist/skin.css' //图片查看css
+
 
 Vue.use(preview)
 
-Vue.use(ElementUI);
+
+Vue.use(Lazyload);
+Vue.use(InfiniteScroll)
+Vue.component(Spinner.name, Spinner);
 
 Vue.config.productionTip = false
 

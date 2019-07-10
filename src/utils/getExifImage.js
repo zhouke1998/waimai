@@ -9,7 +9,7 @@ function getPhotoOrientation(oriFile){
     let orient = null //= EXIF.getTag(oriFile.img,'Orientation');
     EXIF.getData(oriFile.img, function () {
       orient = EXIF.getTag(this,'Orientation');
-      alert(orient)
+      //alert(orient)
       getWidthAndHeight(orient,oriFile)
     });
 }
@@ -41,7 +41,7 @@ function rotateAndCut(oriFile , angle ,width=0 ,height=0) {
       }
     }else{
       //ctx.drawImage(oriFile.img,0,0,200,200);
-      console.log(offsetX, offsetY,width-2*offsetX ,height-2*offsetY, 0 , 0, newWidth, newHeight);
+      //console.log(offsetX, offsetY,width-2*offsetX ,height-2*offsetY, 0 , 0, newWidth, newHeight);
       ctx.drawImage(oriFile.img, offsetX , offsetY ,width-2*offsetX ,height-2*offsetY, 0 , 0, newWidth, newHeight);
     }
     // 图像质量
@@ -49,10 +49,10 @@ function rotateAndCut(oriFile , angle ,width=0 ,height=0) {
     const quality = 1;
     // quality值越小，所绘制出的图像越模糊
     let base64 = canvas.toDataURL('image/jpeg', quality);
-    oriFile.base64 = base64
+    //oriFile.base64 = base64
     oriFile.img = dataURLtoFile(base64,oriFile.name);
     oriFile.status = 0
-    getObjectURL(oriFile.img)
+    //getObjectURL(oriFile.img)
   }catch(e){
     oriFile.status=-1
     console.log("压缩失败!");
@@ -80,7 +80,7 @@ function getWidthAndHeight(orient,oriFile){
       oriFile.img = img
       const width = img.naturalWidth
       const height = img.naturalHeight
-      console.log(width+'---'+height + "---"+orient)
+      //console.log(width+'---'+height + "---"+orient)
       if( orient===6|| orient===8 || orient===3){//需要旋转
         if(orient===6) {
           rotateAndCut(oriFile, 90, width, height)
@@ -106,6 +106,6 @@ function getObjectURL(file) {
     url = window.webkitURL.createObjectURL(file) ;
   }
   //window.location.href = url
-  console.log(url);
+  //console.log(url);
   return url ;
 }

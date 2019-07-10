@@ -1,19 +1,19 @@
 <template>
     <div class="footer">
-        <span class="guide_home" @click="goTo('/home')">
-          <span class="iconfont icon-waimai" :class="{on:$route.path==='/home'}"></span>
+        <span class="guide_home" @click="goTo('/home')" :class="{on:$route.path==='/home'||$route.path==='/' }">
+          <span class="iconfont icon-waimai"></span>
           <span class="title">外卖</span>
         </span>
-        <span class="guide_search"  @click="goTo('/search')">
-          <span class="iconfont icon-tuanduicankaoxian-6" :class="{on:$route.path==='/search'}"></span>
+      <span class="guide_search" @click="goTo('/search')" :class="{on:$route.path==='/search'}">
+          <span class="iconfont icon-search"></span>
           <span class="title">搜索</span>
         </span>
-        <span class="guide_order" @click="goTo('/order')">
-          <span class="iconfont icon-wodedingdan" :class="{on:$route.path==='/order'}"></span>
+      <span class="guide_order" @click="goTo('/order')" :class="{on:$route.path==='/order'}">
+          <span class="iconfont icon-wodedingdan"></span>
           <span class="title">订单</span>
         </span>
-        <span class="guide_mine" @click="goTo('/mine')">
-          <span class="iconfont icon-wodejuhuasuan" :class="{on:$route.path==='/mine'}"></span>
+      <span class="guide_mine" @click="goTo('/mine')" :class="{on:$route.path==='/mine'}">
+          <span class="iconfont icon-wode"></span>
           <span class="title">我的</span>
         </span>
     </div>
@@ -55,5 +55,9 @@
   }
   .footer .title{
     display: block;
+  }
+
+  .icon-wode {
+    font-weight: bold;
   }
 </style>

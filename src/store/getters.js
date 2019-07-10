@@ -68,5 +68,9 @@ export default {
       total+=food.cartNumber
     })
     return total
+  },
+
+  getHeadPhoto(state) {
+    return state.user.photoPath ? ('waimai_api/images/headPhoto/' + state.user.photoPath) : null
   }
 }
