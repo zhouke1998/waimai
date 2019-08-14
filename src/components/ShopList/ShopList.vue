@@ -6,7 +6,7 @@
         infinite-scroll-disabled="isGettingShop"
         infinite-scroll-distance="30">
       <li v-for="(restaurant,index_0) in restaurants" :shop_index="index_0"
-          @click="$router.push(`/restaurant?id=${restaurant.id}`)">
+          @click="enterRestaurant(restaurant.id)">
         <div>
           <ShopCover :restaurant="{restaurant,index_0}"></ShopCover>
           <!--点击本身关闭mark层-->
@@ -109,6 +109,14 @@
           if (!this.isGettingShop && !this.daodile) {
             this.getRestaurants(++this.page)
           }
+        },
+        enterRestaurant(restaurant_id){
+          if(restaurant_id===this.$store.state.foodsShop.restaurant_id){
+
+          }else{
+            this.$store.dispatch('clearCartFoods')
+          }
+          this.$router.push(`/restaurant?id=${restaurant_id}`)
         }
       },
       destroyed () {
@@ -125,6 +133,7 @@
     color: #aaa;
     font-size: 0.75rem;
     font-weight: lighter;
+    padding-left: 10px;
   }
   .item_list{
     padding-bottom: 70px;

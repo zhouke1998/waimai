@@ -1,5 +1,5 @@
 
-export const getImagePath = ({prefix="https://fuss10.elemecdn.com",image_hash,suffix})=>{
+export const getImagePath = ({prefix="https://fuss10.elemecdn.com",image_hash,suffix})=>{//https://cube.elemecdn.com
   let end
   let suffixs = ['png','jpeg','gif']
   for(let index=image_hash.length-2;index>0;index--){

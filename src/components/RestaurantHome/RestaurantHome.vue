@@ -12,7 +12,7 @@
         <div class="food_content">
           <div @touchstart="touchStart()" @touchmove="touchMove()" @scroll="foodListScroll" id="food_type_list"
                class="food_type_list" ref="food_type_list">
-            <ul>
+            <ul id="ul1">
               <li v-for="(oneList,index1) in foodShopInfo.menu" :index1="index1" class="one_list">
               <div class="list_header">
                 <h4 class="ellipsis">{{oneList.name}}</h4>
@@ -159,7 +159,7 @@
       },
       watch:{
         foodShopInfo(){
-          this.$nextTick(this.getFoodTypeHeight)
+          this.$nextTick(()=>{this.getFoodTypeHeight()})
         },
         cartFoods(){
           if(this.cartFoods.length<=0){
@@ -170,6 +170,11 @@
       mounted(){
         this.cartListHeight = (screen.height-100)/2+'px' //计算购物车的高度
         //this.addCartFood({isAdd:true,index1:1,index2:1})
+        if(this.foodShopInfo.restaurant_id){
+            this.getFoodTypeHeight()
+        }
+        const element = document.documentElement|| document.body
+        element.scrollTop = 0
       },
       props:{
         contentHeight:String,
@@ -247,11 +252,13 @@
           this.foodNavActiveIndex = index-1
         },
         getFoodTypeHeight(){ //获取每类食物距离顶部的距离
-          let topHeight = 0
-          for (let one of  this.$refs.food_type_list.getElementsByClassName('one_list')){
-            topHeight+=one.getBoundingClientRect().height
-            this.foodTypeHeight.push(topHeight)
-          }
+          setTimeout(()=>{
+            let topHeight = 0
+            for (let one of  this.$refs.food_type_list.getElementsByClassName('one_list')){
+              topHeight+=one.getBoundingClientRect().height
+              this.foodTypeHeight.push(topHeight)
+            }
+          },500)
         },
         foodTypeNavClick(index){
           /*if(index==this.foodNavActiveIndex){
@@ -260,6 +267,7 @@
           //滚动到指定位置
           // this.$refs.food_type_list.scrollTo(0,this.foodTypeHeight[index]) //直接跳转
           this.scrollAnimation(this.$refs.food_type_list,this.foodTypeHeight[index],300) //滚动 500ms
+          //alert(document.getElementById("ul1").getBoundingClientRect().height)
         },
         scrollAnimation(Ele,now,time=300){
           //滚动动画
@@ -478,8 +486,10 @@
     background-color: #fffad6;
     text-align: center;
     font-size: .65rem;
+    /*padding: 1px 0;*/
+  }
+  .bottom_cart .tips p{
     line-height: .75rem;
-    padding: 1px 0;
   }
   .bottom_cart .main{
     height: 45px;

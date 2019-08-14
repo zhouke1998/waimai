@@ -50,13 +50,8 @@
         if(restaurant_id==''){
           this.alertInfo()
           return
-        }else if(restaurant_id===this.$store.state.foodsShop.restaurant_id){
-
-        }else{
-          //this.$store.state.foodsShop = []
-          this.$store.dispatch('clearCartFoods')
-          this.getFoodsShop(restaurant_id)
         }
+        this.getFoodsShop(restaurant_id)
       },
       alertInfo(text='店铺不存在！！！'){ //弹出框
         MessageBox.alert(text)

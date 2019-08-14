@@ -54,7 +54,7 @@
       <ShopList>
         <h2 slot="header">
           <a>
-            <span class="iconfont icon-tuanduicankaoxian-2 fujin"></span>
+            <span class="iconfont icon-tuanduicankaoxian-1 fujin"></span>
             附近商家
           </a>
         </h2>

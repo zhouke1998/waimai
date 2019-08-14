@@ -8,6 +8,7 @@
         <span :class="{code:true,active:rightPhoneComputed&&!isGettingCode}"
               @click="getLoginCode">{{buttonContent}}</span>
         <div :style="{'z-index':zIndex[0]}">
+          <span v-show="focus1" @click="clearText(0)" class="iconfont icon-chuyidong"></span>
           <input
             @focus="getIndex(0)"
             placeholder="手机号"
@@ -17,6 +18,7 @@
           />
         </div>
         <div class="top1px" :style="{'z-index':zIndex[1]}">
+          <span v-show="focus2" @click="clearText(1)" class="iconfont icon-chuyidong right_clear"></span>
           <input @focus="getIndex(1)"
                  placeholder="验证码"
                  v-model="code"
@@ -132,6 +134,13 @@
         }
         this.zIndex = temp
       },
+      clearText(index){
+        if(index===0){
+          this.phone = ''
+        }else{
+          this.code=''
+        }
+      }
     },
     computed:{
       rightPhoneComputed(){
@@ -140,6 +149,12 @@
       /*验证码*/
       rightCode(){
         return /^[a-zA-Z0-9]{4,6}$/.test(this.code)
+      },
+      focus1(){ //第一个输入框clear图标
+        return this.phone.length>0
+      },
+      focus2(){ //第二个输入框clear图标
+        return this.code.length>0
       }
     }
   }
@@ -225,6 +240,16 @@
     font-size: .9rem;
     font-weight: 500;
     text-align: center;
+  }
+  /*clear图标*/
+  .icon-chuyidong{
+    position: absolute;
+    right: 100px;
+    top: 10px;
+    color: #ccc;
+  }
+  .right_clear{
+    right: 20px;
   }
 </style>
 

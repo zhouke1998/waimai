@@ -21,6 +21,7 @@
 
 <script>
   import {getLoginCode,checkNewPhone} from "../../api";
+  import {MessageBox} from 'mint-ui';
     export default {
       name: "New",
       data(){
@@ -51,12 +52,7 @@
                   this.$store.dispatch('changeNewPhone',this.newPhone)
                 }else{
                   const h = this.$createElement;
-                  this.$message({
-                    message: h('p', {}, [
-                      h('span', { style: 'color: #000' }, data.message)
-                    ]),
-                    center: true
-                  });
+                  MessageBox.alert(data.message)
                 }
               })
           }
@@ -76,12 +72,7 @@
           if(res.status===0) { //发送成功
             document.getElementById('code_input').focus()
             this.hasSendCode = true
-            this.$message({
-              message: h('p', {}, [
-                h('span', { style: 'color: #000' }, '发送验证码成功！')
-              ]),
-              center: true
-            });
+            MessageBox.alert('发送验证码成功！')
             let timeOut = 30
             let interval1 = setInterval(() => {
               this.buttonContent = `${timeOut--}秒后重新获取`
@@ -92,12 +83,7 @@
               }
             }, 1000)
           }else{//发送失败
-            this.$message({
-              message: h('p', {}, [
-                h('span', { style: 'color: #000' }, res.message)
-              ]),
-              center: true
-            });
+            MessageBox.alert(res.message)
             setTimeout(()=>{
               this.isGettingCode= false
             },1000)

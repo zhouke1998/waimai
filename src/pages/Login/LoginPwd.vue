@@ -5,14 +5,22 @@
       <div class="content">
         <div class="form-group">
           <div :style="{'z-index':zIndex[0]}">
+            <span v-show="focus1" @click="clearText(0)" class="iconfont icon-chuyidong"></span>
             <input
               @focus="getIndex(0)"
               placeholder="手机/邮箱/用户名"
               v-model="phone"
               maxlength=16/>
           </div>
-          <div :style="{'z-index':zIndex[1]}">
-            <input type="password" @focus="getIndex(1)" class="top1px" placeholder="请输入密码" v-model="password"/>
+          <div class="password" :style="{'z-index':zIndex[1]}">
+            <span v-show="focus2" @click="clearText(1)" class="iconfont icon-chuyidong"></span>
+            <svg @click="passwordShow=false" v-show="passwordShow && focus2" class="icon" aria-hidden="true">
+              <use xlink:href="#icon-yanjing"></use>
+            </svg>
+            <svg @click="passwordShow=true" v-show="!passwordShow && focus2" class="icon" aria-hidden="true">
+              <use xlink:href="#icon-yanjing1"></use>
+            </svg>
+            <input :type="passwordShow?'text':'password'" @focus="getIndex(1)" maxlength="16" class="top1px" placeholder="请输入密码" v-model="password"/>
           </div>
           <div class="codeImageWrap">
             <input
@@ -46,6 +54,7 @@
         zIndex:[2,1],
         code:'',
         baseURL:'waimai_api/users/getCaptchaCode?'+Date.now(),
+        passwordShow:false,
       }
     },
     name: "LoginPwd",
@@ -95,7 +104,22 @@
       changeCaptcha(){
         this.baseURL = this.baseURL+Date.now()
       },
+      clearText(index){
+        if(index===0){
+          this.phone = ''
+        }else{
+          this.password=''
+        }
+      }
     },
+    computed:{
+      focus1(){ //第一个输入框clear图标
+        return this.phone.length>0
+      },
+      focus2(){ //第二个输入框clear图标
+        return this.password.length>0
+      }
+    }
   }
 </script>
 
@@ -176,5 +200,22 @@
     font-size: .9rem;
     font-weight: 500;
     text-align: center;
+  }
+  /*clear图标*/
+  .icon-chuyidong,.password svg{
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    color: #ccc;
+    z-index: 2;
+  }
+  .password .icon-chuyidong{
+    right: 50px;
+  }
+  .password svg{
+    font-size: 1rem;
+  }
+  .right_clear{
+    right: 20px;
   }
 </style>

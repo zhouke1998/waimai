@@ -12,12 +12,16 @@
             <span>可领红包</span>
           </h4>
           <ul>
-            <li v-for="(redpack,index) in getVipRedpack" :key="index" class="vip_envelope">
+            <li v-for="(redpack,index0) in getVipRedpack" :key="index0" class="vip_envelope">
               <div class="envelope_info">
                 <div class="info_desc">
                   <span>{{redpack.amount}}</span>
                   <div>
-                    <h4>{{redpack.name}}</h4>
+                    <h4>
+                      <svg class="icon" aria-hidden="true">
+                      <use xlink:href="#icon-huangguan1"></use>
+                    </svg>
+                      {{redpack.name}}</h4>
                     <p>{{redpack.description}}</p>
                   </div>
                 </div>
@@ -28,7 +32,7 @@
                 </div>
               </div>
             </li>
-            <li v-for="(redpack,index) in getShopRedpack" :key="index" class="">
+            <li v-for="(redpack,index1) in getShopRedpack" :key2="index1" class="">
               <div class="envelope_info">
                 <div class="info_desc">
                   <span>{{redpack.amount}}</span>

@@ -83,7 +83,7 @@
             <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSIjOTk5IiBkPSJNNC41NzcgNS40MjNjLjc5Ljc3IDIuMDczLjc2NyAyLjg1NyAwbDQuMTItNC4wMjZDMTIuMzQ1LjYyNSAxMi4wOSAwIDEwLjk4NSAwSDEuMDI3Qy0uMDc3IDAtLjMzLjYzLjQ1NyAxLjM5N2w0LjEyIDQuMDI2eiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+" />
           </div>
         </div>
-        <div class="ad_info">
+        <div v-if="foodShopInfo_rst.promotion_info" class="ad_info">
           <p class="ellipsis">公告：{{foodShopInfo_rst.promotion_info}}</p>
         </div>
       </section>
@@ -179,7 +179,6 @@
     position: relative;
   }
   .header_bg{
-    background: url("./img/header.png") no-repeat 50%;
     background-size: cover;
     position: absolute;
     height: 100px;
@@ -240,16 +239,21 @@
     font-size: 20px;
     font-weight: bold;
     margin:30px auto 0;
-    display: flex;
-    justify-content: space-between;
+    position: relative;
+    /*display: flex;
+    justify-content: space-between;*/
   }
   .header_content .title h1 {
-    width: 80%;
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 30px;
   }
   .header_content .arrow{
+    position: absolute;
+    right: 0;
+    top: 0;
     width: 30px;
     height: 30px;
-    position: relative;
   }
   .header_content .arrow:before{
     content: '';

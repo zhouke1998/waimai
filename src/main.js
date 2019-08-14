@@ -9,6 +9,9 @@ import {InfiniteScroll, Spinner, Lazyload} from 'mint-ui'
 import preview from 'vue-photo-preview' //浏览图片组件
 import 'vue-photo-preview/dist/skin.css' //图片查看css
 
+import 'babel-polyfill'
+// import Swiper from "swiper"
+// window.Swiper = Swiper
 
 Vue.use(preview)
 

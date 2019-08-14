@@ -45,7 +45,7 @@
       }
     },
     methods:{
-      ...mapActions(['autoLogin','getAddress','getAddress2']),
+      ...mapActions(['autoLogin','getAddressByLL','getAddress2']),
       getAddress(){
         if(navigator.geolocation){
           navigator.geolocation.getCurrentPosition(this.showPosition,this.showError,{
@@ -69,7 +69,8 @@
       showPosition(position){
         let lat=position.coords.latitude;
         let lng=position.coords.longitude;
-        this.getAddress(lat+','+lng)
+        //alert(lat, lng);
+        this.getAddressByLL(lat+','+lng)
       },
       showError(error){
         switch(error.code)

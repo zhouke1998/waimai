@@ -28,7 +28,7 @@ import {
   getFoodShop,
 } from "../api";
 export default {
-  async getAddress({commit},geo){
+  async getAddressByLL({commit},geo){
     const  result = await reqAddress(geo)
     if(result.status===0){
       const address = result.result.formatted_address
