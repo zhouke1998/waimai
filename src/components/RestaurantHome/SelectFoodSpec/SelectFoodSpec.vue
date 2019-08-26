@@ -122,14 +122,14 @@
     width: 100%;
   }
   .photo{
-    width: 30%;
+    min-width: 30%;
     margin-right: .6rem;
-    max-width: 100px;
   }
   .photo img{
     width: 100%
   }
   .desc{
+    max-width: 70%;
     display: flex;
     flex-direction: column;
   }

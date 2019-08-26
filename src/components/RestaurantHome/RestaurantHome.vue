@@ -204,7 +204,7 @@
         getImagePath(info) {
           return getImagePath(info)
         },
-        getDiscount(ori, now) { //转换距离数字为km
+        getDiscount(ori, now) { //获取折扣
           let round = (now / ori) * 1000 % 100 > 5 ? 1 : 0
           return parseInt((now / ori) * 100 + round) / 10
         },
@@ -357,7 +357,7 @@
     font-size: .75rem;
   }
   .one_list{
-    padding: 0 15px;
+    padding: 0 10px;
     box-sizing: border-box;
   }
   .bottom_cart{

@@ -86,7 +86,7 @@
         this.getComments()
       },
       methods:{
-        async getComments(firstQuery=true,offset=0,limit=10){
+        async getComments(firstQuery=true,offset=0,limit=10){ //firstQuery:首次请求需要rating信息，后来的就不要
           this.isGettingComment = true
           const results = await getComment({firstQuery,offset,limit})
           if(results.comments && results.comments.length){
@@ -137,7 +137,7 @@
           return false
         },
         loadMore() {
-          if (!this.isGettingComment && !this.daodile) {
+          if (!this.isGettingComment && !this.daodile && this.$parent.$parent.activePage===2) {
             this.getComments(false, this.offset)
           }
         },

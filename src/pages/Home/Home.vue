@@ -167,9 +167,13 @@
   .kinds{
     width: 100%;
     box-sizing: border-box;
-    padding: 10px 10px;
+    /*padding: 10px 10px;*/
     height: 200px;
     border-bottom: 5px solid #ddd;
+  }
+  .swiper-slide{
+    box-sizing: border-box;
+    padding: 10px;
   }
   .kinds ul{
     width: 100%;
@@ -181,7 +185,7 @@
     height: 50%;
     float: left;
     box-sizing: border-box;
-    padding: 10px;
+    padding: 5px;
     overflow: hidden;
   }
   .kinds ul a{

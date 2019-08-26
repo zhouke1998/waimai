@@ -179,7 +179,7 @@
     background-color: #fff;
     border: .05rem solid #eae5b9;
     position: relative;
-    height: 100px;
+    height: 80px;
     justify-content: space-between;
     color: #333;
     border-radius: 2px;
@@ -250,7 +250,7 @@
   .envelope_content .info_desc p{
     padding-top: 5px;
     color: #666;
-    font-size: .65rem;
+    font-size: .6rem;
    }
   .vip_envelope .info_desc p{
     color: #735b27;
@@ -267,9 +267,10 @@
     background-color: #ff5339;
     text-align: center;
     color: #fff;
-    height: 2rem;
-    line-height: 2rem;
-    font-size: .85rem;
+    /*height: 2rem;*/
+    /*line-height: 2rem;*/
+    /*font-size: .85rem;*/
+    padding: 2px 0;
   }
   .info_btn_img{
     justify-content: flex-end;

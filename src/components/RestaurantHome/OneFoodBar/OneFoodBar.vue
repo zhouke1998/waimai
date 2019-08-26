@@ -82,15 +82,10 @@
     font-weight: bold;
     color: #333;
   }
-  .info_right .row2{
-    margin-top: 3px;
+  .info_right .row2,.info_right .row3,.one_food_info .rating{
     font-size: .6rem;
     color: #999;
-  }
-  .info_right .row3,.one_food_info .rating{
-    margin-top: 3px;
-    font-size: .6rem;
-    color: #999;
+    /*padding: 2px 0;*/
   }
   .info_right .row_act,.one_food_info .discount{
     margin-top: 3px;
@@ -124,7 +119,7 @@
     content: '￥';
   }
   .info_right .row4_right p,.one_food_info .row4_right p{
-    padding-top: 2px;
+    /*padding-top: 2px;*/
     display: flex;
   }
   .info_right .row4_right span,.one_food_info .row4_right span{

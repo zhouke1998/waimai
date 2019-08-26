@@ -111,6 +111,7 @@
       computed:{
         ...mapState({foodsShop:'foodsShop'}),
         foodShopInfo_rst(){ //获取头部组件需要的数据
+          //2019.8.20
           let foodShopInfoHeader = this.foodsShop.rst || null
           if(foodShopInfoHeader){
             foodShopInfoHeader['redpack'] = this.foodsShop.redpack

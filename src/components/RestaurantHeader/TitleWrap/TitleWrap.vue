@@ -3,7 +3,7 @@
   <section v-if="is_title_wrap" class="title_click_wrap">
     <transition name="bounce_title">
       <div v-if="title_wrap" class="mesBox">
-        <h2>永和大王(龙翔大道店SZ058）
+        <h2>{{foodShopInfo_rst.name}}
         </h2>
         <ul class="info_list">
           <li>
@@ -100,18 +100,19 @@
     /*transition: all .5s ease-in-out;*/
   }
   .mesBox>h2:before{
+    content: "品牌";
     font-size: .75rem;
     display: inline-block;
-    padding:0 3px;
+    padding:0 1px;
     background-color: yellow;
     border-radius: 3px;
-    margin-right: 5px;
+    margin-right: 2px;
     position: relative;
     top: -2px;
   }
   .mesBox>h2{
     font-size: 1.25rem;
-    line-height: 1.5rem;
+    line-height: 1.5;
     margin-bottom: 15px;
     text-align: center;
   }
@@ -146,14 +147,14 @@
   }
   .mesBox article{
     padding: 10px;
-    font-size: .85rem;
+    font-size: .75rem;
     line-height: 1.25rem;
     white-space: normal;
     word-wrap: break-word;
     letter-spacing: 1px;
   }
   .title_click_wrap .close{
-    margin-top: 3rem;
+    margin-top: 2rem;
     background: url("./img/close.png") no-repeat 0 0;
     background-size: 2rem;
     width: 2rem;

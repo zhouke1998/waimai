@@ -157,6 +157,8 @@
   }
   .login{
     height: 15%;
+    min-height: 80px;
+    max-height: 200px;
     background-color: #02a774;
   }
   .login div{

@@ -88,15 +88,15 @@
 
 <style scoped>
 .icon{
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 .noSub{
   color: #eeeeee;
 }
 p{
   display: flex;
-  line-height: 1.5rem;
   padding-right: 15px;
+  align-items: center;
 }
 p span{
   width: 1rem;

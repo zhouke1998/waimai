@@ -106,11 +106,12 @@
           })
         },
         loadMore() {
-          if (!this.isGettingShop && !this.daodile) {
+          if (!this.isGettingShop && !this.daodile && this.$route.path==='/') {
             this.getRestaurants(++this.page)
           }
         },
         enterRestaurant(restaurant_id){
+          //this.isGettingShop = true
           if(restaurant_id===this.$store.state.foodsShop.restaurant_id){
 
           }else{
