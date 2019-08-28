@@ -491,7 +491,7 @@
   .orderRemark li{
     display: flex;
     justify-content: space-between;
-    font-size: 1rem;
+    font-size: .8rem;
     align-items: center;
     padding: .7rem 1.25rem;
     line-height: 1.5rem;
@@ -522,7 +522,7 @@
   }
   .orderRemark li p:last-child{
     color: #999;
-    font-size: .8rem;
+    font-size: .75rem;
   }
   .orderRemark .iconfont{
     font-size: .75rem;

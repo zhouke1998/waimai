@@ -37,7 +37,7 @@
       mounted(){
         setTimeout(()=>{
           this.url_id = getUrlParams('id');
-          if(!this.url_id && !this.isRestaurant){
+          if(!this.url_id || !this.isRestaurant){
             this.alertInfo()
           }else{
             this._getStory(this.url_id)

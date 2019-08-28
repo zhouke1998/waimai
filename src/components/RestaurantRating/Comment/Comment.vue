@@ -285,6 +285,9 @@
   }
   .row_photo{
     overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
   .row_photo img{
     width: 47%;
@@ -309,5 +312,6 @@
     background-color: #ebf5ff;
     color: #6d7885;
     margin-right: 4px;
+    margin-bottom: 5px;
   }
 </style>
