@@ -10,8 +10,8 @@
           </ul>
         </aside>
         <div class="food_content">
-          <div @touchstart="touchStart()" @touchmove="touchMove()" @scroll="foodListScroll" id="food_type_list"
-               class="food_type_list" ref="food_type_list">
+          <div id="food_type_list"
+               class="food_type_list" @scroll="scroll" @touchmove="touchMove()" ref="food_type_list"><!-- @touchstart="touchStart()" @touchmove="touchMove()" @scroll="foodListScroll" -->
             <ul id="ul1">
               <li v-for="(oneList,index1) in foodShopInfo.menu" :index1="index1" class="one_list">
               <div class="list_header">
@@ -100,6 +100,7 @@
 </template>
 
 <script>
+  import BScroll from 'better-scroll'
   import {getImagePath,formateMoney} from "../../utils/getImagePath";
   import OneFoodInfoWrap from './OneFoodInfo/OneFoodInfo'
   import SelectFoodSpec from './SelectFoodSpec/SelectFoodSpec'
@@ -119,11 +120,35 @@
           isOpenCart:false,
           timeOutOpacity:0,//默认购物车详情cart_info透明度
           //cartAnimate:0 //购物车图标动画，0代表原始，1代表缩小，2代表放大
+          scroller:{},
+          top:0,
         }
       },
       watch:{
         foodShopInfo(){
-          this.$nextTick(()=>{this.getFoodTypeHeight()})
+          this.$nextTick(()=>{
+            this.getFoodTypeHeight()
+            this.scroller = new BScroll('#food_type_list',{
+              scrollY:false,
+              click:true,
+              bounce:{
+                top:false
+              },
+              probeType:3,
+            })
+            this.scroller.on("scroll",(ev)=>{
+              console.log(this.scroller)
+              if((-ev.y)>this.top) {
+                // document.querySelector("#res_nav").scrollIntoView();
+              }
+              this.top= -ev.y
+              let top = (-ev.y)+1
+              const index = this.foodTypeHeight.findIndex((value)=>{
+                return value>=top
+              })
+              this.foodNavActiveIndex = index-1
+            })
+          })
         },
         cartFoods(){
           if(this.cartFoods.length<=0){
@@ -170,6 +195,9 @@
         }
       },
       methods: {
+        scroll:function (ev) {
+          console.log(ev)
+        },
         touchStart() {
           let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
           if (document.querySelector('#res_nav').offsetTop >= scrollTop) {
@@ -218,10 +246,12 @@
         getFoodTypeHeight(){ //获取每类食物距离顶部的距离
           setTimeout(()=>{
             let topHeight = 0
+            let temp=[0]
             for (let one of  this.$refs.food_type_list.getElementsByClassName('one_list')){
               topHeight+=one.getBoundingClientRect().height
-              this.foodTypeHeight.push(topHeight)
+              temp.push(topHeight)
             }
+            this.foodTypeHeight = temp
           },500)
         },
         foodTypeNavClick(index){
@@ -230,7 +260,8 @@
           }*/
           //滚动到指定位置
           // this.$refs.food_type_list.scrollTo(0,this.foodTypeHeight[index]) //直接跳转
-          this.scrollAnimation(this.$refs.food_type_list,this.foodTypeHeight[index],300) //滚动 500ms
+          this.scroller.scrollTo(0,-this.foodTypeHeight[index],300)
+          //this.scrollAnimation(this.$refs.food_type_list,this.foodTypeHeight[index],300) //滚动 500ms
           //alert(document.getElementById("ul1").getBoundingClientRect().height)
         },
         scrollAnimation(Ele,now,time=300){
@@ -335,7 +366,7 @@
     background-color: #fff;
   }
   .food_type_list{
-    overflow: scroll;
+    /*overflow: scroll;*/
     height: 100%;
   }
   .food_type_list>ul{
