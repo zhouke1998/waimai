@@ -11,7 +11,7 @@
           </p>
         </div>
         <div class="foodInfo">
-          <p class="ellipsis">{{$route.params.foods}}</p>
+          <p class="ellipsis">{{foodsName.name}}<span class="tip" v-if="foodsName.tip">{{foodsName.tip}}</span></p>
           <div>
           <span>详情</span>
           <span>￥{{$route.params.totalPrice}}</span>
@@ -37,7 +37,7 @@
           </li>
         </ul>
         <div @click="payment" class="btn">
-          <p :class="{nopay:true}">
+          <p :class="{nopay:payWay!=='pay'}">
             确认支付
           </p>
         </div>
@@ -48,6 +48,7 @@
 <script>
   import HeaderTop from '../../components/Headertop/HeaderTop'
   import {MessageBox} from 'mint-ui';
+  import {getALiPayUrl} from '../../api'
     export default {
       name: "PayOnLine",
       data(){
@@ -57,24 +58,55 @@
           second:0,//计时效果的秒
         }
       },
+      computed:{
+        foodsName(){
+          let cartFoods = this.$store.state.cartFoods;
+          if(!cartFoods){
+            return "";
+          }
+          let name = cartFoods[0].name;
+          const length = cartFoods.length;
+          let tip = "";
+          if(length>1){
+            tip = `等${length}件商品`
+          }
+          let subject = name+tip;
+          return {name,tip,subject};
+        }
+      },
       components:{
         HeaderTop
       },
       mounted(){
-        if(!this.$route.params.totalPrice){
-          this.alertInfo('支付异常！')
-        }else{
+        if(this.init()){
           this.countdown()
         }
       },
       methods:{
         payment(){
-          MessageBox.confirm('暂时不支持此支付方式')
-            .then(() => {
-              this.$router.replace('/')
+          if(!this.init()){
+            return
+          }
+          if(this.payWay!=='pay') {
+            MessageBox.confirm('暂时不支持此支付方式')
+              .then(() => {
+                //this.$router.replace('/')
+              })
+              .catch(action => {
+              });
+          }else{
+            getALiPayUrl({
+              subject:this.foodsName.subject,
+              outTradeNo:"123132132",
+              totalAmount:this.$store.getters.getTotalPrice
+            }).then((data)=>{
+              if(data.status!==0){
+                MessageBox.confirm(data.msg)
+              }else{
+                window.location.href=data.url;
+              }
             })
-            .catch(action => {
-            });
+          }
         },
         countdown() {
           let future = 60 * 15+1
@@ -93,6 +125,13 @@
             .then(action => {
               this.$router.replace('/')
             })
+        },
+        init(){
+          if(!this.$route.params.totalPrice || !this.$store.getters.getTotalPrice){
+            this.alertInfo('支付异常！')
+            return false
+          }
+          return true
         }
       }
     }
@@ -130,6 +169,10 @@
     font-size: 1.1rem;
     color: #888;
   }
+  .foodInfo .tip{
+    font-size: .65rem;
+    color: #999;
+  }
   .foodInfo>p{
     max-width: 60%;
     color: #444;
@@ -140,10 +183,10 @@
     width: 35%;
     align-items: center;
   }
-  .foodInfo span:first-child{
+  .foodInfo div span:first-child{
     font-size: 1rem;
   }
-  .foodInfo span:last-child{
+  .foodInfo div span:last-child{
     font-size: .9rem;
     color: orangered;
     font-weight: bold;

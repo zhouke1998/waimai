@@ -21,7 +21,7 @@ module.exports = {
     },
 
     // Various Dev Server settings
-    // host: '192.168.43.25',
+    //host: '192.168.43.25',
     //host: '192.168.137.1',
     //host: '172.16.3.220',
     host: 'localhost', // can be overwritten by process.env.HOST

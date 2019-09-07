@@ -274,7 +274,7 @@
           this.$store.dispatch('clearCartFoods')
         },
         goPay(){
-          this.$router.push({name:'payOnline',params:{foods:this.cartFoods[0].name,totalPrice:this.payMoney}})
+          this.$router.push({name:'payOnline',params:{totalPrice:this.payMoney}})
         }
       },
       beforeDestroy(){
