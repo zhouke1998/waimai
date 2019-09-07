@@ -9,9 +9,14 @@
     height: 200px;
     border: 1px solid yellow;
   }
-  span{
-    margin-bottom: 30px;
-    line-height: 50px;
+  span:after{
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 0 0 0;
+    border-color: #fff transparent transparent transparent;
   }
 </style>
 <body>
