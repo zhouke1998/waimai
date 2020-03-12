@@ -31,15 +31,13 @@ export default {
   async getAddressByLL({commit},geo){
     const  result = await reqAddress(geo)
     if(result.status===0){
-      const address = result.result.formatted_address
-      commit(RECEIVE_ADDRESS,{status:0,address})
+      commit(RECEIVE_ADDRESS,result)
     }
   },
   async getAddress2({commit},ip){
     const  result = await reqAddress2(ip)
-    if(result.code===0){
-      const address = result.address
-      commit(RECEIVE_ADDRESS,{status:0,address})
+    if(result.status===0){
+      commit(RECEIVE_ADDRESS,result)
     }else{
       console.log("获取地址信息失败");
     }

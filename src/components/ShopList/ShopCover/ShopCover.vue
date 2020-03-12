@@ -34,7 +34,7 @@
         <span v-for="support_tag in restaurant.restaurant.support_tags">{{support_tag.text}}</span>
         <span v-show="restaurant.restaurant.recommend.reason" class="special">
                     <img
-                      src="https://fuss10.elemecdn.com/a/c1/24c767ffa7fd296d3e2d6f01798c6png.png?imageMogr/format/webp/thumbnail/!12x12r/gravity/Center/crop/20x20/">
+                      src="https://fuss10.elemecdn.com/a/c1/24c767ffa7fd296d3e2d6f01798c6png.png?x-oss-process=image/format,webp/resize,w_10,h_10,m_fixed">
                     <span>{{restaurant.restaurant.recommend.reason}}</span>
                   </span>
       </div>

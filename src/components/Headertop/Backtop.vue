@@ -1,5 +1,5 @@
 <template>
-  <Headertop :title="title" :router_back="router_back">
+  <Headertop :title="title">
     <div class="back" slot="left">
       <a @click="backClick">
         <span class="iconfont icon-jiantou-copy-copy" ></span>
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  import Headertop from '../../components/Headertop/HeaderTop'
+  import Headertop from './HeaderTop'
     export default {
       name: "Backtop",
       components:{

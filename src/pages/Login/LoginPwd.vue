@@ -1,6 +1,6 @@
 <template>
     <section>
-      <LoginHeader left_title="密码登录">
+      <LoginHeader title="密码登录">
       </LoginHeader>
       <div class="content">
         <div class="form-group">
@@ -138,6 +138,9 @@
   section{
     background-color:#f5f5f5;
     overflow: hidden;
+  }
+  .content{
+    margin-top:10px;
   }
   .form-group{
     position: relative;

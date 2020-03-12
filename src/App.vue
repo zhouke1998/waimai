@@ -58,12 +58,7 @@
           });
         }else{
           alert('获取地址失败!');
-          let timer = setInterval(() => {
-            if (returnCitySN) {
-              this.getAddressByIp(returnCitySN["cip"])
-              clearInterval(timer)
-            }
-          }, 1000)
+          this.getAddressByIp("127.0.0.1")
         }
       },
       showPosition(position){
@@ -88,12 +83,7 @@
             console.log("未知错误。")
             break;
         }
-        let timer = setInterval(() => {
-          if (returnCitySN) {
-            this.getAddressByIp(returnCitySN["cip"])
-            clearInterval(timer)
-          }
-        }, 1000)
+        this.getAddressByIp("127.0.0.1")
       },
       getAddressByIp(ip) {
         this.getAddress2(ip)

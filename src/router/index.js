@@ -8,6 +8,7 @@ const Mine = () => import ('../pages/Mine/Mine')
 const Login = () => import ('../pages/Login/Login')
 const LoginPwd = () => import ('../pages/Login/LoginPwd')
 const Restaurant = () => import ("../pages/Restaurant/Restaurant")
+const MapAddress = () => import ("../pages/MapAddress/MapAddress")
 
 import RestaurantApp from "../pages/Restaurant/RestaurantApp"
 import Story from "../pages/Story/Story"
@@ -80,6 +81,13 @@ export default new Router({
       path:'/loginPwd',
       meta:{
         slide_index:6,
+      }
+    },
+    {
+      component: MapAddress,
+      path: '/address',
+      meta: {
+        slide_index: 3,
       }
     },
     {

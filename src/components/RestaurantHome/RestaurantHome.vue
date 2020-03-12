@@ -1,19 +1,20 @@
 <template>
-    <section style="scroll-behavior:smooth">
-      <div class="content" :style="{height:contentHeight}" >
-        <aside class="food_type_nav" >
-          <ul>
-            <li v-for="(item,index1) in foodShopInfo.menu" :class="{active:index1==foodNavActiveIndex}" :index1="index1"  @click="foodTypeNavClick(index1)"><!--class="active"-->
-              <i class="ico"><img v-if="item.icon_url" :src="getImagePath({image_hash:item.icon_url,suffix:'imageMogr/format/webp/thumbnail/26x/'})"> </i>
-              <span>{{item.name}}</span>
-            </li>
-          </ul>
-        </aside>
-        <div class="food_content">
-          <div id="food_type_list"
-               class="food_type_list" @scroll="scroll" @touchmove="touchMove()" ref="food_type_list"><!-- @touchstart="touchStart()" @touchmove="touchMove()" @scroll="foodListScroll" -->
-            <ul id="ul1">
-              <li v-for="(oneList,index1) in foodShopInfo.menu" :index1="index1" class="one_list">
+  <section style="scroll-behavior:smooth">
+
+    <div class="content" :style="{height:contentHeight}" >
+      <aside class="food_type_nav" >
+        <ul>
+          <li v-for="(item,index1) in foodShopInfo.menu" :class="{active:index1==foodNavActiveIndex}" :index1="index1"  @click="foodTypeNavClick(index1)"><!--class="active"-->
+            <i class="ico"><img v-if="item.icon_url" :src="getImagePath({image_hash:item.icon_url,suffix:'imageMogr/format/webp/thumbnail/26x/'})"> </i>
+            <span>{{item.name}}</span>
+          </li>
+        </ul>
+      </aside>
+      <div class="food_content">
+        <div @touchstart="touchStart()" @touchmove="touchMove()" @scroll="foodListScroll" id="food_type_list"
+             class="food_type_list" ref="food_type_list">
+          <ul id="ul1">
+            <li v-for="(oneList,index1) in foodShopInfo.menu" :index1="index1" class="one_list">
               <div class="list_header">
                 <h4 class="ellipsis">{{oneList.name}}</h4>
                 <span class="ellipsis">{{oneList.description}}</span>
@@ -24,28 +25,28 @@
                 </ul>
               </div>
             </li>
-            </ul>
-          </div>
-
-            <OneFoodInfoWrap :showFoodInfo="showFoodInfo" ref="oneFoodInfoShow"></OneFoodInfoWrap> <!--商品详情页面-->
-            <SelectFoodSpec :foodInfo="showFoodInfo" ref="selectFoodShow" ></SelectFoodSpec><!--选择食品规格-->
+          </ul>
         </div>
-        <div class="bottom_cart">
-          <div class="trans_wrap" :class="{trans_wrap_active:isOpenCart}">
-            <div class="tips">
-              <p v-if="foodShopInfo.rst && foodShopInfo.rst.activities[0].attribute && getTotalCount===0" class="ellipsis">{{foodShopInfo.rst.activities[0].description}}</p>
-              <p v-else-if="getOriginalTotalPrice.total<20 && getTotalCount>0">还差<span style="color: red">{{formateMoney(20-Number(getOriginalTotalPrice.total))}}</span>元起送</p>
-              <p v-else-if="getOriginalTotalPrice.total>=20 && getOriginalTotalPrice.isDiscount">已减{{formateMoney(getOriginalTotalPrice.total-getTotalPrice)}}元</p>
-              <p v-else-if="getTotalCount>0 && foodShopInfo.rst.activities[0].attribute && !getOriginalTotalPrice.isDiscount">
-                <span v-if="manjian.yijian">已减{{manjian.yijian}}</span>
-                <span v-if="manjian.nextjian>0">再买
+
+        <OneFoodInfoWrap :showFoodInfo="showFoodInfo" ref="oneFoodInfoShow"></OneFoodInfoWrap> <!--商品详情页面-->
+        <SelectFoodSpec :foodInfo="showFoodInfo" ref="selectFoodShow" ></SelectFoodSpec><!--选择食品规格-->
+      </div>
+      <div class="bottom_cart">
+        <div class="trans_wrap" :class="{trans_wrap_active:isOpenCart}">
+          <div class="tips">
+            <p v-if="foodShopInfo.rst && foodShopInfo.rst.activities[0].attribute && getTotalCount===0" class="ellipsis">{{foodShopInfo.rst.activities[0].description}}</p>
+            <p v-else-if="getOriginalTotalPrice.total<20 && getTotalCount>0">还差<span style="color: red">{{formateMoney(20-Number(getOriginalTotalPrice.total))}}</span>元起送</p>
+            <p v-else-if="getOriginalTotalPrice.total>=20 && getOriginalTotalPrice.isDiscount">已减{{formateMoney(getOriginalTotalPrice.total-getTotalPrice)}}元</p>
+            <p v-else-if="getTotalCount>0 && foodShopInfo.rst.activities[0].attribute && !getOriginalTotalPrice.isDiscount">
+              <span v-if="manjian.yijian">已减{{manjian.yijian}}</span>
+              <span v-if="manjian.nextjian>0">再买
                   <span style="color: red">{{manjian.haicha}}</span>
                   元减{{manjian.nextjian}}
                 </span>
-              </p>
-            </div>
-            <div class="cart_info" :style="{opacity:timeOutOpacity}">
-              <div class="head">
+            </p>
+          </div>
+          <div class="cart_info" :style="{opacity:timeOutOpacity}">
+            <div class="head">
               <span>已选商品</span>
               <span @click="clearCartFoods">
                 <svg class="icon" aria-hidden="true">
@@ -54,7 +55,7 @@
                 <span class="cart_clear_text">清空</span>
               </span>
             </div>
-              <div :style="{maxHeight:cartListHeight}" class="cart_list">
+            <div :style="{maxHeight:cartListHeight}" class="cart_list">
               <ul>
                 <li v-for="(food,index1) in cartFoods" :index1="index1">
                   <div class="cart_food_name">
@@ -71,36 +72,35 @@
                 </li>
               </ul>
             </div>
-            </div>
           </div>
-          <div class="main">
+        </div>
+        <div class="main">
             <span :class="{cart_ico_active:getTotalCount,cart_ico:true,animate1:cartAnimate===1,animate2:cartAnimate===2,animate3:cartAnimate===3}" @click="openCart()">
               <i></i>
               <span v-show="getTotalCount" class="number">{{getTotalCount}}</span>
             </span>
-            <div class="main_left">
-              <h3 v-if="getTotalCount">{{formateMoney(getTotalPrice)}}
-                <del v-show="Number(getTotalPrice)<getOriginalTotalPrice.total">
-                  {{formateMoney(getOriginalTotalPrice.total)}}
-                </del>
-              </h3>
-              <p v-if="getTotalCount===0" class="nothing">未选购商品</p>
-              <p v-if="foodShopInfo.rst">另需配送费{{foodShopInfo.rst.float_delivery_fee || '1'}}元</p>
-            </div>
-            <div :class="{main_right:true,delivery_active:getOriginalTotalPrice.total>=20}">
-              <span class="mode1" v-if="getTotalCount===0">￥20起送</span>
-              <span class="mode2" v-if="getOriginalTotalPrice.total<20 && getTotalCount>0">还差￥{{formateMoney(20-getOriginalTotalPrice.total)}}起送</span>
-              <span class="mode3" @click="pay" v-if="getOriginalTotalPrice.total>=20">去结算</span>
-            </div>
+          <div class="main_left">
+            <h3 v-if="getTotalCount">{{formateMoney(getTotalPrice)}}
+              <del v-show="Number(getTotalPrice)<getOriginalTotalPrice.total">
+                {{formateMoney(getOriginalTotalPrice.total)}}
+              </del>
+            </h3>
+            <p v-if="getTotalCount===0" class="nothing">未选购商品</p>
+            <p v-if="foodShopInfo.rst">另需配送费{{foodShopInfo.rst.float_delivery_fee || '1'}}元</p>
           </div>
-          <div class="cart_info_mask" @click="openCart" v-show="isOpenCart"></div>
+          <div :class="{main_right:true,delivery_active:getOriginalTotalPrice.total>=20}">
+            <span class="mode1" v-if="getTotalCount===0">￥20起送</span>
+            <span class="mode2" v-if="getOriginalTotalPrice.total<20 && getTotalCount>0">还差￥{{formateMoney(20-getOriginalTotalPrice.total)}}起送</span>
+            <span class="mode3" @click="pay" v-if="getOriginalTotalPrice.total>=20">去结算</span>
+          </div>
         </div>
+        <div class="cart_info_mask" @click="openCart" v-show="isOpenCart"></div>
       </div>
-    </section>
+    </div>
+  </section>
 </template>
 
 <script>
-  import BScroll from 'better-scroll'
   import {getImagePath,formateMoney} from "../../utils/getImagePath";
   import OneFoodInfoWrap from './OneFoodInfo/OneFoodInfo'
   import SelectFoodSpec from './SelectFoodSpec/SelectFoodSpec'
@@ -108,229 +108,196 @@
   import {mapState,mapGetters} from 'vuex'
   import CartBar from './CartBar/CartBar'
   export default {
-      data(){
-        return{
-          startY:0, //存储滑动初始坐标
-          isScrollOk:false,
-          cartListHeight:'', //购物车弹出的高度
-          oneFoodInfoShow:false, //是否打开一种物品的详情
-          showFoodInfo:{},
-          foodTypeHeight:[0],//存储每个食物分类的高度
-          foodNavActiveIndex:0,//存储食物分类导航active索引
-          isOpenCart:false,
-          timeOutOpacity:0,//默认购物车详情cart_info透明度
-          //cartAnimate:0 //购物车图标动画，0代表原始，1代表缩小，2代表放大
-          scroller:{},
-          top:0,
+    data(){
+      return{
+        startY:0, //存储滑动初始坐标
+        isScrollOk:false,
+        cartListHeight:'', //购物车弹出的高度
+        oneFoodInfoShow:false, //是否打开一种物品的详情
+        showFoodInfo:{},
+        foodTypeHeight:[0],//存储每个食物分类的高度
+        foodNavActiveIndex:0,//存储食物分类导航active索引
+        isOpenCart:false,
+        timeOutOpacity:0,//默认购物车详情cart_info透明度
+        //cartAnimate:0 //购物车图标动画，0代表原始，1代表缩小，2代表放大
+      }
+    },
+    watch:{
+      foodShopInfo(){
+        this.$nextTick(()=>{this.getFoodTypeHeight()})
+      },
+      cartFoods(){
+        if(this.cartFoods.length<=0){
+          this.openCart()
+        }
+      }
+    },
+    mounted(){
+      this.cartListHeight = (screen.height-100)/2+'px' //计算购物车的高度
+      //this.addCartFood({isAdd:true,index1:1,index2:1})
+      if(this.foodShopInfo.restaurant_id){
+        this.getFoodTypeHeight()
+      }
+      const element = document.documentElement|| document.body
+      element.scrollTop = 0
+    },
+    props:{
+      contentHeight:String,
+    },
+    computed:{
+      ...mapState({foodShopInfo:'foodsShop',cartFoods: 'cartFoods',cartAnimate:'cartAnimate'}),
+      ...mapGetters({getTotalPrice:'getTotalPrice',getOriginalTotalPrice:'getOriginalTotalPrice',getTotalCount:'getTotalCount'}),
+      manjian(){
+        let yijian = 0 //已减 变量
+        let haicha = 0 //还差多少变量
+        let nextjian = 0 //下一个减多少
+        if(this.foodShopInfo.rst){
+          let attr = this.foodShopInfo.rst.activities[0].attribute
+          attr = attr ? JSON.parse(attr) : ''
+          const originalPrice = Number(this.getOriginalTotalPrice.total)
+          for(let price in attr){
+            let temp = attr[price][1]
+            if(price>=originalPrice){
+              haicha = price-originalPrice
+              nextjian = temp
+              break
+            }
+            if(originalPrice>price){
+              yijian = temp
+            }
+          }
+        }
+        return {yijian:yijian,haicha:formateMoney(haicha),nextjian:nextjian}
+      }
+    },
+    methods: {
+      touchStart() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        if (document.querySelector('#res_nav').offsetTop >= scrollTop) {
+          this.isScrollOk = false
+        }
+        if (!this.isScrollOk) {
+          this.startY = event.changedTouches[0].pageY
+        }
+        //event.preventDefault() //阻止默认事件（长按的时候出现复制）
+      },
+      touchMove() { // 如果手指有移动，则取消所有事件，此时说明用户只是要移动而不是长按
+        if (!this.isScrollOk) {
+          let moveEndY = event.changedTouches[0].pageY
+          let Y = this.startY
+          if (moveEndY < Y) {
+            document.querySelector("#res_nav").scrollIntoView();
+            //this.isScrollOk=true
+          }
         }
       },
-      watch:{
-        foodShopInfo(){
-          this.$nextTick(()=>{
-            this.getFoodTypeHeight()
-            this.scroller = new BScroll('#food_type_list',{
-              scrollY:false,
-              click:true,
-              bounce:{
-                top:false
-              },
-              probeType:3,
-            })
-            this.scroller.on("scroll",(ev)=>{
-              console.log(this.scroller)
-              if((-ev.y)>this.top) {
-                // document.querySelector("#res_nav").scrollIntoView();
-              }
-              this.top= -ev.y
-              let top = (-ev.y)+1
-              const index = this.foodTypeHeight.findIndex((value)=>{
-                return value>=top
-              })
-              this.foodNavActiveIndex = index-1
-            })
-          })
-        },
-        cartFoods(){
-          if(this.cartFoods.length<=0){
-            this.openCart()
-          }
-        }
+      showOneFoodInfo(index1,index2) {//打开食品详情页
+        this.$refs.oneFoodInfoShow.oneFoodInfoShow = true
+        this.showFoodInfo=this.foodShopInfo.menu[index1].foods[index2]
       },
-      mounted(){
-        this.cartListHeight = (screen.height-100)/2+'px' //计算购物车的高度
-        //this.addCartFood({isAdd:true,index1:1,index2:1})
-        if(this.foodShopInfo.restaurant_id){
-            this.getFoodTypeHeight()
-        }
-        const element = document.documentElement|| document.body
-        element.scrollTop = 0
+      showSelectFood({food}){ //打开规格选择页
+        this.$refs.oneFoodInfoShow.oneFoodInfoShow = false
+        this.showFoodInfo = food
+        this.$refs.selectFoodShow.selectShow = true
       },
-      props:{
-        contentHeight:String,
+      getImagePath(info) {
+        return getImagePath(info)
       },
-      computed:{
-        ...mapState({foodShopInfo:'foodsShop',cartFoods: 'cartFoods',cartAnimate:'cartAnimate'}),
-        ...mapGetters({getTotalPrice:'getTotalPrice',getOriginalTotalPrice:'getOriginalTotalPrice',getTotalCount:'getTotalCount'}),
-        manjian(){
-          let yijian = 0 //已减 变量
-          let haicha = 0 //还差多少变量
-          let nextjian = 0 //下一个减多少
-          if(this.foodShopInfo.rst){
-            let attr = this.foodShopInfo.rst.activities[0].attribute
-            attr = attr ? JSON.parse(attr) : ''
-            const originalPrice = Number(this.getOriginalTotalPrice.total)
-            for(let price in attr){
-              let temp = attr[price][1]
-              if(price>=originalPrice){
-                haicha = price-originalPrice
-                nextjian = temp
-                break
-              }
-              if(originalPrice>price){
-                yijian = temp
-              }
-            }
-          }
-          return {yijian:yijian,haicha:formateMoney(haicha),nextjian:nextjian}
-        }
+      getDiscount(ori, now) { //获取折扣
+        let round = (now / ori) * 1000 % 100 > 5 ? 1 : 0
+        return parseInt((now / ori) * 100 + round) / 10
       },
-      methods: {
-        scroll:function (ev) {
-          console.log(ev)
-        },
-        touchStart() {
-          let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-          if (document.querySelector('#res_nav').offsetTop >= scrollTop) {
-            this.isScrollOk = false
+      foodListScroll(ev){
+        let top = this.$refs.food_type_list.scrollTop+1
+        const index = this.foodTypeHeight.findIndex((value)=>{
+          return value>=top
+        })
+        this.foodNavActiveIndex = index-1
+      },
+      getFoodTypeHeight(){ //获取每类食物距离顶部的距离
+        setTimeout(()=>{
+          let topHeight = 0
+          for (let one of  this.$refs.food_type_list.getElementsByClassName('one_list')){
+            topHeight+=one.getBoundingClientRect().height
+            this.foodTypeHeight.push(topHeight)
           }
-          if (!this.isScrollOk) {
-            this.startY = event.changedTouches[0].pageY
-          }
-
-          //event.preventDefault() //阻止默认事件（长按的时候出现复制）
-        },
-        touchMove() { // 如果手指有移动，则取消所有事件，此时说明用户只是要移动而不是长按
-          if (!this.isScrollOk) {
-            let moveEndY = event.changedTouches[0].pageY
-            let Y = this.startY
-            if (moveEndY < Y) {
-              document.querySelector("#res_nav").scrollIntoView();
-              //this.isScrollOk=true
-            }
-          }
-
-        },
-        showOneFoodInfo(index1,index2) {//打开食品详情页
-          this.$refs.oneFoodInfoShow.oneFoodInfoShow = true
-          this.showFoodInfo=this.foodShopInfo.menu[index1].foods[index2]
-        },
-        showSelectFood({food}){ //打开规格选择页
-          this.$refs.oneFoodInfoShow.oneFoodInfoShow = false
-          this.showFoodInfo = food
-          this.$refs.selectFoodShow.selectShow = true
-        },
-        getImagePath(info) {
-          return getImagePath(info)
-        },
-        getDiscount(ori, now) { //获取折扣
-          let round = (now / ori) * 1000 % 100 > 5 ? 1 : 0
-          return parseInt((now / ori) * 100 + round) / 10
-        },
-        foodListScroll(ev){
-          let top = this.$refs.food_type_list.scrollTop+1
-          const index = this.foodTypeHeight.findIndex((value)=>{
-            return value>=top
-          })
-          this.foodNavActiveIndex = index-1
-        },
-        getFoodTypeHeight(){ //获取每类食物距离顶部的距离
-          setTimeout(()=>{
-            let topHeight = 0
-            let temp=[0]
-            for (let one of  this.$refs.food_type_list.getElementsByClassName('one_list')){
-              topHeight+=one.getBoundingClientRect().height
-              temp.push(topHeight)
-            }
-            this.foodTypeHeight = temp
-          },500)
-        },
-        foodTypeNavClick(index){
-          /*if(index==this.foodNavActiveIndex){
-            return
-          }*/
-          //滚动到指定位置
-          // this.$refs.food_type_list.scrollTo(0,this.foodTypeHeight[index]) //直接跳转
-          this.scroller.scrollTo(0,-this.foodTypeHeight[index],300)
-          //this.scrollAnimation(this.$refs.food_type_list,this.foodTypeHeight[index],300) //滚动 500ms
-          //alert(document.getElementById("ul1").getBoundingClientRect().height)
-        },
-        scrollAnimation(Ele,now,time=300){
-          //滚动动画
-          let ori = Ele.scrollTop
-          const direction = now>ori //大于0表示向下滑动，小于向上
-          let one = (now-ori)/(time/30) //每次滚动的距离
-          //one = direction?one:-one
-          let timer = setInterval(()=>{
-            ori+=one //
-            if((direction && ori>=now) || (!direction && ori<=now)){
-              Ele.scrollTop = now
-              clearInterval(timer)
-            }else{
-              Ele.scrollTop= ori
-            }
-          },30)
-        },
-        openCart(){
-          this.cartFoods.length===0?(this.isOpenCart=false,this.timeOutOpacity=0):(this.isOpenCart=!this.isOpenCart,this.isOpenCart?this.timeOutOpacity=1:setTimeout(()=>{this.timeOutOpacity=0},300))
-        },
-        getOneTypePrice(ori,food){
-          let price = 0
-          if(food.specfoods.length>1){
-            if(ori) {//原价
-              price = food.specfoods[food.spec].original_price
-            }else{
-              price = food.specfoods[food.spec].price
-            }
+        },500)
+      },
+      foodTypeNavClick(index){
+        /*if(index==this.foodNavActiveIndex){
+          return
+        }*/
+        //滚动到指定位置
+        // this.$refs.food_type_list.scrollTo(0,this.foodTypeHeight[index]) //直接跳转
+        this.scrollAnimation(this.$refs.food_type_list,this.foodTypeHeight[index],300) //滚动 500ms
+        //alert(document.getElementById("ul1").getBoundingClientRect().height)
+      },
+      scrollAnimation(Ele,now,time=300){
+        //滚动动画
+        let ori = Ele.scrollTop
+        const direction = now>ori //大于0表示向下滑动，小于向上
+        let one = (now-ori)/(time/30) //每次滚动的距离
+        //one = direction?one:-one
+        let timer = setInterval(()=>{
+          ori+=one //
+          if((direction && ori>=now) || (!direction && ori<=now)){
+            Ele.scrollTop = now
+            clearInterval(timer)
           }else{
-            if(ori) {//原价
-              price = food.specfoods[0].original_price
-            }else{
-              price = food.lowest_price
-            }
+            Ele.scrollTop= ori
           }
-          return formateMoney(food.cartNumber*price)
-        },
-        clearCartFoods(){ //清空购物车
-          this.$store.dispatch('clearCartFoods')
-        },
-        pay(){
-          if(this.getOriginalTotalPrice.total>=20){
-            if(!this.$store.state.user.phone){
-              this.$router.push({path: '/login'})
-            }else {
-              let delivery_fee = this.foodShopInfo.rst.float_delivery_fee || 0
-              this.$store.dispatch('payMoney', formateMoney(delivery_fee + this.getTotalPrice))
-              let yijian = this.getOriginalTotalPrice.isDiscount ? formateMoney(this.getOriginalTotalPrice.total - this.getTotalPrice) : this.manjian.yijian
-              this.$router.push({name: 'payMoney', params: {manjian: yijian}})
-            }
+        },30)
+      },
+      openCart(){
+        this.cartFoods.length===0?(this.isOpenCart=false,this.timeOutOpacity=0):(this.isOpenCart=!this.isOpenCart,this.isOpenCart?this.timeOutOpacity=1:setTimeout(()=>{this.timeOutOpacity=0},300))
+      },
+      getOneTypePrice(ori,food){
+        let price = 0
+        if(food.specfoods.length>1){
+          if(ori) {//原价
+            price = food.specfoods[food.spec].original_price
+          }else{
+            price = food.specfoods[food.spec].price
           }
-        },
-        formateMoney(money){
-          return formateMoney(money)
+        }else{
+          if(ori) {//原价
+            price = food.specfoods[0].original_price
+          }else{
+            price = food.lowest_price
+          }
+        }
+        return formateMoney(food.cartNumber*price)
+      },
+      clearCartFoods(){ //清空购物车
+        this.$store.dispatch('clearCartFoods')
+      },
+      pay(){
+        if(this.getOriginalTotalPrice.total>=20){
+          if(!this.$store.state.user.phone){
+            this.$router.push({path: '/login'})
+          }else {
+            let delivery_fee = this.foodShopInfo.rst.float_delivery_fee || 0
+            this.$store.dispatch('payMoney', formateMoney(delivery_fee + this.getTotalPrice))
+            let yijian = this.getOriginalTotalPrice.isDiscount ? formateMoney(this.getOriginalTotalPrice.total - this.getTotalPrice) : this.manjian.yijian
+            this.$router.push({name: 'payMoney', params: {manjian: yijian}})
+          }
         }
       },
-      components:{
-        SelectFoodSpec,
-        OneFoodInfoWrap,
-        CartBar,//购物车加减
-        OneFoodBar,
-      },
-    }
+      formateMoney(money){
+        return formateMoney(money)
+      }
+    },
+    components:{
+      SelectFoodSpec,
+      OneFoodInfoWrap,
+      CartBar,//购物车加减
+      OneFoodBar,
+    },
+  }
 </script>
 <style>
 </style>
 <style scoped>
-
   .content{
     display: flex;
   }
@@ -366,7 +333,7 @@
     background-color: #fff;
   }
   .food_type_list{
-    /*overflow: scroll;*/
+    overflow: scroll;
     height: 100%;
   }
   .food_type_list>ul{
@@ -587,7 +554,6 @@
   .cart_list .right_info{
     display: flex;
     align-items: center;
-
   }
   .cart_list .right_info del{
     font-size: .5rem;
@@ -615,9 +581,7 @@
   .cart_list .right_info .icon{
     font-size: 1.5rem;
   }
-
   /*动画*/
-
   /*点击展开活动动画*/
   .bounce-enter{
     height: 0px;
@@ -633,4 +597,3 @@
     transition:height .3s;
   }
 </style>
-

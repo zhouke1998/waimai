@@ -2,7 +2,7 @@
   <div class="header">
     <slot name="left"></slot>
     <p>
-      <span class="ellipsis">{{title}}</span>
+      <span class="ellipsis" @click="selectAddress">{{title}}</span>
     </p>
     <slot name="right"></slot>
   </div>
@@ -13,14 +13,25 @@
       name: "HeaderTop",
       props:{
         title:String
+      },
+      methods:{
+        selectAddress(){
+          this.$router.push("address")
+        }
       }
     }
 </script>
 
 <style scoped>
+  .header{
+    padding: 0 10px;
+    color: #fff;
+    height: 50px;
+  }
   .header a{
     text-decoration: none;
     display: inline-block;
+    color: #fff;
   }
   .header{
     display: flex;

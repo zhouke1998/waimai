@@ -1,14 +1,19 @@
 <template>
     <section>
-      <RestaurantHeader ></RestaurantHeader>
-      <nav id="res_nav">
-        <a :class="{active_hover:activePage==1}" @click="activePage=1"><span>点餐</span></a>
-        <a :class="{active_hover:activePage==2}"  @click="ratingClick"><span>评价</span></a>
-        <a :class="{active_hover:activePage==3}"  @click="infoClick"><span>商家</span></a>
-      </nav>
-      <RestaurantHome v-show="activePage===1" :contentHeight="contentHeight+'px'"></RestaurantHome>
-      <RestaurantRating :isRatingShow="isRatingShow" v-show="activePage===2"></RestaurantRating>
-      <RestaurantInfo v-show="activePage===3"></RestaurantInfo>
+      <div class="cover-loading" v-show="coverShow">
+        <img src="/static/imgs/Restaurant/cover.png"/>
+      </div>
+      <div v-show="!coverShow">
+        <RestaurantHeader ></RestaurantHeader>
+        <nav id="res_nav">
+          <a :class="{active_hover:activePage==1}" @click="activePage=1"><span>点餐</span></a>
+          <a :class="{active_hover:activePage==2}"  @click="ratingClick"><span>评价</span></a>
+          <a :class="{active_hover:activePage==3}"  @click="infoClick"><span>商家</span></a>
+        </nav>
+        <RestaurantHome v-show="activePage===1" :contentHeight="contentHeight+'px'"></RestaurantHome>
+        <RestaurantRating :isRatingShow="isRatingShow" v-show="activePage===2"></RestaurantRating>
+        <RestaurantInfo v-show="activePage===3"></RestaurantInfo>
+      </div>
     </section>
 </template>
 
@@ -35,11 +40,17 @@
           activePage:1, //导航页面
           isRatingShow:false, //是否显示评价页面,控制懒加载
           isInfoShow:false, //是否显示店铺页面,控制懒加载
+          coverShow:true //进入店铺时的封面显示
         }
       },
       mounted(){
-        this.contentHeight = screen.height-document.getElementById('res_nav').offsetHeight //导航条距离顶部距离
-        this.getFoodShop()
+        this.contentHeight = screen.height-document.getElementById('res_nav').offsetHeight; //导航条距离顶部距离
+        this.getFoodShop();
+        this.$nextTick(()=>{
+          setTimeout(()=>{
+            this.coverShow = false;
+          },1000)
+        })
       },
       computed:{
       },
@@ -104,5 +115,9 @@
     display: inline-block;
     box-sizing: border-box;
     border-bottom: 2px solid #007aff;
+  }
+  .cover-loading,.cover-loading img{
+    width: 100%;
+    height: 100%;
   }
 </style>

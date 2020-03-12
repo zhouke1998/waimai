@@ -1,6 +1,6 @@
 <template>
   <section>
-    <LoginHeader left_title="登录">
+    <LoginHeader title="登录">
       <router-link to="/loginPwd" slot="right_link">密码登录</router-link>
     </LoginHeader>
     <div class="content">
@@ -164,6 +164,9 @@
   section{
     background-color:#f5f5f5;
     overflow: hidden;
+  }
+  .content{
+    margin-top:10px;
   }
   .form-group{
     position: relative;

@@ -133,20 +133,18 @@
   .header .left{
     width: 25%;
     box-sizing: border-box;
-    padding-left: 20px;
     vertical-align: center;
   }
   .header .left a{
     height: 100%;
     min-width: 50%;
     text-align: center;
-    padding-top: 5px;
+    padding-top: 2px;
     box-sizing: border-box;
   }
   .header .right{
     width: 25%;
     text-align: right;
-    padding-right: 10px;
   }
 
   .header .right .icon-wode {
@@ -155,7 +153,7 @@
   }
   .header .right>a{
     height: 100%;
-    padding-top: 5px;
+    padding-top: 2px;
     box-sizing: border-box;
   }
   .header .right span a{

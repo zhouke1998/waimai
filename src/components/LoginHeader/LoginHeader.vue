@@ -1,19 +1,16 @@
 <template>
-  <div class="loginHeader">
-    <div class="grid-content">
-      <i class="return" @click="$router.go(-1)"><span class="iconfont icon-jiantou-copy-copy"></span></i>
-    </div>
-    <div class="grid-content title">
-      <!--<slot name="left_title"></slot>-->
-      <span>{{left_title}}</span>
-    </div>
-    <div class="grid-content al-right">
-      <slot name="right_link"></slot>
-    </div>
-    </div>
+    <Headertop :title="title" :router_back="router_back">
+      <div class="login-left" slot="left">
+        <i class="return" @click="$router.go(-1)"><span class="iconfont icon-jiantou-copy-copy"></span></i>
+      </div>
+      <div class="login-right" slot="right">
+        <slot name="right_link"></slot>
+      </div>
+    </Headertop>
 </template>
 
 <script>
+  import Headertop from '../Headertop/HeaderTop'
     export default {
       name: "LoginHeader",
       methods:{
@@ -22,29 +19,18 @@
         },
       },
       props:{
-        left_title:String,
+        title:String,
+      },
+      components:{
+        Headertop
       }
     }
 </script>
 
 <style scoped>
-  .loginHeader {
-    height: 50px;
-    background-color: #02a774;
-    padding: 0 10px;
-    font-size: 0.9rem;
-    line-height: 50px;
-    margin-bottom: 10px;
-    color: #fff;
-    display: flex;
-  }
-
-  .loginHeader > div:first-child {
-    width: 20%;
-    text-align: left;
-  }
-  .grid-content {
+  .login-left {
     min-height: 36px;
+    width: 25%;
     height: 50px;
   }
   .return{
@@ -61,19 +47,11 @@
     background-color: #fff;
     opacity: 0.2;
   }
-
-  .title {
-    width: 60%;
-    text-align: center;
-  }
-  .al-right{
-    width: 20%;
+  .login-right{
+    width: 25%;
     color: #fff;
     text-align: right;
-  }
-
-  .grid-content a {
-    text-decoration: none;
-    color: #fff;
+    line-height: 50px;
+    font-size: .9rem;
   }
 </style>

@@ -7,7 +7,16 @@ export default {
   // longitude:114.25597,
   address:{
     status:1,
-    address:''
+    address:'',
+    location:{
+      lat:0, //纬度
+      lng:0  //经度
+    },
+    addressComponent:{
+      country:"",
+      province:"",
+      city:"",
+    }
   },//地址信息
   type_list: [],//分类列表
   shops:[], //商家列表
