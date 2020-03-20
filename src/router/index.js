@@ -9,6 +9,8 @@ const Login = () => import ('../pages/Login/Login')
 const LoginPwd = () => import ('../pages/Login/LoginPwd')
 const Restaurant = () => import ("../pages/Restaurant/Restaurant")
 const MapAddress = () => import ("../pages/MapAddress/MapAddress")
+const deliveryAddress = () => import ("../pages/PersonInfo/deliveryAddress/deliveryAddress")
+const deliveryMapAddress = () => import ("../pages/MapAddress/deliveryMapAddress")
 
 import RestaurantApp from "../pages/Restaurant/RestaurantApp"
 import Story from "../pages/Story/Story"
@@ -20,7 +22,8 @@ import PersonInfo from '../pages/PersonInfo/PersonInfo'
 import modifyUsername from '../pages/PersonInfo/Username/Username' //修改用户名
 import modifyPhone from '../pages/PersonInfo/Phone/Phone' //修改手机
 import modifyPassword from '../pages/PersonInfo/Password/Password'
-
+import AddAddress from '../pages/PersonInfo/deliveryAddress/AddAddress/AddAddress'
+import EditAddress from '../pages/PersonInfo/deliveryAddress/EditAddress/EditAddress'
 
 Vue.use(Router)
 export default new Router({
@@ -88,6 +91,13 @@ export default new Router({
       path: '/address',
       meta: {
         slide_index: 3,
+      }
+    },
+    {
+      component: deliveryMapAddress,
+      path: '/deliveryMapAddress',
+      meta: {
+        slide_index: 8,
       }
     },
     {
@@ -163,6 +173,28 @@ export default new Router({
           meta:{
             slide_index:6
           }
+        },
+        {
+          path: 'deliveryAddress',
+          name:"deliveryAddress",
+          meta: {
+            slide_index: 6,
+          },
+          component: deliveryAddress
+        },
+        {
+          path: 'addAddress',
+          meta: {
+            slide_index: 7,
+          },
+          component: AddAddress
+        },
+        {
+          path: 'editAddress',
+          meta: {
+            slide_index: 7,
+          },
+          component: EditAddress
         }
       ]
     },

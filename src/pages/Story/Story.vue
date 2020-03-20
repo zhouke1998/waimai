@@ -1,6 +1,6 @@
 <template>
   <section>
-    <Backtop router_back="true" title="品牌故事"></Backtop>
+    <Backtop title="品牌故事"></Backtop>
     <div v-if="brand_intros.brand_intros" class="story">
       <img :src="getImagePath({image_hash:brand_intros.brand_intros.header_image,suffix:'imageMogr/format/webp/thumbnail/!750x422r/gravity/Center/crop/750x422/'})" />
       <div class="content">

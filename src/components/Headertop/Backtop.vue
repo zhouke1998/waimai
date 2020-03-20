@@ -1,9 +1,11 @@
 <template>
   <Headertop :title="title">
     <div class="back" slot="left">
-      <a @click="backClick">
+      <a class="return" @click="backClick">
         <span class="iconfont icon-jiantou-copy-copy" ></span>
       </a>
+    </div>
+    <div class="login-right" slot="right">
     </div>
   </Headertop>
 </template>
@@ -17,12 +19,14 @@
       },
       props:{
         title:String,
-        router_back:String,
+        router_back:{
+          type:Boolean,
+          default:true
+        },
       },
       methods: {
         backClick() {
-          if (this.router_back!=="false") {
-            //console.log(this.router_back);
+          if (this.router_back) {
             this.$router.back()
           }else{
             this.$parent.backClick()
@@ -34,10 +38,25 @@
 
 <style scoped>
   .back{
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #fff;
+    min-height: 36px;
+    width: 25%;
+    height: 50px;
+  }
+  .return{
+    line-height: 50px;
+    font-size: 1.25rem;
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 20px;
+  }
+  .return:active{
+    background-color: #fff;
+    opacity: 0.2;
+  }
+  .login-right{
+    width: 25%;
   }
 </style>

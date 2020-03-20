@@ -24,14 +24,15 @@ module.exports = {
     //host: '192.168.43.25',
     //host: '192.168.137.1',
     //host: '172.16.3.220',
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: '0.0.0.0',
+    //host: 'localhost', // can be overwritten by process.env.HOST
     port: 8081, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */

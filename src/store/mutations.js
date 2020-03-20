@@ -8,6 +8,7 @@ import {
   RECEIVE_SHOPS,
   RECEIVE_TYPE_LIST,
   RECEIVE_USER,
+  LOGOUT,
   RECEIVE_FOODS_SHOP,
   INCREASEFOOD,
   DECREASEFOOD,
@@ -17,6 +18,10 @@ import {
   CHANGEUSERNAME,
   CHANGEPASSWORD,
   CHANGEHEADPHOTO,
+  CHANGESELECTMAPADDRESSSTATUS,
+  CHANGESELECTMAPADDRESSS,
+  RECEIVEDELIVERYADDRESS,
+  CHANGESETTLEADDRESS
 } from "./mutation-types";
 
 export default {
@@ -31,6 +36,16 @@ export default {
   },
   [RECEIVE_USER] (state,user){
     state.user = user
+  },
+  [LOGOUT] (state){
+    state.user = {};
+    state.deliveryAddress = {
+      status:1,
+        selected:-1,
+        address:[
+
+      ]
+    }
   },
   [RECEIVE_FOODS_SHOP] (state,foodsShop){
     state.foodsShop = foodsShop
@@ -90,5 +105,62 @@ export default {
   //修改头像
   [CHANGEHEADPHOTO](state, path) {
     state.user.photoPath = path
+  },
+  // 修改选择地址的状态值 （编辑/新增）
+  [CHANGESELECTMAPADDRESSSTATUS](state,{activeStatus,address_info}){
+    state.deliveryAddress_select.active = activeStatus
+    if(activeStatus==="edit"){
+      state.deliveryAddress_select.edit = address_info  //
+    }else if(activeStatus==="add"){
+      state.deliveryAddress_select.add.address = state.address;
+    }
+  },
+  // 修改选择地址
+  [CHANGESELECTMAPADDRESSS](state,{deliveryAddress,onlyAddress,onlyInfo}){
+    let activeStatus = state.deliveryAddress_select.active
+    if(activeStatus!==-1){
+      if(onlyAddress){
+        state.deliveryAddress_select[activeStatus].address = deliveryAddress
+      }else if(onlyInfo){
+        state.deliveryAddress_select[activeStatus].baseInfo = deliveryAddress
+      }else{
+        if(!deliveryAddress){
+          state.deliveryAddress_select[activeStatus] = {
+            id:101,
+            baseInfo: {
+              phone: "",
+              door: "",
+              name: "",
+              gender: -1,//0男士 1女士
+              addressTip: -1
+            },
+            address:{
+              status:1,
+              address:'',
+              location:{
+                lat:39.90, //纬度
+                lng:116.40  //经度
+              },
+              addressComponent:{
+                country:"",
+                province:"",
+                city:"",
+              }
+            }
+          }   //重置
+        }else{
+          state.deliveryAddress_select[activeStatus] = deliveryAddress
+        }
+      }
+    }
+  },
+  // 接收用户保存的地址
+  [RECEIVEDELIVERYADDRESS](state,deliveryAddress){
+    state.deliveryAddress.status = 0;
+    state.deliveryAddress.address = deliveryAddress;
+  },
+  // 结算界面选择的地址
+  [CHANGESETTLEADDRESS](state,address_id){
+    state.deliveryAddress.selected = address_id;
   }
 }

@@ -9,8 +9,8 @@ export default {
     status:1,
     address:'',
     location:{
-      lat:0, //纬度
-      lng:0  //经度
+      lat:39.90, //纬度
+      lng:116.40  //经度
     },
     addressComponent:{
       country:"",
@@ -25,4 +25,58 @@ export default {
   cartFoods:[],//购物车里的物品
   cartAnimate:0, //购物车图标动画，，0代表原始，1代表缩小，2代表放大
   payMoney:0,
+  deliveryAddress:{
+    status:1,
+    selected:-1,
+    address:[
+
+    ]
+  },  //配送地址
+  deliveryAddress_select: { //  编辑/添加零时保存地址
+    active: -1,
+    add:{
+      baseInfo:{
+        phone: "",
+        door: "",
+        name: "",
+        gender: -1,//0男士 1女士
+        addressTip: -1
+      },
+      address:{
+        status:1,
+        address:'',
+        location:{
+          lat:39.90, //纬度
+          lng:116.40  //经度
+        },
+        addressComponent:{
+          country:"",
+          province:"",
+          city:"",
+        }
+      }
+    },
+    edit:{
+      baseInfo: {
+        phone: "",
+        door: "",
+        name: "",
+        gender: -1,//0男士 1女士
+        addressTip: -1
+      },
+      address:{
+        status:1,
+        address:'',
+        location:{
+          lat:39.90, //纬度
+          lng:116.40  //经度
+        },
+        addressComponent:{
+          country:"",
+          province:"",
+          city:"",
+        }
+      }
+    }
+  }
 }

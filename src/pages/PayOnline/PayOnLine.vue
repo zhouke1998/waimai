@@ -103,7 +103,7 @@
               if(data.status!==0){
                 MessageBox.confirm(data.msg)
               }else{
-                window.location.href=data.url; 
+                window.location.href=data.url;
               }
             })
           }
@@ -133,6 +133,9 @@
           }
           return true
         }
+      },
+      beforeDestroy(){
+        this.$store.dispatch('payMoney',0)
       }
     }
 </script>

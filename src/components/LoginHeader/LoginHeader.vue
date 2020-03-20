@@ -1,5 +1,5 @@
 <template>
-    <Headertop :title="title" :router_back="router_back">
+    <Headertop :title="title" >
       <div class="login-left" slot="left">
         <i class="return" @click="$router.go(-1)"><span class="iconfont icon-jiantou-copy-copy"></span></i>
       </div>
@@ -16,7 +16,7 @@
       methods:{
         ret(){
           this.$router.go(-1)
-        },
+        }
       },
       props:{
         title:String,

@@ -1,17 +1,27 @@
 <template>
     <section>
-      <Backtop router_back="false"  style="position: sticky; top: 0; left: 0; z-index: 2" :title="this.noteShow?'订单备注':'确认订单'" class="miniLine"></Backtop>
+      <Backtop :router_back="false"  style="position: sticky; top: 0; left: 0; z-index: 2" :title="this.noteShow?'订单备注':'确认订单'" class="miniLine"></Backtop>
       <div class="gra" v-if="true && !noteShow">
-        <div class="orderTop">
-          <span>订单配送至</span>
-          <div class="address">
-            <p class="ellipsis">
-              {{address.address}}
-            </p>
-            <span class="iconfont icon-jiantou"></span>
+        <div @click="selectDeliveryAddress" class="orderTop">
+          <div class="hasSelectAddress" v-if="selectedSettleAddress">
+            <span>订单配送至</span>
+            <div class="address">
+              <p class="ellipsis">
+                {{selectedSettleAddress.address.address}}
+              </p>
+              <span class="iconfont icon-jiantou"></span>
+            </div>
+            <div class="peo_info">
+              <p><span>{{selectedSettleAddress.baseInfo.name}}</span><span v-if="gender[0]">({{gender[1]}})</span>&nbsp;&nbsp;<span>{{selectedSettleAddress.baseInfo.phone}}</span></p>
+            </div>
           </div>
-          <div class="peo_info">
-            <p><span>{{user.username}}</span>(先生)&nbsp;&nbsp;<span>{{user.phone}}</span></p>
+          <div class="notSelectAddress" v-else>
+            <div class="address">
+              <p class="ellipsis">
+                选择配送地址
+              </p>
+              <span class="iconfont icon-jiantou"></span>
+            </div>
           </div>
         </div>
         <div class="con">
@@ -20,7 +30,7 @@
               <span>送达时间</span>
               <p>尽快送达
                 <span>({{getLeadTime}}送达)</span>
-                <span class="iconfont icon-jiantou"></span>
+                <span style="display: none;" class="iconfont icon-jiantou"></span>
               </p>
             </div>
             <div class="pay_way">
@@ -170,7 +180,7 @@
   import {getImagePath,formateMoney} from "../../utils/getImagePath";
   import Backtop from '../../components/Headertop/Backtop'
   import OrderNote from '../../components/OrderNote/OrderNote'
-  import {mapState} from 'vuex'
+  import {mapState,mapGetters} from 'vuex'
     export default {
       name: "payMoney",
       data(){
@@ -188,7 +198,8 @@
         OrderNote,
       },
       computed:{
-        ...mapState({cartFoods:'cartFoods',payMoney:'payMoney',user:'user',address:'address'}),
+        ...mapState({cartFoods:'cartFoods',payMoney:'payMoney',user:'user',deliveryAddress:"deliveryAddress"}),
+        ...mapGetters({selectedSettleAddress:"getSelectedSettleAddress"}),
         getRst(){
           return this.$store.state.foodsShop.rst || ''
         },
@@ -221,6 +232,15 @@
           minute = minute>=10?minute:('0'+minute)
           return hour+":"+minute
         },
+        gender(){
+          if(this.selectedSettleAddress){
+            const genderVal = this.selectedSettleAddress.baseInfo.gender;
+            return [genderVal!==-1,genderVal===0?"先生":"女士"]
+          }
+        }
+      },
+      created(){
+        //this.getAllAddress();
       },
       mounted(){
         setTimeout(()=>{
@@ -275,24 +295,35 @@
         },
         goPay(){
           this.$router.push({name:'payOnline',params:{totalPrice:this.payMoney}})
+        },
+        selectDeliveryAddress(){
+          //this.$router.push('/personInfo/deliveryAddress');
+          this.$router.push({path:'/personInfo/deliveryAddress',query:{editNotShow:'1'}});
+        },
+        getAllAddress(){
+          if(this.deliveryAddress.status===1){  //未获取地址，获取地址
+            this.$store.dispatch("receiveDeliveryAddress")
+          }
         }
       },
       beforeDestroy(){
-        this.$store.dispatch('payMoney',0)
+        //this.$store.dispatch('payMoney',0)
       }
     }
 </script>
 <style scoped>
   .orderTop{
     padding: 1rem .5rem 1rem 1rem;
-
   }
   .gra{
     background-image: linear-gradient(0deg, #f5f5f5, #f5f5f5 65%,hsla(0,0%,96%,.3) 75%,hsla(0,0%,96%,0)),linear-gradient(270deg,#02a774,#46a774)
   }
-  .orderTop>span{
+  .orderTop span{
     color: hsla(0,0%,100%,.8);
     font-size: .8rem;
+  }
+  .notSelectAddress{
+    padding: 10px 0 10px 30px;
   }
   .address{
     display: flex;

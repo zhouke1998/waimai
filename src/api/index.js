@@ -50,5 +50,13 @@ export const getALiPayUrl = ({subject,outTradeNo,totalAmount}) => ajax(`${api}/a
   totalAmount
 },"post"); //支付宝支付api
 
+export const addDeliveryAddress = (address) => ajax(`${api}/users/addDeliveryAddress`, {address} , 'post');
+
+export const deleteDeliveryAddress = (address_id) => ajax(`${api}/users/delDeliveryAddress`, {address_id} ,'post');
+
+export const receiveDeliveryAddress = () => ajax(`${api}/users/queryDeliveryAddress`, {} ,'post');
+
+export const changeDeliveryAddress = (address) => ajax(`${api}/users/modifyDeliveryAddress`, {address} , 'post');
+
 
 

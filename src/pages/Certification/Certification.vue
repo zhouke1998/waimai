@@ -1,6 +1,6 @@
 <template>
     <section>
-      <Backtop router_back="true" title="营业资质"></Backtop>
+      <Backtop title="营业资质"></Backtop>
       <div v-if="certification.city_id" class="wrap">
         <div class="content">
           <div class="miniLine">

@@ -72,5 +72,31 @@ export default {
 
   getHeadPhoto(state) {
     return state.user.photoPath ? ('waimai_api/images/headPhoto/' + state.user.photoPath) : null
+  },
+
+  getPhone(state){
+    const phone = state.user.phone || "";
+    if(phone){
+      return phone.substring(0,3)+"****"+phone.substring(7)
+    }else{
+      return phone;
+    }
+  },
+
+  getOriginalPhone(state){
+    const phone = state.user.phone || "";
+    return phone;
+  },
+
+  getSelectedSettleAddress(state){
+    let selected = state.deliveryAddress.selected;
+    if(selected!==-1){
+      for(let address of state.deliveryAddress.address){
+        if(address.id === selected){
+          return address
+        }
+      }
+    }
+    return null;
   }
 }

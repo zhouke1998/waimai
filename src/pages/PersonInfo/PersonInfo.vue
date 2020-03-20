@@ -15,7 +15,7 @@
           <span class="iconfont icon-jiantou"></span>
         </p>
       </div>
-      <div class="account">
+      <div class="account s-item">
         <p>账号绑定</p>
         <div class="bgf" @click="modifyphone()">
           <p>
@@ -23,12 +23,12 @@
             <span>手机</span>
           </p>
           <p>
-            <span>{{getPhone()}}</span>
+            <span>{{getPhone}}</span>
             <span class="iconfont icon-jiantou"></span>
           </p>
         </div>
       </div>
-      <div class="secure">
+      <div class="secure s-item">
         <p>安全设置</p>
         <div @click="$router.push('/personInfo/password')" class="bgf">
           <p>
@@ -36,6 +36,18 @@
           </p>
           <p>
             <span class="bgb">修改</span>
+            <span class="iconfont icon-jiantou"></span>
+          </p>
+        </div>
+      </div>
+      <div class="qita s-item">
+        <p>其它</p>
+        <div @click="$router.push('/personInfo/deliveryAddress')" class="bgf">
+          <p>
+            <span>收货地址</span>
+          </p>
+          <p>
+            <span class="bgb">管理</span>
             <span class="iconfont icon-jiantou"></span>
           </p>
         </div>
@@ -48,6 +60,7 @@
   import {cutImage} from "../../utils/getExifImage";
   import {uploadImage} from "../../api";
   import {MessageBox, Toast} from 'mint-ui';
+  import {mapGetters} from 'vuex';
   export default {
     name: "PersonInfo",
     data(){
@@ -88,10 +101,6 @@
           .catch(action => {
           });
       },
-      getPhone(){
-        const phone = this.$store.state.user.phone
-        return phone?phone.substring(0,3)+"****"+phone.substring(7):''
-      },
       imgChange(){
         if(event.target.files.length){
           const options = {
@@ -129,6 +138,7 @@
       }
     },
     computed:{
+      ...mapGetters(["getPhone"]),
       user(){
         return this.$store.state.user
       }
@@ -178,17 +188,17 @@
     font-size: .75rem !important;
     color: #ccc !important;
   }
-  .account,.secure{
+  .s-item{
     display: block;
     padding: 0;
   }
-  .account>div,.secure>div{
+  .s-item>div{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: .7rem;
   }
-  .account>div p:first-child,.secure>div p:first-child{
+  .s-item>div p:first-child{
     font-weight: bold;
     color: #333;
   }
@@ -199,12 +209,12 @@
   .username{
     padding: 1rem .7rem;
   }
-  .account>p,.secure>p{
+  .s-item>p{
     font-size: .65rem;
     color: #999;
     padding:.7rem;
   }
-  .secure div{
+  .s-item div{
     padding: 1rem .7rem;
   }
   .bgb{

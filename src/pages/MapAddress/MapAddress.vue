@@ -1,86 +1,67 @@
 <template>
   <section>
     <LoginHeader title="选择配送地址">
-      <router-link to="/loginPwd" slot="right_link">新增地址</router-link>
+      <span @click="manageAddress"  slot="right_link">管理地址</span>
     </LoginHeader>
-    <div class="search">
-      <span class="iconfont icon-search"></span>
-      <input type="text" v-model="keyword" placeholder="请输入配送地址"/>
-    </div>
-    <baidu-map class="map-address" :zoom="zoom" :center="center" @ready="handler">
-      <bm-scale> </bm-scale>
-      <bm-navigation> </bm-navigation>
-      <bm-city-list> </bm-city-list>
-      <bm-local-search @markersset="markersset" :keyword="keyword" :location="location" :panel="true"> </bm-local-search>
-    </baidu-map>
+    <MyMap :location="location" :addressProp="address" :addressListShowProp="addressListShowProp" :LL="LL" @certainSelect="certainSelect">
+
+    </MyMap>
   </section>
 </template>
 
 <script>
   import LoginHeader from "../../components/LoginHeader/LoginHeader";
   import { mapState } from 'vuex'
+  import {Toast} from 'mint-ui';
+  import MyMap from "../../components/MyMap/MyMap"
     export default {
       name: "MapAddress",
       data(){
         return{
-          center:{
-            lng:0,
-            lat:0
-          },
-          zoom:3,
-          keyword:"",
-          location:"江西省"
+          location:"",
+          address:"",
+          addressListShowProp:true
         }
+      },
+      created(){
+        this.location = this.LLAddress.addressComponent.province;
+        this.address = this.LLAddress.address;
       },
       computed:{
         ...mapState({
           LL:(state)=>state.address.location,
           //location:(state)=>state.address.addressComponent.province
+          LLAddress:(state)=>state.address,
+          getUser(){
+            return this.$store.state.user
+          },
         }),
       },
       methods:{
-        handler({BMap,map}){
-          //console.log(BMap,map);
-          this.center.lng = this.LL.lng;
-          this.center.lat = this.LL.lat;
-          this.zoom = 15;
+        certainSelect(selectAddress){
+          this.$store.dispatch("setAddress",selectAddress);
+          this.$router.back();
         },
-        markersset(arr){
-          console.log(arr);
+        manageAddress(){
+          if(!this.getUser.username){
+            Toast({
+              message: '请先登录',
+              position: 'middle',
+              duration: 2000
+            });
+            this.$router.push("/login")
+          }else{
+            this.$router.push("/personInfo/deliveryAddress")
+          }
         }
       },
       components:{
-        LoginHeader
+        LoginHeader,
+        MyMap
       }
     }
 </script>
 
 <style scoped>
-  .map-address {
-    width: 100%;
-    height: 300px;
-  }
-  .search{
-    width: 100%;
-    box-sizing: border-box;
-    padding: 5px;
-    position: relative;
-  }
-  .search .icon-search{
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    color: #777;
-  }
-  .search input{
-    height: 30px;
-    width: 100%;
-    border: none;
-    outline: #fff;
-    font-size: .8rem;
-    background-color: #f3f3f3;
-    border-radius: 4px;
-    padding-left: 30px;
-    box-sizing: border-box;
-  }
+
 </style>

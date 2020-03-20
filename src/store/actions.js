@@ -8,6 +8,7 @@ import {
   RECEIVE_LONGITUDE,
   RECEIVE_LATITUDE,
   RECEIVE_USER,
+  LOGOUT,
   RECEIVE_FOODS_SHOP,
   INCREASEFOOD,
   DECREASEFOOD,
@@ -17,6 +18,10 @@ import {
   CHANGEPHONE, //修改手机号
   CHANGEPASSWORD, //密码
   CHANGEHEADPHOTO,//头像
+  CHANGESELECTMAPADDRESSSTATUS, //  修改选择地址的状态值 （编辑/新增）
+  CHANGESELECTMAPADDRESSS,
+  RECEIVEDELIVERYADDRESS,
+  CHANGESETTLEADDRESS
 } from "./mutation-types";
 
 import {
@@ -26,6 +31,7 @@ import {
   autoLogin,
   logout,
   getFoodShop,
+  receiveDeliveryAddress
 } from "../api";
 export default {
   async getAddressByLL({commit},geo){
@@ -40,6 +46,11 @@ export default {
       commit(RECEIVE_ADDRESS,result)
     }else{
       console.log("获取地址信息失败");
+    }
+  },
+  setAddress({commit},address){
+    if(address.status===0){
+      commit(RECEIVE_ADDRESS,address);
     }
   },
   //获取分类列表
@@ -68,7 +79,7 @@ export default {
   async logout({commit}){
     const result = await logout()
     if(result.status ===0){
-      commit(RECEIVE_USER,{})
+      commit(LOGOUT)
     }
   },
 
@@ -109,5 +120,24 @@ export default {
   //
   changeHeadPhoto({commit}, path) {
     commit(CHANGEHEADPHOTO, path)
+  },
+  // 修改选择地址的状态值 （编辑/新增）
+  changeSelectMapAddressStatus({commit},{activeStatus,address_info}){
+    commit(CHANGESELECTMAPADDRESSSTATUS,{activeStatus,address_info})
+  },
+  changeSelectMapAddress({commit},{deliveryAddress,onlyAddress,onlyInfo}){
+    commit(CHANGESELECTMAPADDRESSS,{deliveryAddress,onlyAddress,onlyInfo})
+  },
+
+  async receiveDeliveryAddress({commit}){
+    const result = await receiveDeliveryAddress()
+    if(result.status === 0){
+      commit(RECEIVEDELIVERYADDRESS,result.address)
+    }
+  },
+
+  changeSettleAddress({commit},address_id){
+    commit(CHANGESETTLEADDRESS,address_id)
   }
+
 }

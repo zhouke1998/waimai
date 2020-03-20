@@ -22,6 +22,7 @@
 <script>
   import {MessageBox} from 'mint-ui';
   import {getLoginCode,checkOldPhone} from "../../api";
+  import {mapGetters} from 'vuex';
   export default {
       name: "Old",
       data(){
@@ -33,13 +34,10 @@
         }
       },
       computed:{
+        ...mapGetters(["getPhone"]),
         isFit(){
           return this.code.length===6
-        },
-        getPhone(){
-          const phone = this.$store.state.user.phone
-          return phone?phone.substring(0,3)+"****"+phone.substring(7):''
-        },
+        }
       },
       methods:{
         checkCode(){

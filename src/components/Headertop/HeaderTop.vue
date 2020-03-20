@@ -16,7 +16,9 @@
       },
       methods:{
         selectAddress(){
-          this.$router.push("address")
+          if(this.$route.meta.slide_index===1){
+            this.$router.push("address")
+          }
         }
       }
     }
@@ -42,6 +44,8 @@
     width: 50%;
     text-align: center;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
   }
   .header p>span{
     display: inline-block;

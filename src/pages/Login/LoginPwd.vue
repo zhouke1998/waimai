@@ -49,8 +49,8 @@
   export default {
     data(){
       return{
-        password:'',
-        phone:'',
+        password:'123456',
+        phone:'zhouke',
         zIndex:[2,1],
         code:'',
         baseURL:'waimai_api/users/getCaptchaCode?'+Date.now(),

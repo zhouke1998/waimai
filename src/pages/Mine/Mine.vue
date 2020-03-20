@@ -109,6 +109,7 @@
 <script>
   import HeaderTop from "../../components/Headertop/HeaderTop";
   import {MessageBox} from 'mint-ui';
+  import {mapGetters} from 'vuex';
   export default {
     components:{
       HeaderTop
@@ -122,10 +123,7 @@
       //console.log(this.user);
     },
     computed:{
-      getPhone(){
-        const phone = this.getUser.phone
-        return phone.substring(0,3)+"****"+phone.substring(7)
-      },
+      ...mapGetters(["getPhone"]),
       getUser(){
         return this.$store.state.user
       },
