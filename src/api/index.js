@@ -59,4 +59,6 @@ export const receiveDeliveryAddress = () => ajax(`${api}/users/queryDeliveryAddr
 export const changeDeliveryAddress = (address) => ajax(`${api}/users/modifyDeliveryAddress`, {address} , 'post');
 
 
+export const getUserIp = (ip) => ajax(`/userIp`, {ip} , 'post');  //获取Ip
+
 

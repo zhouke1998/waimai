@@ -31,7 +31,8 @@ import {
   autoLogin,
   logout,
   getFoodShop,
-  receiveDeliveryAddress
+  receiveDeliveryAddress,
+  getUserIp
 } from "../api";
 export default {
   async getAddressByLL({commit},geo){
@@ -40,8 +41,17 @@ export default {
       commit(RECEIVE_ADDRESS,result)
     }
   },
-  async getAddress2({commit},ip){
-    const  result = await reqAddress2(ip)
+  async getAddress2({commit},ip2){
+    let ip = 0;
+    const ip_result = await getUserIp().catch(()=>{
+      //ip = "117.169.226.36"; //江西萍乡ip
+    });
+    if(ip_result && ip_result.status===0){
+      ip = ip_result.ip;
+    }else{
+      //ip = "117.169.226.36"
+    }
+    const  result = await reqAddress2(ip);
     if(result.status===0){
       commit(RECEIVE_ADDRESS,result)
     }else{

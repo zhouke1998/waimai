@@ -58,6 +58,7 @@
           });
         }else{
           alert('获取地址失败!');
+
           this.getAddressByIp("127.0.0.1")
         }
       },
