@@ -55,7 +55,7 @@
     },
     computed: {
       phone(){
-        const phone = this.addressInfo.phone
+        const phone = this.addressInfo.baseInfo.phone;
         if(phone && phone.length){
           return phone.substring(0,3)+"****"+phone.substring(7)
         }else{

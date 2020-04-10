@@ -297,7 +297,7 @@
     height: 1.5rem;
     line-height: 1.5rem;
     font-size: .65rem;
-    text-align: right;
+    text-align: -right;
     position: relative;
   }
   .envelope .c1{
@@ -342,7 +342,7 @@
     background-color: #fff4f4;
   }
   .envelope .c3{
-    margin-right: 10px;
+    margin-right: 0px;
   }
   .header_content .active{
     display: flex;

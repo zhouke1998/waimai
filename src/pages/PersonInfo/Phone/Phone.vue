@@ -17,9 +17,6 @@
         }
       },
       mounted(){
-        if(!this.$store.state.user.phone){
-          this.$router.replace("/mine")
-        }
       },
       computed:{
       },

@@ -1,6 +1,5 @@
 <template>
   <div class="shops">
-    <slot name="header"></slot>
     <ul class="item_list"
         :style="{paddingBottom:list_bottom+'px'}"
         v-infinite-scroll="loadMore"
@@ -30,12 +29,13 @@
   import {Toast} from 'mint-ui'
 
   export default {
-      name: "ShopList",
+      name: "ClassifyShopList",
       props:{
         list_bottom:{
           type:Number,
           default:50
-        }
+        },
+        classify_index:Number
       },
       data(){
           return{
@@ -47,6 +47,7 @@
             //rotate:[],//点击存储旋转
             isGettingShop: true,//
             daodile: false,
+            randomOffset:0
           }
       },
       components:{
@@ -54,15 +55,22 @@
       },
       watch:{
         FirstPage() {
-          this.page = 1//value===0?1:0
+          this.page = 1;
           this.getRestaurants(1)
         },
+        classify_index(newV,oldV){
+          this.randomOffset = newV===0?0:parseInt(Math.random()*15);
+          if(this.FirstPage===0){
+            this.page = 1;
+            this.show_num = [];
+            this.mark_num = [];
+            this.isGettingShop = true;
+            this.restaurants = [];
+            this.getRestaurants(1)
+          }
+        }
       },
       mounted(){
-        if(this.$store.state.address.status===0){ //判断是否获取过地址
-          this.getRestaurants(1)
-          this.page=1
-        }
         window.addEventListener('scroll', this.handleScroll)//滑动事件，滑动关闭不喜欢
       },
       computed:{
@@ -83,9 +91,9 @@
         },
         /*点击不喜欢按钮*/
         doNotLike(index){
-          this.restaurants.splice(index,1)
-          this.show_num.splice(index,1)
-            this.mark_num = []
+          this.restaurants.splice(index,1);
+          this.show_num.splice(index,1);
+            this.mark_num = [];
           Toast({
             message: '已将商家置于最后！',
             position: 'middle',
@@ -94,8 +102,8 @@
         },
         //获取restaurant
         getRestaurants(page) {
-          this.isGettingShop = true
-          let offset = (page - 1) * this.limit
+          this.isGettingShop = true;
+          let offset = (page - 1) * this.limit + this.randomOffset;
           reqRestaurants(offset, this.limit)
             .then(data => {
               if (data.status === 0) {
@@ -113,7 +121,7 @@
           })
         },
         loadMore() {
-          if (!this.isGettingShop && !this.daodile && this.$route.path==="/") {
+          if (!this.isGettingShop && !this.daodile) {
             this.getRestaurants(++this.page)
           }
         },
@@ -125,11 +133,14 @@
             this.$store.dispatch('clearCartFoods')
           }
           this.$router.push(`/restaurant?id=${restaurant_id}`)
-        }
+        },
       },
       destroyed () {
         window.removeEventListener('scroll', this.handleScroll)
       },
+     created(){
+        //this.randomOffset = parseInt(Math.random()*15);
+     }
     }
 
 </script>

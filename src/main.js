@@ -28,9 +28,11 @@ Vue.component(Spinner.name, Spinner);
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
-new Vue({
+export const vueObject = new Vue({
   el: '#app',
   render : h => h(App),
   router, //使用vue-router
   store, //使用vuex
-})
+});
+
+

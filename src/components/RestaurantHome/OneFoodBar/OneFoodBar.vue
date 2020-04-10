@@ -4,7 +4,7 @@
     <div v-if="one.image_path" class="info_left">
                       <span>
                       <img
-                        v-lazy.food_type_list="$parent.getImagePath({image_hash:one.image_path,suffix:'x-oss-process=image/resize,m_lfit,w_141,h_141/watermark,g_se,x_4,y_4,image_YS8xYS82OGRlYzVjYTE0YjU1ZjJlZmFhYmIxMjM4Y2ZkZXBuZy5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yOA%3D%3D/quality,q_90/format,webp'})"/>
+                        v-lazy="$parent.getImagePath({image_hash:one.image_path,suffix:'x-oss-process=image/resize,m_lfit,w_141,h_141/watermark,g_se,x_4,y_4,image_YS8xYS82OGRlYzVjYTE0YjU1ZjJlZmFhYmIxMjM4Y2ZkZXBuZy5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yOA%3D%3D/quality,q_90/format,webp'})"/>
                     </span>
     </div>
     <div class="info_right">
@@ -103,6 +103,7 @@
     font-size: .65rem;
   }
   .info_right .row4,.one_food_info .row4{
+    padding-top: 5px;
     display: flex;
     justify-content: space-between;
     font-size: .95rem;
@@ -112,7 +113,6 @@
     letter-spacing: -1px;
     color: red;
     word-spacing: 1px;
-    padding-top: 5px;
     min-width: 50%;
   }
   .info_right .row4_left:before,.one_food_info .row4_left:before{

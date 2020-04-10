@@ -10,7 +10,7 @@
           <a :class="{active_hover:activePage==2}"  @click="ratingClick"><span>评价</span></a>
           <a :class="{active_hover:activePage==3}"  @click="infoClick"><span>商家</span></a>
         </nav>
-        <RestaurantHome v-show="activePage===1" :contentHeight="contentHeight+'px'"></RestaurantHome>
+        <RestaurantHome v-show="activePage===1" :contentHeight="contentHeight+'px'" @coverShow="coverShowM"></RestaurantHome>
         <RestaurantRating :isRatingShow="isRatingShow" v-show="activePage===2"></RestaurantRating>
         <RestaurantInfo v-show="activePage===3"></RestaurantInfo>
       </div>
@@ -46,11 +46,6 @@
       mounted(){
         this.contentHeight = screen.height-document.getElementById('res_nav').offsetHeight; //导航条距离顶部距离
         this.getFoodShop();
-        this.$nextTick(()=>{
-          setTimeout(()=>{
-            this.coverShow = false;
-          },1000)
-        })
       },
       computed:{
       },
@@ -62,7 +57,9 @@
           this.alertInfo()
           return
         }
-        this.getFoodsShop(restaurant_id)
+        setTimeout(()=>{
+          this.getFoodsShop(restaurant_id)
+        },500)
       },
       alertInfo(text='店铺不存在！！！'){ //弹出框
         MessageBox.alert(text)
@@ -81,6 +78,9 @@
         if(!this.isInfoShow){
           this.isInfoShow = true
         }
+      },
+      coverShowM(){
+        this.coverShow = false;
       }
     }
   }

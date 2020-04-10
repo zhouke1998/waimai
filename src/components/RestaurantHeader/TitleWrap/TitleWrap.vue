@@ -1,6 +1,6 @@
 <!-- 点击标题的弹出框 -->
 <template>
-  <section v-if="is_title_wrap" class="title_click_wrap">
+  <section v-if="is_title_wrap" class="title_click_wrap"  @touchmove.back.prevent>
     <transition name="bounce_title">
       <div v-if="title_wrap" class="mesBox">
         <h2>{{foodShopInfo_rst.name}}
@@ -33,7 +33,7 @@
         </article>
       </div>
     </transition>
-    <div @touchmove.prevent  @click="close_title_wrap()" class="close"></div>
+    <div  @click="close_title_wrap()" class="close"></div>
   </section>
 </template>
 

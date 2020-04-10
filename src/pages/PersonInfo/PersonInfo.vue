@@ -69,9 +69,6 @@
       }
     },
     mounted(){
-      if(!this.user.phone){
-        this.$router.replace("/mine")
-      }
     },
     methods:{
       modifyName(){

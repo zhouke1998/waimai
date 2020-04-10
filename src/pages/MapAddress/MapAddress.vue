@@ -43,16 +43,7 @@
           this.$router.back();
         },
         manageAddress(){
-          if(!this.getUser.username){
-            Toast({
-              message: '请先登录',
-              position: 'middle',
-              duration: 2000
-            });
-            this.$router.push("/login")
-          }else{
             this.$router.push("/personInfo/deliveryAddress")
-          }
         }
       },
       components:{

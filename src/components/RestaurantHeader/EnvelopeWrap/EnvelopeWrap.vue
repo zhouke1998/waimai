@@ -54,7 +54,7 @@
         <span @click="close_envelope_wrap()">×</span>
       </section>
     </transition>
-    <div @touchmove.prevent  @click="close_envelope_wrap()" class="wrap"></div>
+    <div @touchmove.back.prevent  @click="close_envelope_wrap()" class="wrap"></div>
     <VipBox :vipRedpack="getVipRedpack[0]" v-if="vipBoxShow" @closeVipBox="closeVipBox"></VipBox>
   </section>
 </template>

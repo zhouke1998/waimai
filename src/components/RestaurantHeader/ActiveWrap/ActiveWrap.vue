@@ -14,7 +14,7 @@
         <span @click="close_active_wrap()">×</span>
       </section>
     </transition>
-    <div @touchmove.prevent  @click="close_active_wrap()" class="wrap"></div>
+    <div @touchmove.back.prevent  @click="close_active_wrap()" class="wrap"></div>
   </section>
 </template>
 

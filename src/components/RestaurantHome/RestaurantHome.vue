@@ -94,7 +94,7 @@
             <span class="mode3" @click="pay" v-if="getOriginalTotalPrice.total>=20">去结算</span>
           </div>
         </div>
-        <div class="cart_info_mask" @click="openCart" v-show="isOpenCart"></div>
+        <div class="cart_info_mask" @click.back="openCart" @touchmove.stop.prevent v-show="isOpenCart"></div>
       </div>
     </div>
   </section>
@@ -107,6 +107,7 @@
   import OneFoodBar from './OneFoodBar/OneFoodBar'
   import {mapState,mapGetters} from 'vuex'
   import CartBar from './CartBar/CartBar'
+  import {Toast} from 'mint-ui';
   export default {
     data(){
       return{
@@ -124,7 +125,12 @@
     },
     watch:{
       foodShopInfo(){
-        this.$nextTick(()=>{this.getFoodTypeHeight()})
+        this.$nextTick(()=>{
+            this.$emit("coverShow");
+          setTimeout(()=>{
+            this.getFoodTypeHeight();
+          },100)
+        })
       },
       cartFoods(){
         if(this.cartFoods.length<=0){
@@ -135,9 +141,6 @@
     mounted(){
       this.cartListHeight = (screen.height-100)/2+'px' //计算购物车的高度
       //this.addCartFood({isAdd:true,index1:1,index2:1})
-      if(this.foodShopInfo.restaurant_id){
-        this.getFoodTypeHeight()
-      }
       const element = document.documentElement|| document.body
       element.scrollTop = 0
     },
@@ -221,7 +224,7 @@
             topHeight+=one.getBoundingClientRect().height
             this.foodTypeHeight.push(topHeight)
           }
-        },500)
+        },200)
       },
       foodTypeNavClick(index){
         /*if(index==this.foodNavActiveIndex){
@@ -273,14 +276,10 @@
       },
       pay(){
         if(this.getOriginalTotalPrice.total>=20){
-          if(!this.$store.state.user.phone){
-            this.$router.push({path: '/login'})
-          }else {
             let delivery_fee = this.foodShopInfo.rst.float_delivery_fee || 0
             this.$store.dispatch('payMoney', formateMoney(delivery_fee + this.getTotalPrice))
             let yijian = this.getOriginalTotalPrice.isDiscount ? formateMoney(this.getOriginalTotalPrice.total - this.getTotalPrice) : this.manjian.yijian
             this.$router.push({name: 'payMoney', params: {manjian: yijian}})
-          }
         }
       },
       formateMoney(money){

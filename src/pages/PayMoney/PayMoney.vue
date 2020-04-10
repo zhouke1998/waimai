@@ -176,7 +176,7 @@
 </template>
 
 <script>
-  import {MessageBox} from 'mint-ui';
+  import {MessageBox,Toast} from 'mint-ui';
   import {getImagePath,formateMoney} from "../../utils/getImagePath";
   import Backtop from '../../components/Headertop/Backtop'
   import OrderNote from '../../components/OrderNote/OrderNote'
@@ -294,7 +294,15 @@
           this.$store.dispatch('clearCartFoods')
         },
         goPay(){
-          this.$router.push({name:'payOnline',params:{totalPrice:this.payMoney}})
+          if(!this.selectedSettleAddress){
+            Toast({
+              message: '请选择配送地址',
+              position: 'middle',
+              duration: 1500
+            });
+          }else{
+            this.$router.push({name:'payOnline',params:{totalPrice:this.payMoney}})
+          }
         },
         selectDeliveryAddress(){
           //this.$router.push('/personInfo/deliveryAddress');

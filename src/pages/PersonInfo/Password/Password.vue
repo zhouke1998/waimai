@@ -52,11 +52,6 @@
         }
       },
       mounted(){
-        setTimeout(()=>{
-          if(!this.$store.state.user.phone){
-            this.$router.replace('/mine')
-          }
-        },500)
       },
       methods:{
         blur(index){

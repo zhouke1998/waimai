@@ -37,9 +37,9 @@
       </div>-->
       <div class="kinds swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" v-for="(type_list,index) in type_listArr" :key="index">
+          <div class="swiper-slide" v-for="(type_list,index0) in type_listArr" :key="index0">
             <ul>
-              <li v-for="(type,index) in type_list" :key="index">
+              <li v-for="(type,index1) in type_list" :key="index1" @click="classify(index0,index1)">
                 <a>
                   <span><img :src="type_list_baseUrl+type.image_hash+'.jpeg'"/></span>
                   <p>{{type.name}}</p>
@@ -103,21 +103,35 @@
         //dom渲染完成后进行此操作
         this.$nextTick(()=>{
           //创建swiper对象
-          new Swiper('.swiper-container', {
-            //loop: true, // 循环模式选项
-            // 如果需要分页器
-            pagination: {
-              el: '.swiper-pagination',
-            }
-          })
+          this.reloadSwiper();
         })
       }
     },
+    created(){
+      if(!this.$store.state.type_list.length){
+        this.$store.dispatch("getType_list")
+      }
+    },
     mounted() {
-      this.$store.dispatch("getType_list")
+      this.reloadSwiper();
     },
     components: {ShopList, HeaderTop},
-    methods: {}
+    methods: {
+      classify(index0,index1){
+        console.log(index0,index1);
+        const index = index0*10+index1;
+        this.$router.push({path:"/classify",query:{classify:index}})
+      },
+      reloadSwiper(){
+        new Swiper('.swiper-container', {
+          //loop: true, // 循环模式选项
+          // 如果需要分页器
+          pagination: {
+            el: '.swiper-pagination',
+          }
+        })
+      }
+    }
   }
 
 </script>

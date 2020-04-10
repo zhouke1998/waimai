@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store'
+import {Toast} from 'mint-ui';
 
 const Home = () => import ('../pages/Home/Home') //组件懒加载
 const Order = () => import ('../pages/Order/Order')
@@ -12,6 +14,7 @@ const MapAddress = () => import ("../pages/MapAddress/MapAddress")
 const deliveryAddress = () => import ("../pages/PersonInfo/deliveryAddress/deliveryAddress")
 const deliveryMapAddress = () => import ("../pages/MapAddress/deliveryMapAddress")
 
+import Classify from '../pages/Home/Classify' //分类店铺界面
 import RestaurantApp from "../pages/Restaurant/RestaurantApp"
 import Story from "../pages/Story/Story"
 import Certification from '../pages/Certification/Certification'
@@ -26,7 +29,8 @@ import AddAddress from '../pages/PersonInfo/deliveryAddress/AddAddress/AddAddres
 import EditAddress from '../pages/PersonInfo/deliveryAddress/EditAddress/EditAddress'
 
 Vue.use(Router)
-export default new Router({
+
+const router =  new Router({
   mode:'history',
   routes: [
     {
@@ -37,6 +41,14 @@ export default new Router({
         slide_index:1,
       },
       redirect:'/'
+    },
+    {
+      path: '/classify',
+      component:Classify,
+      meta:{
+        FootGuide: false,
+        slide_index:2,
+      }
     },
     {
       path: '/order',
@@ -69,8 +81,6 @@ export default new Router({
         FootGuide: true,
         slide_index:1,
       }
-      //forward:'/home',
-      //redirect:'/home'
     },
     {
       component:Login,
@@ -132,6 +142,8 @@ export default new Router({
           path:'checkOrder',
           meta:{
             slide_index:4,
+            require_login:true,
+            tips:true, //提示请先登录
           }
         }
       ]
@@ -150,6 +162,7 @@ export default new Router({
           component:PersonInfo,
           meta:{
             slide_index:5,
+            require_login:true
           }
         },
         {
@@ -165,13 +178,15 @@ export default new Router({
           component:modifyPhone,
           meta:{
             slide_index:6,
+            require_login:true
           }
         },
         {
           path:'password',
           component:modifyPassword,
           meta:{
-            slide_index:6
+            slide_index:6,
+            require_login:true
           }
         },
         {
@@ -179,6 +194,8 @@ export default new Router({
           name:"deliveryAddress",
           meta: {
             slide_index: 6,
+            require_login:true,
+            tips:true, //提示请先登录
           },
           component: deliveryAddress
         },
@@ -200,3 +217,27 @@ export default new Router({
     },
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  let nextPath = false;
+  if(to.meta.require_login){
+    const isLogin = !!(store.state.user && store.state.user.phone);
+    if(!isLogin){ //未登录
+      nextPath = {  //next参数
+        path:"/login"
+      };
+      if(to.meta.tips){
+        Toast({
+          message: '请先登录',
+          position: 'middle',
+          duration: 1500
+        });
+      }
+      next(nextPath);
+      return
+    }
+  }
+  next();
+});
+
+export default router;

@@ -137,7 +137,7 @@
               type: 'info',
               message: '退出成功'
             });
-            this.$router.replace('/mine')
+            this.$router.replace('/login')
           })
           .catch(action => {
           });
