@@ -1,28 +1,30 @@
 <template>
     <section>
-      <HeaderTop title="搜索"></HeaderTop>
-      <div class="content">
+      <div class="search-top">
+        <HeaderTop title="搜索"></HeaderTop>
         <div class="search">
           <input maxlength="10" class="key" v-model="keyWord" type="text"/>
           <a class="sub" @click="searchClick">搜索</a>
         </div>
+      </div>
+      <div class="content">
         <div class="search_content">
-          <ul class="item_list"
+          <ul class="item-list"
               v-infinite-scroll="loadMore"
               infinite-scroll-disabled="isGettingShop"
-              infinite-scroll-distance="30">
+              infinite-scroll-distance="-30">
             <li v-for="(restaurant,index_0) in restaurants" :shop_index="index_0"
                 @click="$router.push(`/restaurant?id=${restaurant.id}`)">
               <div>
                 <ShopCover :restaurant="{restaurant,index_0}"></ShopCover>
               </div>
             </li>
-            <div style="display: flex; justify-content: center; margin-top: 20px">
-              <mt-spinner v-show="isGettingShop && isStartSearch" color="#02a774" :size="40"
-                          type="fading-circle"></mt-spinner>
-              <p style="text-align: center" v-show="daodile">没有更多了...</p>
-            </div>
           </ul>
+          <div class="bottom-tips">
+            <mt-spinner v-show="isGettingShop && isStartSearch" color="#02a774" :size="20"
+                        type="fading-circle"></mt-spinner>
+            <p style="text-align: center" v-show="daodile">没有更多了...</p>
+          </div>
         </div>
       </div>
     </section>
@@ -56,12 +58,11 @@
         searchRestaurants(offset, this.limit, this.searchingKeyWord)
           .then(data => {
             if (data.status === 0) {
-              if (data.restaurants.length < 1) {
+              if (data.restaurants.length < this.limit) {
                 this.daodile = true
-              } else {
-                for (let restaurant of data.restaurants) {
-                  this.restaurants.push(restaurant)
-                }
+              }
+              for (let restaurant of data.restaurants) {
+                this.restaurants.push(restaurant)
               }
               this.isGettingShop = false
             }
@@ -89,11 +90,12 @@
           });
           this.keyWord = ''
         } else {
-          this.page = 1
-          this.searchingKeyWord = this.keyWord
-          this.getRestaurants(1)
-          this.isStartSearch = true
-          this.restaurants = []
+          this.page = 1;
+          this.daodile = false;
+          this.searchingKeyWord = this.keyWord;
+          this.getRestaurants(1);
+          this.isStartSearch = true;
+          this.restaurants = [];
         }
       }
     },
@@ -106,14 +108,19 @@
 
 <style scoped>
   section{
-    background-color:#FBFBFb;
-    overflow: hidden;
+    position: unset;
   }
-
   .search{
     padding: 15px;
     zoom: 1;
     /*** border-bottom: 1px solid #ddd; **/
+  }
+  .search-top{
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    background-color: #fff;
   }
   .search:after{
     display:block;
@@ -151,19 +158,16 @@
     line-height: 35px;
   }
   .content{
-    height: 100%;
   }
 
   .search_content {
-    height: 100%;
-    overflow-y: auto;
   }
 
-  .item_list {
-    padding-bottom: 185px;
+  .item-list {
+
   }
 
-  .item_list li {
+  .item-list li {
     padding: 10px;
     border-bottom: 1px solid #dddddd;
     position: relative;
@@ -230,5 +234,12 @@
     font-size: 0.9rem;
     color: #333;
     margin: 3px;
+  }
+  .bottom-tips{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    padding-bottom: 50px;
   }
 </style>

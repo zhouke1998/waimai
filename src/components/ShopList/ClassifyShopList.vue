@@ -4,7 +4,7 @@
         :style="{paddingBottom:list_bottom+'px'}"
         v-infinite-scroll="loadMore"
         infinite-scroll-disabled="isGettingShop"
-        infinite-scroll-distance="40">
+        infinite-scroll-distance="10">
       <li v-for="(restaurant,index_0) in restaurants" :shop_index="index_0"
           @click="enterRestaurant(restaurant.id)">
         <div>
@@ -15,11 +15,11 @@
           </div>
         </div>
       </li>
-      <div class="bottom-tips" :style="{height:daodile?'40px':'60px'}">
-        <mt-spinner v-show="isGettingShop" color="#02a774" :size="40" type="fading-circle"></mt-spinner>
-        <p style="text-align: center" v-show="daodile">已经到底了...</p>
-      </div>
     </ul>
+    <div class="bottom-tips">
+      <mt-spinner v-show="isGettingShop" color="#02a774" :size="20" type="fading-circle"></mt-spinner>
+      <p style="text-align: center" v-show="daodile">已经到底了...</p>
+    </div>
   </div>
 </template>
 
@@ -66,6 +66,7 @@
             this.mark_num = [];
             this.isGettingShop = true;
             this.restaurants = [];
+            this.daodile = false;
             this.getRestaurants(1)
           }
         }
@@ -107,12 +108,11 @@
           reqRestaurants(offset, this.limit)
             .then(data => {
               if (data.status === 0) {
-                if (data.restaurants.length < 1) {
+                if (data.restaurants.length < this.limit) {
                   this.daodile = true
-                } else {
-                  for (let restaurant of data.restaurants) {
-                    this.restaurants.push(restaurant)
-                  }
+                }
+                for (let restaurant of data.restaurants) {
+                  this.restaurants.push(restaurant)
                 }
                 this.isGettingShop = false
               }
@@ -155,7 +155,6 @@
     padding-left: 10px;
   }
   .item_list{
-    padding-bottom: 50px;
   }
   .item_list li{
     padding: 10px;

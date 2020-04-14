@@ -118,7 +118,6 @@
     components: {ShopList, HeaderTop},
     methods: {
       classify(index0,index1){
-        console.log(index0,index1);
         const index = index0*10+index1;
         this.$router.push({path:"/classify",query:{classify:index}})
       },
