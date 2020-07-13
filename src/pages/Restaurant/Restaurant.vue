@@ -52,7 +52,7 @@
     methods:{
       ...mapActions({getFoodsShop:'getFoodsShop'}),
       getFoodShop(){ //异步获取店铺食品信息
-        const restaurant_id = getUrlParams('id');
+        const restaurant_id = this.$route.query.id || getUrlParams('id');
         if(restaurant_id==''){
           this.alertInfo()
           return

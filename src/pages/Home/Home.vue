@@ -113,7 +113,9 @@
       }
     },
     mounted() {
-      this.reloadSwiper();
+      if(this.$store.state.type_list.length){
+        this.reloadSwiper();
+      }
     },
     components: {ShopList, HeaderTop},
     methods: {
@@ -123,7 +125,8 @@
       },
       reloadSwiper(){
         new Swiper('.swiper-container', {
-          //loop: true, // 循环模式选项
+          //loop: false,
+          // 循环模式选项
           // 如果需要分页器
           pagination: {
             el: '.swiper-pagination',

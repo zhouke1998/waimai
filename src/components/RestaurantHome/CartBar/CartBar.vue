@@ -77,16 +77,10 @@
         }
       },
       cartAnimate() {
-        this.$store.state.cartAnimate = 1
-        setTimeout(() => {
-          this.$store.state.cartAnimate = 2
-        }, 120)
-        setTimeout(() => {
-          this.$store.state.cartAnimate = 3
-        }, 240)
-        setTimeout(() => {
-          this.$store.state.cartAnimate = 0
-        }, 360)
+        this.$store.state.cartAnimate = true;
+        setTimeout(()=>{
+          this.$store.state.cartAnimate = false;
+        },600)
       }
     }
   }

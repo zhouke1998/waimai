@@ -30,8 +30,14 @@ import EditAddress from '../pages/PersonInfo/deliveryAddress/EditAddress/EditAdd
 
 Vue.use(Router)
 
+let mode = "hash";
+
+if(window.location.href.indexOf("index.html")===-1){
+  mode = "history";
+}
+console.log(window.location.href.substr(-10));
 const router =  new Router({
-  mode:'history',
+  mode,
   routes: [
     {
       path: '/home',

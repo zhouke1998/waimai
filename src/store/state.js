@@ -23,7 +23,7 @@ export default {
   user:{}, //用户信息
   foodsShop:{}, //店铺里的商品信息
   cartFoods:[],//购物车里的物品
-  cartAnimate:0, //购物车图标动画，，0代表原始，1代表缩小，2代表放大
+  cartAnimate:false, //购物车图标动画,true表示开始动画
   payMoney:0,
   deliveryAddress:{
     status:1,

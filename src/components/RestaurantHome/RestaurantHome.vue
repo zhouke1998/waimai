@@ -75,7 +75,7 @@
           </div>
         </div>
         <div class="main">
-            <span :class="{cart_ico_active:getTotalCount,cart_ico:true,animate1:cartAnimate===1,animate2:cartAnimate===2,animate3:cartAnimate===3}" @click="openCart()">
+            <span :class="{cart_ico_active:getTotalCount,cart_ico:true,cartAnimate:cartAnimate}" @click="openCart()">
               <i></i>
               <span v-show="getTotalCount" class="number">{{getTotalCount}}</span>
             </span>
@@ -120,7 +120,6 @@
         foodNavActiveIndex:0,//存储食物分类导航active索引
         isOpenCart:false,
         timeOutOpacity:0,//默认购物车详情cart_info透明度
-        //cartAnimate:0 //购物车图标动画，0代表原始，1代表缩小，2代表放大
       }
     },
     watch:{
@@ -393,16 +392,9 @@
     border: 5px solid #444;
     background-color: #363636;
     border-radius: 100%;
-    transition: transform .1s
   }
-  .bottom_cart .animate1{ /*加入购物车动画*/
-    transform: scale(.8);
-  }
-  .bottom_cart .animate2{ /*加入购物车动画*/
-    transform: scale(1.1);
-  }
-  .bottom_cart .animate3{ /*加入购物车动画*/
-    transform: scale(.9);
+  .bottom_cart .cartAnimate{ /*加入购物车动画*/
+    animation: cartAnimate .5s;
   }
   .bottom_cart .cart_ico_active{
     /*background-image: radial-gradient(circle,#363636 17px,#444 0);*/
@@ -594,5 +586,42 @@
   .bounce-leave-active{
     height: 0;
     transition:height .3s;
+  }
+
+  /*购物车图标动画*/
+  @keyframes cartAnimate
+  {
+    0%   {transform: scale(1);}
+    25%  {transform: scale(.8);}
+    50%  {transform: scale(1.1);}
+    75%  {transform: scale(.9);}
+    100% {transform: scale(1);}
+  }
+
+  @-moz-keyframes cartAnimate /* Firefox */
+  {
+    0%   {transform: scale(1);}
+    25%  {transform: scale(.8);}
+    50%  {transform: scale(1.1);}
+    75%  {transform: scale(.9);}
+    100% {transform: scale(1);}
+  }
+
+  @-webkit-keyframes cartAnimate /* Safari 和 Chrome */
+  {
+  0%   {transform: scale(1);}
+  25%  {transform: scale(.8);}
+  50%  {transform: scale(1.1);}
+  75%  {transform: scale(.9);}
+  100% {transform: scale(1);}
+  }
+
+  @-o-keyframes cartAnimate /* Opera */
+  {
+    0%   {transform: scale(1);}
+    25%  {transform: scale(.8);}
+    50%  {transform: scale(1.1);}
+    75%  {transform: scale(.9);}
+    100% {transform: scale(1);}
   }
 </style>

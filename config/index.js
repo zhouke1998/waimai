@@ -18,6 +18,13 @@ module.exports = {
           '^/waimai_api': ''
         }
       },
+      '/userIp':{
+        target:'http://localhost:3000',
+        changeOrigin:true,
+        pathRewrite:{
+          //'^/userIp': ''
+        }
+      },
     },
 
     // Various Dev Server settings
